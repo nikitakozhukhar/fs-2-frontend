@@ -1,0 +1,44 @@
+.banner {
+  position: absolute;
+  width: 100vw;
+  height: 985px;
+  border-bottom: 8px solid #FFA800;
+  background-image: url(/src/img/banner.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.text-container {
+  position: absolute;
+  width: 100%;
+  left: 150px;
+  bottom: 0px;
+}
+
+.banner-text {
+  position: absolute;
+  z-index: 5;
+  left: 150px;
+  bottom: 350px;
+  font-weight: 200;
+  font-size: 48px;
+  line-height: 98px;
+  text-align: center;
+  color: #FFFFFF;
+}
+
+.banner-text-second {
+  position: absolute;
+  z-index: 5;
+  left: 150px;
+  bottom: 300px;
+  font-weight: 600;
+  font-size: 48px;
+  line-height: 98px;
+  text-align: center;
+  color: #FFFFFF;
+}
