@@ -2,12 +2,15 @@
   "name": "fs-2-frontend",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://nikitakozhukhar.github.io/fe-2-frontend",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.3.0",
