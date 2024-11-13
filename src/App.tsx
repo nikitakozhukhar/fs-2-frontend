@@ -17,7 +17,7 @@ function App() {
 
   return (
     <div className="app">
-      <Router basename='/fe-diplom'>
+      <Router basename='/fs-2-frontend'>
         <Header /> 
         <div className="container">
           <Routes>
