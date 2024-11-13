@@ -1,0 +1,13 @@
+.about-title {
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.about-text {
+  border-left: 9px solid #ffa800;
+  padding-left: 10px;
+}
+
+.about-text__bold {
+  font-weight: 600;
+}
