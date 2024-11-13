@@ -1,4 +1,4 @@
-# Деплой проекта на GHpages - https://nikitakozhukhar.github.io/fe-2-frontend
+# Деплой проекта на GHpages - https://nikitakozhukhar.github.io/fs-2-frontend
 
 # Дипломная работа к профессии Frontend-разработчик «Система бронирования ж/д билетов»
 
