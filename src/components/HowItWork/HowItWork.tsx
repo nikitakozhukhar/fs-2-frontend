@@ -1,6 +1,9 @@
-import "./About.css";
+import "./HowItWork.css";
+import Icon from "../Icon/Icon";
+
 
 const HowItWork = () => {
+ 
   return (
     <>
       <div className="info-container">
