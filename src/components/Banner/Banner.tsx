@@ -4,14 +4,14 @@ import "./Banner.css";
 const Banner = () => {
   return (
     <>
-      
       <div className="banner">
-        <div className="mask"></div>
-        <div className="text-container">
-          <h2 className="banner-text">Вся жизнь -</h2>
-          <h2 className="banner-text-second">путешествие!</h2>
+          <div className="mask"></div>
+          <div className="text-container">
+            <h2 className="banner-text">Вся жизнь -</h2>
+            <h2 className="banner-text-second">путешествие!</h2>
+          </div>
         </div>
-      </div>
+      
     </>
   );
 };
