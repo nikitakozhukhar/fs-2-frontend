@@ -6,7 +6,7 @@ import HowItWork from '../components/HowItWork/HowItWork';
 const HomePage = () => {
   return (
     <>
-      <Banner />
+      {/* <Banner /> */}
       <About />
       <HowItWork />
     </>

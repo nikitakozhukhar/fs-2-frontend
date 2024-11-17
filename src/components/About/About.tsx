@@ -2,7 +2,7 @@ import "./About.css";
 
 const About = () => {
   return (
-    <div className="about">
+    <section className="about">
       <div className="about-title">О Нас</div>
       <div className="about-text">
         <p>
@@ -21,7 +21,7 @@ const About = () => {
           самая низкая.
         </p>
       </div>
-    </div>
+    </section>
   );
 };
 
