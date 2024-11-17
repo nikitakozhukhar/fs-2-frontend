@@ -30,14 +30,18 @@
   cursor: pointer;
 }
 
+.header-col1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 247px;
+  margin-left: 150px;
+}
 
 .text-container {
-  position: relative;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  left: 5vw;
-  top: 500px;
 }
 
 

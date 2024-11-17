@@ -2,6 +2,7 @@
 import "./Header.css";
 import Logo from "../Logo/Logo";
 import Banner from "../Banner/Banner";
+import FindTicket from '../FindTicket/FindTicket'
 
 const Header = () => {
   return (
@@ -19,12 +20,14 @@ const Header = () => {
         </nav>
       </div>
 
-      <div className="header-col2">
+      <div className="header-col1">
         <div className="text-container">
           <h2 className="header-text">Вся жизнь -</h2>
           <h2 className="header-text-second">путешествие!</h2>
         </div>
-        
+
+        <FindTicket />
+
       </div>
      
 
