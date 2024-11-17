@@ -1,5 +1,4 @@
 import "./HowItWork.css";
-import Icon from "../Icon/Icon";
 
 
 const HowItWork = () => {
