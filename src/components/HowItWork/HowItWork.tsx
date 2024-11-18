@@ -6,11 +6,10 @@ const HowItWork = () => {
   return (
     <>
       <div className="info-container">
-        <div className="image"></div>
-        <div className="image-mask"></div>
+        <div className="info-img"></div>
         <div className="col-1 row">
-          <div className="info-title"></div>
-          <button className="learn-more"></button>
+          <div className="info-title">Как это работает</div>
+          <button className="learn-more">Узнать больше</button>
         </div>
         <div className="col-2">
           <div className="col-2_item">

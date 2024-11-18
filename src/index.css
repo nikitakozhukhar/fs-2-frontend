@@ -8,6 +8,7 @@
   line-height: 1.5;
   font-weight: 400;
   text-decoration: none;
+  outline: 1px solid red;
 }
 
 li {

@@ -1,4 +1,6 @@
 .logo {
+  max-width: 1440px;
+  margin: 0 auto;
   font-size: 40px;
   font-weight: 600;
   color: white;
