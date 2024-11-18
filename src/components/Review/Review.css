@@ -1,0 +1,66 @@
+.review-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.review-title {
+  align-self: flex-start;
+}
+
+.review-posts {
+  margin-bottom: 100px;
+}
+
+.review-posts-row {
+  display: flex;
+  gap: 50px;
+}
+
+.review-post-row {
+  display: flex;
+  gap: 15px;
+}
+
+.review-post-image {
+  width: 207px;
+  height: 207px;
+  clip-path: circle(50%);
+}
+
+.review-post-text-col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.review-post-text-author {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 21px;
+}
+
+.review-text {
+  color: gray;
+  font-weight: 300;
+}
+
+.review-dots-control {
+  display: flex;
+  justify-content: center;
+  gap: 30px
+}
+
+.dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: lightgray;
+  margin-bottom: 100px;
+  cursor: pointer;
+}
+
+.dot-active {
+  background-color: gray;
+}
