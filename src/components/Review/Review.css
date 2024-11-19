@@ -10,17 +10,14 @@
 }
 
 .review-posts {
+  display: flex;
+  justify-content: space-between;
   margin-bottom: 100px;
 }
 
-.review-posts-row {
+.review-post {
   display: flex;
-  gap: 50px;
-}
-
-.review-post-row {
-  display: flex;
-  gap: 15px;
+  gap: 20px;
 }
 
 .review-post-image {
@@ -42,6 +39,7 @@
 }
 
 .review-text {
+  width: 400px;
   color: gray;
   font-weight: 300;
 }
