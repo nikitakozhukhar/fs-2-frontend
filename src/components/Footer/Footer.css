@@ -1,0 +1,13 @@
+.footer {
+  background-color: #2d2b30;
+}
+
+.footer-container {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+}
