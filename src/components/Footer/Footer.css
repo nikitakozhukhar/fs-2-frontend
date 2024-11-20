@@ -1,5 +1,6 @@
 .footer {
   background-color: #2d2b30;
+  width: 100vw;
 }
 
 .footer-container {
@@ -10,4 +11,75 @@
 .footer-content {
   display: flex;
   flex-direction: column;
+}
+
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 50px;
+}
+
+.footer-contacts,
+.footer-right {
+  color: white;
+}
+
+.contact-line {
+  display: flex;
+  gap: 20px;
+}
+
+.footer-socials-list {
+  display: flex;
+  gap: 15px;
+}
+
+.contacts-title,
+.form {
+  margin-bottom: 15px;
+}
+
+.input-row {
+  display: flex;
+  gap: 30px;
+}
+
+.input-subscribe {
+  width: 450px;
+  height: 60px;
+  font-size: 20px;
+  outline: none;
+}
+
+.btn-send {
+  width: 170px;
+  height: 60px;
+  background-color: #2d2b30;
+  border: 1px solid white;
+  color: white;
+  text-transform: uppercase;
+}
+
+.bottom-line {
+  position: relative;
+  left: 0px;
+  bottom: 0px;
+  width: 100vw;
+  background-color: white;
+  height: 1px;
+  margin-bottom: 20px;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-footer {
+  margin: 0;
+}
+
+.bottom-date {
+  color: white;
 }
