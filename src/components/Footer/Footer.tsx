@@ -192,7 +192,6 @@ const Footer = () => {
               </div>
             </div>
           </div>
-          {/* <div className="bottom-line"></div> */}
           <div className="footer-bottom">
             <div className="logo logo-footer">
               <Logo />
