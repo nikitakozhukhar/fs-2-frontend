@@ -62,8 +62,7 @@
 
 .bottom-line {
   position: relative;
-  left: 0px;
-  bottom: 0px;
+  bottom: 78px;
   width: 100vw;
   background-color: white;
   height: 1px;
