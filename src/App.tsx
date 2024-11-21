@@ -9,7 +9,6 @@ import PaymentPage from "./pages/PaymentPage";
 import SuccessPage from "./pages/SuccessPage";
 import Page404 from "./pages/Page404";
 
-import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 
 function App() {
@@ -17,7 +16,6 @@ function App() {
     <div className="app">
       <Router basename="/fs-2-frontend">
         <div className="container">
-          <Header />
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/train" element={<TrainViewPage />} />
