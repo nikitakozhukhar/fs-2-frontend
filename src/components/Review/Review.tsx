@@ -2,7 +2,7 @@ import "./Review.css";
 
 const Review = () => {
   return (
-    <div className="review">
+    <section className="review">
       <div className="review-container">
         <div className="review-title"></div>
         <div className="review-posts">
@@ -46,7 +46,7 @@ const Review = () => {
           <span className="dot"></span>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
