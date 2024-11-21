@@ -1,4 +1,5 @@
 import "./FindTicket.css";
+import { Link } from 'react-router-dom'
 
 const FindTicket = () => {
   return (
@@ -34,7 +35,7 @@ const FindTicket = () => {
         <h3 className="date-title">Направление</h3>
         <form className="date-form">
           <input
-            type="date"
+            type="date" 
             placeholder="дд/мм/гг"
             className="date date-start"
           ></input>
@@ -45,8 +46,10 @@ const FindTicket = () => {
           ></input>
         </form>
       </div>
-
-      <button className="find-ticket-button">Найти билеты</button>
+      <Link to={'/train'} className="find-ticket-button">
+        <button className="find-ticket-button">Найти билеты</button>
+      </Link>
+      
       </div>
     </div>
   );
