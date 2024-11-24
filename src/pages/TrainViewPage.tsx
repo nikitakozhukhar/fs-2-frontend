@@ -1,10 +1,14 @@
-// import React from 'react';
-// import Banner from "../components/Banner/Banner";
 import Header from "../components/Header/Header";
+import ProgressPageBar from "../components/ProgressPageBar/ProgressPageBar"
 
 const TrainViewPage = () => {
   return (
-    <Header location={'train'} text={false}/>
+    <>
+      <Header location={'train'} text={false}/>
+      <ProgressPageBar />
+      
+    </>
+    
   );
 };
 
