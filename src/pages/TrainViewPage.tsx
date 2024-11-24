@@ -1,10 +1,10 @@
 // import React from 'react';
+// import Banner from "../components/Banner/Banner";
+import Header from "../components/Header/Header";
 
 const TrainViewPage = () => {
   return (
-    <div>
-      TrainViewPage
-    </div>
+    <Header location={'train'} text={false}/>
   );
 };
 
