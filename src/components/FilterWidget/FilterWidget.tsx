@@ -223,13 +223,19 @@ const FilterWidget: React.FC = () => {
       </div>
 
       <div className="direction-forward">
-        <div className="direction-forward-img"></div>
-        <div className="direction-forward-title">Туда</div>
+        <div className="direction-forvard-left-col">
+          <div className="direction-forward-img"></div>
+          <div className="direction-forward-title">Туда</div>
+        </div>
+       
         <div className="direction-forward-more"></div>
       </div>
       <div className="direction-backward">
-        <div className="direction-backward-img"></div>
-        <div className="direction-forward-title">Обратно</div>
+
+        <div className="direction-backward-left-col">
+          <div className="direction-forward-img"></div>
+          <div className="direction-forward-title">Обратно</div>
+        </div>
         <div className="direction-forward-more"></div>
       </div>
     </div>

@@ -1,0 +1,63 @@
+.last-ticket-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 10px 10px;
+  
+  border: 1px solid #C4C4C4;
+}
+
+.last-ticket-left-col,
+.last-ticket-right-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.departure-place,
+.arrival-place {
+  display: flex;
+  flex-direction: column;
+}
+
+.departure-city,
+.arrival-city {
+  font-size: 1.3em;
+}
+
+.departure-station,
+.arrival-station {
+  color: #928F94;
+}
+
+.last-tickets-options {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.last-ticket-option {
+  display: flex;
+  flex-direction: column;
+}
+
+.arrival-place {
+  display: flex;
+  align-items: flex-end;
+}
+
+.ticket-cost {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  align-self: flex-end;
+}
+.ticket-price {
+  font-size: 1.5em;
+  color: #FFA800;
+}
+
+.currency::after {
+  content: '\20BD';
+  font-size: 1.5em;
+}

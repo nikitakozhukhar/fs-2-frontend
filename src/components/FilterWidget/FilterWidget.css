@@ -1,6 +1,7 @@
 .filter-widget-container {
   width: 370px;
   padding: 30px 20px;
+  margin-bottom: 50px;
   background-color: #3E3C41;
   color: white;
 }
@@ -63,6 +64,14 @@
   height: 96px;
 }
 
+.direction-forvard-left-col,
+.direction-backward-left-col {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 1.5em;
+}
+
 .direction-forward-img {
   content: url('../../img/svg/directionRigth.svg');
   width: 32px;
@@ -79,4 +88,5 @@
   content: url('../../img/svg/moreDetails.svg');
   width: 20px;
   height: 20px;
+  cursor: pointer;
 }
