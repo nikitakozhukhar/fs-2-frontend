@@ -1,0 +1,24 @@
+.train-detail-card {
+  display: flex;
+  /* justify-content: space-between; */
+  gap: 20px;
+  width: 960px;
+  height: 353px;
+}
+
+.train-detail-col1 {
+  display: flex;
+  flex-direction: column;
+  background-color: #E4E0E9;
+  align-items: center;
+  justify-content: center;
+  flex-basis: 197px;
+}
+
+.train-departure-station {
+  color: gray;
+}
+
+.arrow svg path {
+  fill: gray;
+}

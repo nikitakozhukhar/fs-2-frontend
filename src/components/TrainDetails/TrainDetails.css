@@ -1,0 +1,37 @@
+.train-details-row {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 960px;
+  
+}
+
+.display-serched-train {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.sort-train {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.display-count {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.display-count span {
+  cursor: pointer;
+}
+
+.train-details {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-bottom: 30px;
+}
