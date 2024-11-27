@@ -80,10 +80,10 @@ const TrainDetailCard = () => {
         </div>
 
         <div className="reverse-time-info">
-          <div className="reverse-from">
-            <div className="reverse-from-time">9:52</div>
-            <div className="reverse-from-city">Санкт-Петербург</div>
-            <div className="reverse-from-station">Ладожский вокзал</div>
+          <div className="reverse-to">
+            <div className="reverse-to-time">00:10</div>
+            <div className="reverse-to-city">Москва</div>
+            <div className="reverse-to-station">Курский вокзал</div>
           </div>
 
           <div className="reverse-time-arrow">
@@ -105,10 +105,10 @@ const TrainDetailCard = () => {
             </div>
           </div>
 
-          <div className="reverse-to">
-            <div className="reverse-to-time">00:10</div>
-            <div className="reverse-to-city">Москва</div>
-            <div className="reverse-to-station">Курский вокзал</div>
+          <div className="reverse-from">
+            <div className="reverse-from-time">9:52</div>
+            <div className="reverse-from-city">Санкт-Петербург</div>
+            <div className="reverse-from-station">Ладожский вокзал</div>
           </div>
         </div>
       </div>
@@ -209,7 +209,9 @@ const TrainDetailCard = () => {
         </div>
         <button className="choose-place-button">Выбрать места</button>
       </div>
+     
     </div>
+    
   );
 };
 

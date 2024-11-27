@@ -35,3 +35,33 @@
   gap: 25px;
   margin-bottom: 30px;
 }
+
+.train-details-pages {
+  display: flex;
+  align-self: flex-end;
+  gap: 15px;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  padding: 10px 15px;
+  border: 1px solid #E4E0E9;
+  color: #928F94;
+  cursor: pointer;
+}
+
+.pagination:hover,
+.pagination:hover svg path {
+  border: 1px solid #FFA800;
+  background-color: #FFFFFF;
+  color: #FFA800;
+  fill: #FFA800;
+}
+
+.pagination-active {
+  background-color: #FFA800;
+  color: #FFFFFF;
+}

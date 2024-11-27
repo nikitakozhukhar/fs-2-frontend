@@ -1,9 +1,9 @@
 .train-detail-card {
   display: flex;
-  /* justify-content: space-between; */
   gap: 20px;
   width: 960px;
   height: 353px;
+  border: 1px solid #E4E0E9;
 }
 
 .train-detail-col1 {
@@ -21,4 +21,93 @@
 
 .arrow svg path {
   fill: gray;
+}
+
+.train-detail-col2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 480px;
+  padding: 60px 40px;
+}
+
+.direct-time-info,
+.reverse-time-info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.direct-from-time,
+.direct-to-time,
+.reverse-to-time,
+.reverse-from-time {
+  font-size: 1.5em;
+  font-weight: 500;
+}
+
+.direct-from-station,
+.direct-to-station,
+.reverse-to-station,
+.reverse-from-station,
+.direct-time,
+.reverse-time {
+  color: #928F94;
+}
+
+.train-detail-col3 {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+  width: 283px;
+  padding: 40px 20px 10px 20px;
+}
+
+.carriages-information {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-grow: 1;
+  max-height: 239px;
+}
+
+.carriage-place-count {
+  color: #FFA800;
+}
+
+.carriage-cost {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.text {
+  color: #928F94;
+}
+
+.carriage-price {
+  font-weight: 500;
+  font-size: 1.5em;
+}
+
+.carriages-options {
+  display: flex;
+  align-items: center;
+  align-self: flex-end;
+  gap: 20px;
+}
+
+.carriages-option {
+  display: flex;
+  flex-direction: column;
+}
+
+.choose-place-button {
+  padding: 5px 10px;
+  background-color: #FFA800;
+  border: 0px;
+  border-radius: 5px;
+  color: #FFFFFF;
+  font-size: 1.2em;
+  cursor: pointer;
 }
