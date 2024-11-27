@@ -1,4 +1,6 @@
 import "./App.css";
+import './input.css'
+import './output.css'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import TrainViewPage from "./pages/TrainViewPage";
@@ -15,7 +17,7 @@ function App() {
   return (
     <div className="app">
       <Router basename="/fs-2-frontend">
-        <div className="container">
+        <div className="containers">
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/train" element={<TrainViewPage />} />

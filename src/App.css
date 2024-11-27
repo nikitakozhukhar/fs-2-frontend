@@ -4,7 +4,7 @@
   align-items: center;
 }
 
-.container {
+.containers {
   /* max-width: 1440px; */
   display: flex;
   flex-direction: column;
