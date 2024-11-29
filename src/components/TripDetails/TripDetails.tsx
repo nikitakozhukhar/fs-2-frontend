@@ -61,11 +61,11 @@ const TripDetails = () => {
 
         <div className="flex flex-col justify-between gap-5 text-xl text-gray-50">
           <div className="flex justify-between">
-            <div className="font-light text-[#E5E5E5]">№ Поезда</div>
+            <div className="font-normal text-[#E5E5E5]">№ Поезда</div>
             <div className="font-semibold">116С</div>
           </div>
           <div className="flex justify-between">
-            <div className="font-light text-[#E5E5E5]">Название</div>
+            <div className="font-normal text-[#E5E5E5]">Название</div>
             <div className="flex flex-col">
               <div className="self-end">Адлер</div>
               <div className="">Санкт-Петербург</div>
