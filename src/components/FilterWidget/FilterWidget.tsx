@@ -10,7 +10,7 @@ const FilterWidget: React.FC = () => {
     const value = parseFloat(e.target.value);
     if (value <= maxValue - 5) {
       setMinValue(value);
-    }
+    } 
   };
 
   const handleMaxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
