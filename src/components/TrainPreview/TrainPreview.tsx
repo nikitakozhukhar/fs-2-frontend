@@ -1,8 +1,9 @@
 import "./TrainPreview.css";
+import FirstClass from "../TrainDiagrams/FirstClass";
 
 const TrainPreview = () => {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col mb-5">
       <div className="mb-16 text-3xl font-medium uppercase">Выбор мест</div>
       <div className="flex flex-col border-2 border-[#C4C4C4]">
         <div className="flex mb-4 p-4">
@@ -400,13 +401,13 @@ const TrainPreview = () => {
           </div>
         </div>
 
-        <div className="flex justify-end px-5">
+        <div className="flex justify-end px-5 mb-5">
           <div className="w-[210px] p-4 bg-[#F3F3F3]">
             11 человек выбирают места в этом поезде
           </div>
         </div>
 
-       
+       <FirstClass />
 
       </div>
     </div>
