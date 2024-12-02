@@ -1,6 +1,7 @@
 import Header from "../components/Header/Header";
 import ProgressPageBar from "../components/ProgressPageBar/ProgressPageBar";
 import TripDetails from "../components/TripDetails/TripDetails";
+import Passanger from "../components/Passanger/Passanger";
 
 const PassangersPage = () => {
   return (
@@ -12,7 +13,7 @@ const PassangersPage = () => {
           <TripDetails />
         </div>
         <div className="">
-         
+         <Passanger />
         </div>
       </div>
     </>
