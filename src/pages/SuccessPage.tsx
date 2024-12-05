@@ -1,11 +1,12 @@
 import Header from "../components/Header/Header";
+import SuccessInfoBanner from "../components/SuccessInfoBanner/SuccessInfoBanner";
 
 
 const SuccessPage = () => {
   return (
     <>
-      <Header location={"train"} text={false} />
-      
+      <Header location={"success"} text={false} findForm={false}/>
+       <SuccessInfoBanner />
     </>
   );
 };

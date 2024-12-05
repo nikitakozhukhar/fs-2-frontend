@@ -7,10 +7,23 @@ import HeaderProps from '../../interfaces/HeaderProps'
 
 import trainImage from "../../img/bluredTrain.png";
 import defaultImage from "../../img/banner.png";
+import successImage from "../../img/successPageBanner.png"
 
-const Header:React.FC<HeaderProps> = ( {location = 'default', text = 'default'} ) => {
- 
-  const imgBannerSrc = location === "train" ? trainImage : defaultImage;
+const Header:React.FC<HeaderProps> = ( {location = 'default', text = 'default'}, findForm ) => {
+
+  let imgBannerSrc:string = location;
+
+  if (location === "train") {
+    imgBannerSrc = trainImage
+  } 
+  if (location === "default"){
+    imgBannerSrc = defaultImage
+  }
+  if (location === "success") {
+    imgBannerSrc = successImage
+  } 
+
+  // const imgBannerSrc = location === "train" ? trainImage : defaultImage;
 
   return (
     <header className="header-container">
@@ -33,7 +46,9 @@ const Header:React.FC<HeaderProps> = ( {location = 'default', text = 'default'} 
             <h2 className="header-text-second">путешествие!</h2>
           </div>)}
 
-        <FindTicket />
+          {!findForm &&
+            <FindTicket />
+          }
 
       </div>
      
