@@ -1,10 +1,12 @@
-// import React from 'react';
+import Header from "../components/Header/Header";
+
 
 const SuccessPage = () => {
   return (
-    <div>
-      SuccessPage
-    </div>
+    <>
+      <Header location={"train"} text={false} />
+      
+    </>
   );
 };
 
