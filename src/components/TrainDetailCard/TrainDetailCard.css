@@ -1,5 +1,6 @@
 .train-detail-card {
   display: flex;
+  
   gap: 20px;
   width: 960px;
   height: 353px;

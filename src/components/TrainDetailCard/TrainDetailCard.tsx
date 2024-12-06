@@ -1,4 +1,5 @@
 import "./TrainDetailCard.css";
+import { Link } from 'react-router-dom'
 
 const TrainDetailCard = () => {
   return (
@@ -207,7 +208,9 @@ const TrainDetailCard = () => {
             </svg>
           </div>
         </div>
+        <Link to={"/place"}>
         <button className="choose-place-button">Выбрать места</button>
+        </Link>
       </div>
      
     </div>

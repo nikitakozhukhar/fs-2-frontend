@@ -5,11 +5,13 @@ import Banner from "../Banner/Banner";
 import FindTicket from '../FindTicket/FindTicket'
 import HeaderProps from '../../interfaces/HeaderProps'
 
+// import { Link } from 'react-router-dom'
+
 import trainImage from "../../img/bluredTrain.png";
 import defaultImage from "../../img/banner.png";
 import successImage from "../../img/successPageBanner.png"
 
-const Header:React.FC<HeaderProps> = ( {location = 'default', text = 'default'}, findForm ) => {
+const Header:React.FC<HeaderProps> = ( {location = 'default', text = 'default', findForm} ) => {
 
   let imgBannerSrc:string = location;
 
@@ -32,7 +34,9 @@ const Header:React.FC<HeaderProps> = ( {location = 'default', text = 'default'},
       <div className="header-row">
         <nav className="navbar">
           <ul className="nav-list">
-            <li className="nav-item">О нас</li>
+            {/* <Link to={"/#review"}> */}
+              <li className="nav-item">О нас</li>
+            {/* </Link> */}
             <li className="nav-item">Как это работает</li>
             <li className="nav-item">Отзывы</li>
             <li className="nav-item">Контакты</li>

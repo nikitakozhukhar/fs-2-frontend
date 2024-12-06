@@ -1,11 +1,12 @@
 import "./TrainPreview.css";
 import FirstClass from "../TrainDiagrams/FirstClass";
+import { Link } from "react-router-dom";
 
 const TrainPreview = () => {
   return (
-    <div className="flex flex-col mb-5">
+    <div className="flex flex-col mb-5 ">
       <div className="mb-16 text-3xl font-medium uppercase">Выбор мест</div>
-      <div className="flex flex-col border-2 border-[#C4C4C4]">
+      <div className="flex flex-col mb-10 border-2 border-[#C4C4C4]">
         <div className="flex mb-4 p-4">
           <div className="mr-2 cursor-pointer">
             <svg
@@ -407,8 +408,13 @@ const TrainPreview = () => {
           </div>
         </div>
 
-       <FirstClass />
+        <FirstClass />
+      </div>
 
+      <div className="self-end ">
+        <Link to={"/passangers"}>
+          <button className="py-4 px-12 border-2 border-[#FFA800] rounded-lg bg-[#FFA800] text-white text-2xl uppercase">далее</button>
+        </Link>
       </div>
     </div>
   );

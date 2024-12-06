@@ -2,7 +2,7 @@ import "./Review.css";
 
 const Review = () => {
   return (
-    <section className="review">
+    <section id="review" className="review">
       <div className="review-container">
         <div className="review-title"></div>
         <div className="review-posts">

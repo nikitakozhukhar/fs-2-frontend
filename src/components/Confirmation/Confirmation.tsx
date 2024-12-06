@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Confirmation = () => {
   return (
     <div className="flex flex-col gap-8 w-[960px] mb-14">
@@ -287,12 +289,16 @@ const Confirmation = () => {
         <div className="flex flex-col gap-5 p-5">
           <div className="">Наличными</div>
           <button className="self-end py-2 px-8 border-2 border-[#292929] rounded-md font-bold text-lg">
-              Изменить
-            </button>
+            Изменить
+          </button>
         </div>
       </div>
 
-      <button className="self-end w-[323px] h-[60px] bg-[#FFA800] rounded-md text-2xl font-bold text-white uppercase">Подтвердить </button>
+      <Link className="self-end" to={"/success"}>
+        <button className="w-[323px] h-[60px] bg-[#FFA800] rounded-md text-2xl font-bold text-white uppercase">
+          Подтвердить{" "}
+        </button>
+      </Link>
     </div>
   );
 };
