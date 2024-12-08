@@ -17,7 +17,7 @@ function App() {
   return (
     <div className="app">
       <Router basename="/fs-2-frontend">
-        <div className="containers">
+        <div className="container">
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/train" element={<TrainViewPage />} />
