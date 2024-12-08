@@ -1,6 +1,7 @@
 import "./FindTicket.css";
 import { Link } from 'react-router-dom'
 
+
 const FindTicket = () => {
   return (
     <div className="find-ticket-container">
@@ -11,6 +12,7 @@ const FindTicket = () => {
           <input
             placeholder="откуда"
             className="direction direction-input_from"
+
           ></input>
           <span className="direction-swap">
             <svg
@@ -49,7 +51,6 @@ const FindTicket = () => {
       <Link to={'/train'} className="find-ticket-button">
         <button className="find-ticket-button">Найти билеты</button>
       </Link>
-      
       </div>
     </div>
   );

@@ -1,36 +1,36 @@
-.header-container {
+/* .header-container {
   height: 985px;
-}
+} */
 
-.header-row {
+/* .header-row {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   height: 95px;
   max-width: 1440px;
   margin: 0 auto;
-}
+} */
 
-.navbar-mask {
+/* .navbar-mask {
   position: absolute;
   width: 100vw;
   height: 95px;
   left: 0;
   background-color: #292929;
   z-index: -1;
-}
+} */
 
-.nav-list {
+/* .nav-list {
   display: flex;
   gap: 100px;
   color: #fefefe;
   font-size: 1.5em;
-}
+} */
 
-.nav-item {
+/* .nav-item {
   font-weight: 200;
   cursor: pointer;
-}
+} */
 
 .header-col1 {
   display: flex;

@@ -2,7 +2,7 @@ import "./HowItWork.css";
 
 const HowItWork = () => {
   return (
-    <section className="info">
+    <section id="howItWorks" className="info">
       <div className="info-container">
         <div className="info-img"></div>
         <div className="col-1 row">
