@@ -1,56 +1,146 @@
-import "./FindTicket.css";
-import { Link } from 'react-router-dom'
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { useSearchStore } from "../../store/searchStore";
+import { useCitiesQuery } from "../../utils/useCitiesQuery";
 
+const FindTicket: React.FC = () => {
+  const { query, setQuery } = useSearchStore();
+  const { data: cities, isLoading, error } = useCitiesQuery(query);
+  const [showDropdown, setShowDropdown] = useState(false);
 
-const FindTicket = () => {
+  const handleCityClick = (cityName: string) => {
+    setQuery(cityName);
+    setShowDropdown(false);
+  };
+
+  const handleInputChange = (e:React.ChangeEvent<HTMLInputElement>) => {
+    setQuery(e.target.value);
+    setShowDropdown(true);
+  }
+
   return (
-    <div className="find-ticket-container">
-      <div className="find-ticket-column">
-      <div className="find-ticket-direction">
-        <h3 className="direction-title">Направление</h3>
-        <form className="direction-form">
-          <input
-            placeholder="откуда"
-            className="direction direction-input_from"
+    <div className="w-[730px]">
+      <div className="flex flex-col justify-around gap-10 h-[575px] bg-[#292929CC]/80 ml-12 p-12">
+        {/* Направление */}
+        <div>
+          <h3 className="text-white font-light text-3xl mb-4">Направление</h3>
+          <form
+            className="flex items-center gap-3"
+            onSubmit={(e) => e.preventDefault()}
+          >
+            <div className="relative w-full">
+              <input
+                type="text"
+                placeholder="Откуда"
+                className="w-full h-12 pl-4 text-base text-gray-800 rounded-md focus:outline-none"
+                value={query}
+                onChange={handleInputChange}
+                onBlur={() => setTimeout(() => setShowDropdown(false), 200)}
+                onFocus={() => setShowDropdown(true)}
+              />
+              {showDropdown && query && (
+                <div className="absolute z-10 bg-white border border-gray-300 rounded-md shadow-md mt-2 w-full">
+                  {isLoading && (
+                    <p className="text-gray-500 px-4 py-2">Загрузка...</p>
+                  )}
+                  {error && (
+                    <p className="text-red-500 px-4 py-2">Ошибка загрузки...</p>
+                  )}
+                  {cities && cities.length > 0 ? (
+                    <ul>
+                      {cities.slice(0, 10).map((city) => (
+                        <li
+                          key={city.id}
+                          className="px-4 py-2 cursor-pointer hover:bg-gray-100"
+                          onClick={() => handleCityClick(city.name)}
+                        >
+                          {city.name}
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p className="text-gray-500 px-4 py-2">Города не найдены</p>
+                  )}
+                </div>
+              )}
+            </div>
+            <div className="relative top-1 left-[6px] bg-transparent cursor-pointer">
+              <svg
+                fill="gray"
+                viewBox="0 0 32 32"
+                xmlns="http://www.w3.org/2000/svg"
+                id="update-alt"
+                className="w-8 h-8"
+              >
+                <path d="M12,3A9,9,0,0,0,6,5.32V3A1,1,0,0,0,4,3V8a1,1,0,0,0,.92,1H10a1,1,0,0,0,0-2H7.11A7,7,0,0,1,19,12a1,1,0,0,0,2,0A9,9,0,0,0,12,3Z"></path>
+                <path d="M19.08,15H14a1,1,0,0,0,0,2h2.89A7,7,0,0,1,5,12a1,1,0,0,0-2,0,9,9,0,0,0,15,6.68V21a1,1,0,0,0,2,0V16A1,1,0,0,0,19.08,15Z"></path>
+              </svg>
+            </div>
+            <div className="relative w-full">
+              <input
+                type="text"
+                placeholder="Куда"
+                className="w-full h-12 pl-4 text-base text-gray-800 rounded-md focus:outline-none"
+                value={query}
+                onChange={(e) => {
+                  setQuery(e.target.value);
+                  setShowDropdown(true);
+                }}
+                onBlur={() => setTimeout(() => setShowDropdown(false), 200)}
+                onFocus={() => setShowDropdown(true)}
+              />
+              {showDropdown && query && (
+                <div className="absolute z-10 bg-white border border-gray-300 rounded-md shadow-md mt-2 w-full">
+                  {isLoading && (
+                    <p className="text-gray-500 px-4 py-2">Загрузка...</p>
+                  )}
+                  {error && (
+                    <p className="text-red-500 px-4 py-2">Ошибка загрузки...</p>
+                  )}
+                  {cities && cities.length > 0 ? (
+                    <ul>
+                      {cities.slice(0, 10).map((city) => (
+                        <li
+                          key={city.id}
+                          className="px-4 py-2 cursor-pointer hover:bg-gray-100"
+                          onClick={() => handleCityClick(city.name)}
+                        >
+                          {city.name}
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p className="text-gray-500 px-4 py-2">Города не найдены</p>
+                  )}
+                </div>
+              )}
+            </div>
+          </form>
+        </div>
 
-          ></input>
-          <span className="direction-swap">
-            <svg
-              fill="gray"
-              viewBox="0 0 32 32"
-              xmlns="http://www.w3.org/2000/svg"
-              id="update-alt"
-              className="icon glyph"
-            >
-              <path d="M12,3A9,9,0,0,0,6,5.32V3A1,1,0,0,0,4,3V8a1,1,0,0,0,.92,1H10a1,1,0,0,0,0-2H7.11A7,7,0,0,1,19,12a1,1,0,0,0,2,0A9,9,0,0,0,12,3Z"></path>
-              <path d="M19.08,15H14a1,1,0,0,0,0,2h2.89A7,7,0,0,1,5,12a1,1,0,0,0-2,0,9,9,0,0,0,15,6.68V21a1,1,0,0,0,2,0V16A1,1,0,0,0,19.08,15Z"></path>
-            </svg>
-          </span>
-          <input
-            placeholder="куда"
-            className="direction direction-input-where"
-          ></input>
-        </form>
-      </div>
+        {/* Дата */}
+        <div>
+          <h3 className="text-white font-light text-3xl mb-4">Дата</h3>
+          <form className="flex items-center gap-4">
+            <input
+              type="date"
+              placeholder="дд/мм/гг"
+              className="w-full h-12 pl-4 text-base text-gray-800 rounded-md focus:outline-none"
+            />
+            <input
+              type="date"
+              placeholder="дд/мм/гг"
+              className="w-full h-12 pl-4 text-base text-gray-800 rounded-md focus:outline-none"
+            />
+          </form>
+        </div>
 
-      <div className="find-ticket-date">
-        <h3 className="date-title">Направление</h3>
-        <form className="date-form">
-          <input
-            type="date" 
-            placeholder="дд/мм/гг"
-            className="date date-start"
-          ></input>
-          <input
-            type="date"
-            placeholder="дд/мм/гг"
-            className="date date-end"
-          ></input>
-        </form>
-      </div>
-      <Link to={'/train'} className="find-ticket-button">
-        <button className="find-ticket-button">Найти билеты</button>
-      </Link>
+        {/* Кнопка */}
+        <Link to={"/train"} className="self-end">
+          <button className="bg-[#FFA800] text-black font-bold text-2xl py-3 px-6 rounded-lg uppercase hover:shadow-md active:bg-white active:text-[#FFA800] active:border active:border-[#FFA800] active:shadow-inner">
+            Найти билеты
+          </button>
+        </Link>
       </div>
     </div>
   );
