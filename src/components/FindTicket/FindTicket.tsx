@@ -1,22 +1,58 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useSearchStore } from "../../store/searchStore";
+import { useSearchDirectionStore } from "../../store/searchDirectionStore";
 import { useCitiesQuery } from "../../utils/useCitiesQuery";
 
 const FindTicket: React.FC = () => {
-  const { query, setQuery } = useSearchStore();
-  const { data: cities, isLoading, error } = useCitiesQuery(query);
-  const [showDropdown, setShowDropdown] = useState(false);
+  const {
+    fromCity,
+    toCity,
+    startDate,
+    endDate,
+    setFromCity,
+    setToCity,
+    setStartDate,
+    setEndDate,
+  } = useSearchDirectionStore();
 
-  const handleCityClick = (cityName: string) => {
-    setQuery(cityName);
-    setShowDropdown(false);
+  const {
+    data: fromCities,
+    isLoading: fromLoading,
+    error: fromError,
+  } = useCitiesQuery(fromCity);
+
+  const {
+    data: toCities,
+    isLoading: toLoading,
+    error: toError,
+  } = useCitiesQuery(toCity);
+
+  const [showFromDropdown, setShowFromDropdown] = useState(false);
+  const [showToDropdown, setShowToDropdown] = useState(false);
+
+  const handleCitySelect = (
+    cityName: string,
+    setCity: (name: string) => void,
+    setDropdown: (state: boolean) => void
+  ) => {
+    setCity(cityName);
+    setDropdown(false);
+  };
+  const handleInputFromCity = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFromCity(e.target.value);
+    setShowFromDropdown(true);
+  };
+  const handleInputToCity = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setToCity(e.target.value);
+    setShowToDropdown(true);
   };
 
-  const handleInputChange = (e:React.ChangeEvent<HTMLInputElement>) => {
-    setQuery(e.target.value);
-    setShowDropdown(true);
-  }
+  console.log("startDate -> ", startDate, "endDate -> ", endDate);
+
+  // const handleSubmite = e => {
+  //   e.preventDefault();
+
+  // }
 
   return (
     <div className="w-[730px]">
@@ -32,27 +68,34 @@ const FindTicket: React.FC = () => {
               <input
                 type="text"
                 placeholder="Откуда"
+                name="fromCity"
                 className="w-full h-12 pl-4 text-base text-gray-800 rounded-md focus:outline-none"
-                value={query}
-                onChange={handleInputChange}
-                onBlur={() => setTimeout(() => setShowDropdown(false), 200)}
-                onFocus={() => setShowDropdown(true)}
+                value={fromCity}
+                onChange={handleInputFromCity}
+                onBlur={() => setTimeout(() => setShowFromDropdown(false), 200)}
+                onFocus={() => setShowFromDropdown(true)}
               />
-              {showDropdown && query && (
+              {showFromDropdown && fromCity && (
                 <div className="absolute z-10 bg-white border border-gray-300 rounded-md shadow-md mt-2 w-full">
-                  {isLoading && (
+                  {fromLoading && (
                     <p className="text-gray-500 px-4 py-2">Загрузка...</p>
                   )}
-                  {error && (
+                  {fromError && (
                     <p className="text-red-500 px-4 py-2">Ошибка загрузки...</p>
                   )}
-                  {cities && cities.length > 0 ? (
+                  {fromCities && fromCities.length > 0 ? (
                     <ul>
-                      {cities.slice(0, 10).map((city) => (
+                      {fromCities.map((city) => (
                         <li
                           key={city.id}
                           className="px-4 py-2 cursor-pointer hover:bg-gray-100"
-                          onClick={() => handleCityClick(city.name)}
+                          onClick={() =>
+                            handleCitySelect(
+                              city.name,
+                              setFromCity,
+                              setShowFromDropdown
+                            )
+                          }
                         >
                           {city.name}
                         </li>
@@ -80,30 +123,34 @@ const FindTicket: React.FC = () => {
               <input
                 type="text"
                 placeholder="Куда"
+                name="toCity"
                 className="w-full h-12 pl-4 text-base text-gray-800 rounded-md focus:outline-none"
-                value={query}
-                onChange={(e) => {
-                  setQuery(e.target.value);
-                  setShowDropdown(true);
-                }}
-                onBlur={() => setTimeout(() => setShowDropdown(false), 200)}
-                onFocus={() => setShowDropdown(true)}
+                value={toCity}
+                onChange={handleInputToCity}
+                onBlur={() => setTimeout(() => setShowToDropdown(false), 200)}
+                onFocus={() => setShowToDropdown(true)}
               />
-              {showDropdown && query && (
+              {showToDropdown && toCity && (
                 <div className="absolute z-10 bg-white border border-gray-300 rounded-md shadow-md mt-2 w-full">
-                  {isLoading && (
+                  {toLoading && (
                     <p className="text-gray-500 px-4 py-2">Загрузка...</p>
                   )}
-                  {error && (
+                  {toError && (
                     <p className="text-red-500 px-4 py-2">Ошибка загрузки...</p>
                   )}
-                  {cities && cities.length > 0 ? (
+                  {toCities && toCities.length > 0 ? (
                     <ul>
-                      {cities.slice(0, 10).map((city) => (
+                      {toCities.map((city) => (
                         <li
                           key={city.id}
                           className="px-4 py-2 cursor-pointer hover:bg-gray-100"
-                          onClick={() => handleCityClick(city.name)}
+                          onClick={() =>
+                            handleCitySelect(
+                              city.name,
+                              setToCity,
+                              setShowFromDropdown
+                            )
+                          }
                         >
                           {city.name}
                         </li>
@@ -124,13 +171,17 @@ const FindTicket: React.FC = () => {
           <form className="flex items-center gap-4">
             <input
               type="date"
+              name="startDate"
               placeholder="дд/мм/гг"
-              className="w-full h-12 pl-4 text-base text-gray-800 rounded-md focus:outline-none"
+              className="w-full h-12 pl-4 text-base text-gray-800 rounded-md focus:outline-none cursor-pointer"
+              onChange={(e) => setStartDate(e.target.value)}
             />
             <input
               type="date"
+              name="endDate"
               placeholder="дд/мм/гг"
-              className="w-full h-12 pl-4 text-base text-gray-800 rounded-md focus:outline-none"
+              className="w-full h-12 pl-4 text-base text-gray-800 rounded-md focus:outline-none cursor-pointer"
+              onChange={(e) => setEndDate(e.target.value)}
             />
           </form>
         </div>
