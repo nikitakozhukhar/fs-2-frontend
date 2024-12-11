@@ -2,7 +2,7 @@
 import axiosInstance from "../axiosInstance/axiosInstance";
 
 interface ICity {
-  id: number;
+  _id: number;
   name: string;
 }
 

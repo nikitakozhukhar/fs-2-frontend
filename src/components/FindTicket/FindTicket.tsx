@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSearchDirectionStore } from "../../store/searchDirectionStore";
 import { useCitiesQuery } from "../../utils/useCitiesQuery";
+import { useRoutesQuery } from "../../utils/useRoutesQuery";
 
 const FindTicket: React.FC = () => {
   const {
@@ -27,6 +28,21 @@ const FindTicket: React.FC = () => {
     error: toError,
   } = useCitiesQuery(toCity);
 
+  // let fromCityId = fromCities?.find(city => city.name === fromCity)?._id || '';
+  // let toCityId = toCities?.find(city => city.name === toCity)?._id || '';
+
+  // console.log('fromCities ->', fromCities, 'toCities ->', toCities)
+  //  let from = '66ac8b69cb563f0052174f54';
+  //  let to = '66ac8b69cb563f0052174f45';
+
+//  const {
+//     data: fromRoute, 
+//     isLoading: fromRouteLoading,
+//     error: fromRouteError,
+//   } = useRoutesQuery(fromCityId, toCityId)
+
+//   console.log(useRoutesQuery(fromCityId, toCityId))
+
   const [showFromDropdown, setShowFromDropdown] = useState(false);
   const [showToDropdown, setShowToDropdown] = useState(false);
 
@@ -47,12 +63,6 @@ const FindTicket: React.FC = () => {
     setShowToDropdown(true);
   };
 
-  console.log("startDate -> ", startDate, "endDate -> ", endDate);
-
-  // const handleSubmite = e => {
-  //   e.preventDefault();
-
-  // }
 
   return (
     <div className="w-[730px]">
@@ -87,7 +97,7 @@ const FindTicket: React.FC = () => {
                     <ul>
                       {fromCities.map((city) => (
                         <li
-                          key={city.id}
+                          key={city._id}
                           className="px-4 py-2 cursor-pointer hover:bg-gray-100"
                           onClick={() =>
                             handleCitySelect(
@@ -142,7 +152,7 @@ const FindTicket: React.FC = () => {
                     <ul>
                       {toCities.map((city) => (
                         <li
-                          key={city.id}
+                          key={city._id}
                           className="px-4 py-2 cursor-pointer hover:bg-gray-100"
                           onClick={() =>
                             handleCitySelect(
@@ -188,7 +198,9 @@ const FindTicket: React.FC = () => {
 
         {/* Кнопка */}
         <Link to={"/train"} className="self-end">
-          <button className="bg-[#FFA800] text-black font-bold text-2xl py-3 px-6 rounded-lg uppercase hover:shadow-md active:bg-white active:text-[#FFA800] active:border active:border-[#FFA800] active:shadow-inner">
+          <button 
+            className="bg-[#FFA800] text-black font-bold text-2xl py-3 px-6 rounded-lg uppercase hover:shadow-md active:bg-white active:text-[#FFA800] active:border active:border-[#FFA800] active:shadow-inner"
+            >
             Найти билеты
           </button>
         </Link>
