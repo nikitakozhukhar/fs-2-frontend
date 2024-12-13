@@ -15,7 +15,7 @@ interface IRoute {
 }
 
 export const fetchRoutes = async (from: string, to: string): Promise<IRoute> => {
-  const { data } = await axiosInstance.get<IRoute>(`routes?${from}&to${to}`);
+  const { data } = await axiosInstance.get<IRoute>(`routes?from_city_id=${from}&to_city_id=${to}`);
 
   return data
 }
