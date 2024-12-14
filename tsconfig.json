@@ -1,7 +1,22 @@
 {
-  "files": [],
-  "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
-  ]
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "skipLibCheck": true,
+    "target": "ES6",
+    "rootDir": ".",
+    "types": [
+      "vite-plugin-svgr/client"
+    ],
+    "paths": {
+      "@/*": ["./*"]
+    }
+  }
 }
