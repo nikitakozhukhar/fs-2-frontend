@@ -1,7 +1,7 @@
 import "./LastTicket.css";
 import WifiIcon from "../../img/svg/wifi.svg?react";
 import ExpressIcon from "../../img/svg/express.svg?react";
-import Cup from "../../img/svg/cup.svg?react";
+import CupIcon from "../../img/svg/cup.svg?react";
 
 const LastTicket = () => {
   return (
@@ -19,7 +19,7 @@ const LastTicket = () => {
             <ExpressIcon />
           </div>
           <div className="last-ticket-option text-[#E5E5E5]">
-            <Cup />
+            <CupIcon />
           </div>
         </div>
       </div>
