@@ -2,17 +2,17 @@ import "./TrainPreview.css";
 import ArrowRightIcon from "../../img/svg/tp-arrowRight.svg?react";
 import OrangeTrainIcon from "../../img/svg/orangeTrain.svg?react"
 import ThinArrowIcon from "../../img/svg/thinArrow.svg?react";
-import ThinOrangeArrowIcon from "../../img/svg/tp-orangeRightArrow.svg?react"
-import OrangeWatchIcon from "../../img/svg/tp-watch.svg?react"
-
-import FirstClassIcon from "../../img/svg/firstClass.svg?react"
-import SecondClassIcon from "../../img/svg/secondClass.svg?react"
-import ThirdClassIcon from "../../img/svg/thirdClass.svg?react"
-import FourthClassIcon from "../../img/svg/fourClass.svg?react"
-import ConditionerIcon from "../../img/svg/conditioner.svg?react"
-import WifiIcon from "../../img/svg/wifi2.svg?react"
+import ThinOrangeArrowIcon from "../../img/svg/tp-orangeRightArrow.svg?react";
+import OrangeWatchIcon from "../../img/svg/tp-watch.svg?react";
+import FirstClassIcon from "../../img/svg/firstClass.svg?react";
+import SecondClassIcon from "../../img/svg/secondClass.svg?react";
+import ThirdClassIcon from "../../img/svg/thirdClass.svg?react";
+import FourthClassIcon from "../../img/svg/fourClass.svg?react";
+import ConditionerIcon from "../../img/svg/conditioner.svg?react";
+import WifiIcon from "../../img/svg/wifi2.svg?react";
 import BeddingIcon from "../../img/svg/bedding.svg?react"
-import CupIcon from "../../img/svg/cup2.svg?react"
+import CupIcon from "../../img/svg/cup2.svg?react";
+
 import FirstClass from "../TrainDiagrams/FirstClass";
 import { Link } from "react-router-dom";
 
@@ -168,11 +168,26 @@ const TrainPreview = () => {
           </div>
           <div className="flex flex-col items-start justify-center gap-2">
             <div className="font-light">Обслуживание ФПК</div>
-            <div className="flex gap-3">
-              <ConditionerIcon />
-              <WifiIcon />
-              <BeddingIcon />
-              <CupIcon />
+            <div className="flex gap-3 cursor-pointer ">
+
+              <div className="fill-white stroke-black-500 hover:fill-[#FFA800] active:text-white active:fill-[#FFA800]">
+                <ConditionerIcon fill='inherit'/>
+              </div>
+
+              <div className="fill-white stroke-black-500 hover:fill-[#FFA800]">
+                <WifiIcon fill='inherit'/>
+              </div>
+
+              <div className="fill-white stroke-black-500 hover:fill-[#FFA800]">
+                <BeddingIcon fill='inherit'/>
+              </div>
+              
+              <div className="fill-white stroke-white-500 hover:fill-[#FFA800]">
+                <CupIcon fill='inherit'/>
+              </div>
+              
+             
+              
             </div>
           </div>
         </div>
