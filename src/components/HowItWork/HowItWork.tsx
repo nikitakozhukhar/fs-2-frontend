@@ -6,7 +6,7 @@ import Planet from "../../img/svg/planet.svg?react";
 const HowItWork = () => {
   return (
     <section id="howItWorks" className="relative mb-16">
-      <div className="relative top-0 -left-[100%] rigth-[1px] w-[100vw] h-[575px]">
+      <div className="relative top-0 left-0 rigth-0 w-[100vw] h-[575px]">
         <div className="absolute w-[100vw]  h-[575px] bg-[url('src/img/railways.png')] bg-cover bg-center bg-no-repeat -z-20"></div>
         <div className="absolute w-[100vw]  h-[575px] bg-[#ffa600] opacity-50 -z-20"></div>
       </div>

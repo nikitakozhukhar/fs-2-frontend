@@ -5,13 +5,12 @@ import Review from '../components/Review/Review';
 
 const HomePage = () => {
   return (
-    <>
+    <div className="min-h-[100vh]">
       <Header />
       <About />
       <HowItWork />
       <Review />
-    </>
-    
+    </div>
   );
 };
 

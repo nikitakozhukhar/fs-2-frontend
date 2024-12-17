@@ -14,55 +14,47 @@ import { Link } from "react-scroll";
 
 const Footer = () => {
   return (
-    <footer id="footer" className="footer">
-      <div className="footer-container">
-        <div className="footer-content">
-          <div className="footer-top">
+    <footer id="footer" className="w-[100vw] bg-[#2d2b30]">
+      <div className="max-w-[1440px] mx-auto my-0">
+        <div className="flex flex-col">
+          <div className="flex justify-between mb-12">
             <div className="footer-left">
-              <div className="footer-contacts">
-                <h4 className="contacts-title">Свяжитесь с нами</h4>
-                <div className="contact-line">
-                  <div className="contact-icon">
-                    <PhoneIcon />
-                  </div>
+              <div className="flex flex-col gap-5 text-white">
+                <h4 className="text-xl">Свяжитесь с нами</h4>
+                <div className="flex items-center text-xl gap-5">
+                  <PhoneIcon />
                   <div className="contact-info">8 (800) 000 00 00</div>
                 </div>
-                <div className="contact-line">
-                  <div className="contact-icon">
-                    <EmailIcon />
-                  </div>
+                <div className="flex items-center text-xl gap-5">
+                  <EmailIcon />
                   <div className="contact-info">inbox@mail.ru</div>
                 </div>
-                <div className="contact-line">
-                  <div className="contact-icon">
-                    <SkypeIcon />
-                  </div>
+                <div className="flex items-center text-xl gap-5">
+                  <SkypeIcon />
                   <div className="contact-info">tu.train.ticket</div>
                 </div>
-                <div className="contact-line">
-                  <div className="contact-icon">
-                    <LocationIcon />
-                  </div>
-                  <div className="contact-info">
+                <div className="flex items-center text-xl gap-5">
+                  <LocationIcon />
+                  <div>
                     г. Москва, ул. Московская 27-35 555 555
                   </div>
                 </div>
               </div>
             </div>
-            <div className="footer-right">
+            <div className="text-xl text-white">
               <div className="footer-subscribe-form">
                 <h4 className="contacts-title">Подписка</h4>
                 <form className="form">
-                  <div className="form-title">Будте в курсе событий</div>
-                  <div className="input-row">
-                    <input type="text" className="input-subscribe" />
-                    <button className="btn-send">Отправить</button>
+                  <div className="mb-4">Будте в курсе событий</div>
+                  <div className="flex gap-8">
+                    <input type="text" className="w-[450px] h-14 text-xl outline-none" />
+                    <button className="w-[170px] h-14 border border-white uppercase">Отправить</button>
                   </div>
                 </form>
               </div>
               <div className="footer-socials">
                 <h4 className="contacts-title">Подписывайтесь на нас</h4>
-                <ul className="footer-socials-list">
+                <ul className="flex gap-5">
                   <li className="socials-list-item">
                     <a href="" className="socials-list-link">
                       <YotubeIcon />
@@ -92,8 +84,8 @@ const Footer = () => {
               </div>
             </div>
           </div>
-          <div className="footer-bottom">
-            <div className="logo logo-footer">
+          <div className="flex justify-between items-center">
+            <div className="mx-0">
               <Logo />
             </div>
 
@@ -102,11 +94,11 @@ const Footer = () => {
                 <ArrowUpIcon />
               </Link>
             </div>
-            <div className="bottom-date">2025 WEB</div>
+            <div className="text-white">2025 WEB</div>
           </div>
         </div>
       </div>
-      <div className="bottom-line"></div>
+      <div className="relative w-[100vw] h-[1px] bottom-[78px] bg-white"></div>
     </footer>
   );
 };
