@@ -2,64 +2,60 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSearchDirectionStore } from "../../store/searchDirectionStore";
 import { useCitiesQuery } from "../../utils/useCitiesQuery";
-import { useRoutesQuery } from "../../utils/useRoutesQuery";
 
 const FindTicket: React.FC = () => {
   const {
-    fromCity,
-    toCity,
+    fromCityGlobal,
+    toCityGlobal,
     startDate,
     endDate,
-    setFromCity,
-    setToCity,
+    setFromCityGlobal,
+    setToCityGlobal,
     setStartDate,
     setEndDate,
   } = useSearchDirectionStore();
+
+  const [fromCityLocal, setFromCityLocal] = useState('');
+  const [toCityLocal, setToCityLocal] = useState('');
+  const [showFromDropdown, setShowFromDropdown] = useState(false);
+  const [showToDropdown, setShowToDropdown] = useState(false);
 
   const {
     data: fromCities,
     isLoading: fromLoading,
     error: fromError,
-  } = useCitiesQuery(fromCity);
+  } = useCitiesQuery(fromCityLocal);
+
+  console.log('fromCities ->', fromCities)
 
   const {
     data: toCities,
     isLoading: toLoading,
     error: toError,
-  } = useCitiesQuery(toCity);
+  } = useCitiesQuery(toCityLocal);
 
-  // let fromCityId = fromCities?.find(city => city.name === fromCity)?._id || '';
-  // let toCityId = toCities?.find(city => city.name === toCity)?._id || '';
-
-  // console.log('fromCities ->', fromCities, 'toCities ->', toCities)
-  //  let from = '66ac8b69cb563f0052174f54';
-  //  let to = '66ac8b69cb563f0052174f45';
-
-//  const {
-//     data: fromRoute, 
-//     isLoading: fromRouteLoading,
-//     error: fromRouteError,
-//   } = useRoutesQuery(fromCityId, toCityId)
-
-//   console.log(useRoutesQuery(fromCityId, toCityId))
-
-  const [showFromDropdown, setShowFromDropdown] = useState(false);
-  const [showToDropdown, setShowToDropdown] = useState(false);
+ 
 
   const handleCitySelect = (
-    cityName: string,
-    setCity: (name: string) => void,
+    city: { name: string; _id: string },
+    setGlobalCity: (city: { name: string; _id: string }) => void,
+    setLocalCity: (cityName: string) => void,
     setDropdown: (state: boolean) => void
   ) => {
-    setCity(cityName);
+    setGlobalCity(city); 
+    setLocalCity(city.name); 
     setDropdown(false);
   };
+
   const handleInputFromCity = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFromCity(e.target.value);
+    setFromCityLocal(e.target.value)
+    // setFromCity(fromCities);
     setShowFromDropdown(true);
   };
+
   const handleInputToCity = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setToCity(e.target.value);
+    setToCityLocal(e.target.value)
+    // setToCity(toCities);
     setShowToDropdown(true);
   };
 
@@ -80,12 +76,12 @@ const FindTicket: React.FC = () => {
                 placeholder="Откуда"
                 name="fromCity"
                 className="w-full h-12 pl-4 text-base text-gray-800 rounded-md focus:outline-none"
-                value={fromCity}
+                value={fromCityLocal}
                 onChange={handleInputFromCity}
-                onBlur={() => setTimeout(() => setShowFromDropdown(false), 200)}
+                onBlur={() => setTimeout(() => setShowFromDropdown(false), 5000)}
                 onFocus={() => setShowFromDropdown(true)}
               />
-              {showFromDropdown && fromCity && (
+              {showFromDropdown && fromCityGlobal && (
                 <div className="absolute z-10 bg-white border border-gray-300 rounded-md shadow-md mt-2 w-full">
                   {fromLoading && (
                     <p className="text-gray-500 px-4 py-2">Загрузка...</p>
@@ -101,8 +97,9 @@ const FindTicket: React.FC = () => {
                           className="px-4 py-2 cursor-pointer hover:bg-gray-100"
                           onClick={() =>
                             handleCitySelect(
-                              city.name,
-                              setFromCity,
+                              { name: city.name, _id: city._id },
+                              setFromCityGlobal,
+                              setFromCityLocal,
                               setShowFromDropdown
                             )
                           }
@@ -135,12 +132,12 @@ const FindTicket: React.FC = () => {
                 placeholder="Куда"
                 name="toCity"
                 className="w-full h-12 pl-4 text-base text-gray-800 rounded-md focus:outline-none"
-                value={toCity}
+                value={toCityLocal}
                 onChange={handleInputToCity}
                 onBlur={() => setTimeout(() => setShowToDropdown(false), 200)}
                 onFocus={() => setShowToDropdown(true)}
               />
-              {showToDropdown && toCity && (
+              {showToDropdown && toCityGlobal && (
                 <div className="absolute z-10 bg-white border border-gray-300 rounded-md shadow-md mt-2 w-full">
                   {toLoading && (
                     <p className="text-gray-500 px-4 py-2">Загрузка...</p>
@@ -156,8 +153,9 @@ const FindTicket: React.FC = () => {
                           className="px-4 py-2 cursor-pointer hover:bg-gray-100"
                           onClick={() =>
                             handleCitySelect(
-                              city.name,
-                              setToCity,
+                              { name: city.name, _id: city._id },
+                              setToCityGlobal,
+                              setToCityLocal,
                               setShowFromDropdown
                             )
                           }
