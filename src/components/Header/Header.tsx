@@ -30,10 +30,10 @@ const Header: React.FC<HeaderProps> = ({
   return (
     <header id="header" className="h-[985px]">
       <Logo />
-      <div className="absolute w-[100vw] h-[95px] left-0 bg-[#292929] -z-10 md:h-[75px]"></div>
+      <div className="absolute w-[100vw] h-[95px] left-0 bg-[#292929] z-10 md:h-[75px]"></div>
       <div className="flex justify-start items-center h-[95px] max-w-[1440px] m-auto md:h-[75px]">
         <nav className="flex md:text-xs md:gap-4">
-          <ul className="flex gap-[100px] text-white text-2xl">
+          <ul className="relative z-20 flex gap-[100px] text-white text-2xl">
             <li className="font-extralight cursor-pointer">
               <Link to="about" smooth={true} duration={500}>
                 О нас
