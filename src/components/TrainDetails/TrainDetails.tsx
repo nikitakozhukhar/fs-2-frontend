@@ -1,7 +1,31 @@
 import "./TrainDetails.css";
+import { useSearchDirectionStore } from "../../store/searchDirectionStore";
+import { useCitiesQuery } from "../../utils/useCitiesQuery";
+import { useRoutesQuery } from "../../utils/useRoutesQuery";
 import TrainDetailCard from "../TrainDetailCard/TrainDetailCard";
 
 const TrainDetails = () => {
+  // const { fromCity, toCity, startDate, endDate } = useSearchDirectionStore();
+  
+  //   const departureCity = useCitiesQuery(fromCity);
+  //   const arrivalCity = useCitiesQuery(toCity);
+  //   let renderRoutes;
+
+  //   let fromCityId = 
+  //       departureCity.status === 'pending' ?
+  //           ('') :
+  //           (departureCity.data[0]._id);
+    
+  //   let toCityId = 
+  //       arrivalCity.status === 'pending' ?
+  //           ('') :
+  //           (arrivalCity.data[0]._id)
+
+  
+  // renderRoutes = fromCityId === 'true' && toCityId === 'true' ? useRoutesQuery(fromCityId, toCityId) : <div>Pending...</div>
+
+  // console.log(renderRoutes)
+
   return (
     <div className="train-details-row">
       <div className="display-serched-train row1">
