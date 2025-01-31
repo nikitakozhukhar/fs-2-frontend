@@ -35,3 +35,15 @@
   content: url('../../img/svg/rightArrow.svg');
 }
 
+.clip-arrow {
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+}
+
+.clip-arrow-inner {
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+  right: 2px; /* Сдвиг для создания белой границы */
+  top: 0px;
+  /* bottom: -5px; */
+  /* width: calc(100% - 2px); */
+  position: absolute;
+}

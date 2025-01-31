@@ -1,34 +1,30 @@
+import RightArrowIcon from "../../img/svg/rightArrow.svg?react"; 
 import './ProgressPageBar.css'
 
 const ProgressPageBar = () => {
   return (
-    <div className="progress-bar-container">
-      <div className="prodgress-bar progress-bar-el">
-          <div className="progress-bar-count">1</div>
-          <div className="progress-bar-title">Билеты</div>
-          <span className='righgt-arrow'></span>
-      </div>
-
-      <div className="prodgress-bar progress-bar-el">
-          <div className="progress-bar-count">2</div>
-          <div className="progress-bar-title">Пассажиры</div>
-          <span className='righgt-arrow'></span>
-      </div>
-
-      <div className="prodgress-bar progress-bar-el">
-          <div className="progress-bar-count">3</div>
-          <div className="progress-bar-title">Оплата</div>
-          <span className='righgt-arrow'></span>
-      </div>
-
-      <div className="prodgress-bar progress-bar-el">
-          <div className="progress-bar-count">4</div>
-          <div className="progress-bar-title">Проверка</div>
-          <span className='righgt-arrow'></span>
-      </div>
+    <div className="flex flex-row justify-center items-center gap-8 w-screen h-24 mb-12 bg-[#3E3C41] text-white">
+      {["Билеты", "Пассажиры", "Оплата", "Проверка"].map((title, index) => (
+        <div
+          key={index}
+          className={`relative flex items-center gap-4 p-4 bg-[#3E3C41] text-white rounded-md`}
+        >
+          <div className="flex justify-center items-center w-14 h-14 border border-white rounded-full">
+            {index + 1}
+          </div>
+          <div className="text-base mr-3">{title}</div>
+          {index < 4 && (
+            <>
+              <div className="absolute right-0 top-0 h-24 w-6 bg-white clip-arrow"></div>
+              <div className="absolute right-0 top-0 h-24 w-6 bg-[#3E3C41] clip-arrow-inner"></div>
+            </>
+          )}
+        </div>
+      ))}
     </div>
-  
   );
 };
 
 export default ProgressPageBar;
+
+
