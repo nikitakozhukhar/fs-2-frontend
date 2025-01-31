@@ -1,13 +1,20 @@
-import './CheckBox.css'
+import React from 'react';
+import './CheckBox.css';
 
-const CheckBox = () => {
+// Определяем интерфейс для пропсов
+interface CheckBoxProps {
+  id: string; // id будет строкой
+}
+
+// Компонент с TypeScript
+const CheckBox: React.FC<CheckBoxProps> = ({ id }) => {
   return (
     <div className="checkbox-wrapper-3">
-            <input type="checkbox" id="cbx-3" />
-            <label htmlFor="cbx-3" className="toggle">
-              <span></span>
-            </label>
-          </div>
+      <input type="checkbox" id={`cbx-${id}`} />
+      <label htmlFor={`cbx-${id}`} className="toggle">
+        <span></span>
+      </label>
+    </div>
   );
 };
 
