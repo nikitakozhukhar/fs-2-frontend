@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import "./FilterWidget.css";
+import { JSX } from "react/jsx-runtime";
 import CheckBox from "../CheckBox/CheckBox";
+import PriceRangeSlider from '../PriceRangeSlider/PriceRangeSlider';
+import CustomDatepicker from "../CustomDatePicker/CustomDatepicker";
+
 import SecondClassIcon from "../../img/svg/compartment.svg?react";
 import ThirdClassIcon from "../../img/svg/reservedSeat.svg?react";
 import ForthClassIcon from "../../img/svg/sitting.svg?react";
@@ -12,7 +15,6 @@ import ForwardArrowIcon from "../../img/svg/directionRigth.svg?react";
 import BackwardArrowIcon from "../../img/svg/directionLeft.svg?react";
 import OpenDetailsIcon from "../../img/svg/moreDetails.svg?react";
 import CloseDetailsIcon from "../../img/svg/closeDetails.svg?react";
-import PriceRangeSlider from '../PriceRangeSlider/PriceRangeSlider'
 
 const amenities = [
   { svg: <SecondClassIcon />, name: "Купе", id: uuidv4() },
@@ -24,99 +26,68 @@ const amenities = [
 ];
 
 const FilterWidget: React.FC = () => {
-  const [minValue, setMinValue] = useState<number>(0);
-  const [maxValue, setMaxValue] = useState<number>(10000);
-
   const [openDetails, setOpenDetails] = useState<boolean>(false);
   const [openRouteDetails, setOpenRouteDetails] = useState<boolean>(false);
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
 
-  const handleMinChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = parseFloat(e.target.value);
-    if (value <= maxValue - 5) {
-      setMinValue(value);
-    }
-  };
-
-  const handleMaxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = parseFloat(e.target.value);
-    if (value >= minValue + 5) {
-      setMaxValue(value);
-    }
-  };
-
-  const handleClick = (option) => {
-    console.log(option.id);
+  const handleClick = (option: { svg?: JSX.Element; name?: string; id: string; }) => {
+    console.log(option);
   };
 
   return (
-    <div className="filter-widget-container">
-      <form className="date-filter-form">
-        <div className="arrive-date-start">
-          <label className="arrive-date-title" htmlFor="start-date">
+    <div className="w-[370px] p-[30px_20px] mb-[50px] bg-[#3E3C41] text-white">
+      <form className="flex flex-col mb-[10px] relative">
+        <div className="arrive-date-start flex flex-col mb-3">
+          <label className="text-2xl" htmlFor="start-date">
             Дата поездки
           </label>
-          <input type="date" id="start-date" className="input-date" />
+          <CustomDatepicker
+            selected={startDate}
+            onChange={(date) => setStartDate(date)}
+          />
         </div>
-        <div className="arrive-date-end">
-          <label className="arrive-date-title" htmlFor="end-date">
+        <div className="arrive-date-end flex flex-col mb-3">
+          <label className="text-2xl" htmlFor="end-date">
             Дата возвращения
           </label>
-          <input type="date" id="end-date" className="input-date" />
+          <CustomDatepicker
+            selected={endDate}
+            onChange={(date) => setEndDate(date)}
+          />
         </div>
+        {/* Линия после формы */}
       </form>
 
-      <div className="train-options">
+      <div className="w-[370px] h-[1px] relative -left-5 bg-white"></div>
+
+      <div className="train-options flex flex-col items-center mt-[30px] relative">
         {amenities.map((amenitie) => (
           <div
             onClick={() => handleClick(amenitie)}
-            className="option-element"
+            className="option-element flex justify-between w-[258px] mb-[20px]"
             key={amenitie.id}
           >
             <div className="option-img">{amenitie.svg}</div>
             <div className="option-name">{amenitie.name}</div>
-            <CheckBox />
+            <CheckBox id={amenitie.id} />
           </div>
         ))}
+        {/* Линия после опций */}
+        <div className="w-[370px] h-[1px] bg-white"></div>
       </div>
 
-      <div className="filter-cost">
-        <div className="filter-cost-title">Стоимость</div>
-        <div className="filter-cost-sliders">
-          <div className="slider-container">
-            <label htmlFor="min-cost">Минимальная:</label>
-            <input
-              type="range"
-              id="min-cost"
-              value={minValue}
-              min={0}
-              max={10000}
-              step={5}
-              onChange={handleMinChange}
-            />
-            <span>{minValue} ₽</span>
-          </div>
-          <div className="slider-container">
-            <label htmlFor="max-cost">Максимальная:</label>
-            <input
-              type="range"
-              id="max-cost"
-              value={maxValue}
-              min={0}
-              max={10000}
-              step={5}
-              onChange={handleMaxChange}
-            />
-            <span>{maxValue} ₽</span>
-          </div>
-        </div>
+      <div className="filter-cost my-[20px]">
+        <PriceRangeSlider min={1000} max={7000} step={100} />
       </div>
 
-      <div className="direction-forward">
-        <div className="direction-forvard-left-col">
+      <div className="w-[370px] h-[1px] relative -left-5 bg-white"></div>
+
+      <div className="direction-forward flex justify-between items-center h-[96px]">
+        <div className="direction-forvard-left-col flex items-center gap-[20px] text-[1.5em]">
           <ForwardArrowIcon />
           <div className="direction-forward-title">Туда</div>
         </div>
-
         <div
           onClick={() => setOpenDetails(!openDetails)}
           className="cursor-pointer"
@@ -124,8 +95,16 @@ const FilterWidget: React.FC = () => {
           {openDetails ? <CloseDetailsIcon /> : <OpenDetailsIcon />}
         </div>
       </div>
-      <div className="direction-backward">
-        <div className="direction-backward-left-col">
+      {openDetails && (
+        <div className="details-content">
+          {/* Контент для "Туда" */}
+        </div>
+      )}
+
+      <div className="w-[370px] h-[1px] relative -left-5 bg-white"></div>
+
+      <div className="direction-backward flex justify-between items-center h-[96px]">
+        <div className="direction-backward-left-col flex items-center gap-[20px] text-[1.5em]">
           <BackwardArrowIcon />
           <div className="direction-forward-title">Обратно</div>
         </div>
@@ -136,8 +115,11 @@ const FilterWidget: React.FC = () => {
           {openRouteDetails ? <CloseDetailsIcon /> : <OpenDetailsIcon />}
         </div>
       </div>
-
-      <PriceRangeSlider min={1000} max={7000} step={100}/>
+      {openRouteDetails && (
+        <div className="details-content">
+          {/* Контент для "Обратно" */}
+        </div>
+      )}
     </div>
   );
 };

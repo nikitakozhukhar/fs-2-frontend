@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSearchDirectionStore } from "../../store/searchDirectionStore";
 import { useCitiesQuery } from "../../utils/useCitiesQuery";
+// import CustomDatepicker from "../CustomDatePicker/CustomDatepicker";
 
 const FindTicket: React.FC = () => {
   const {
@@ -26,7 +27,7 @@ const FindTicket: React.FC = () => {
     error: fromError,
   } = useCitiesQuery(fromCityLocal);
 
-  console.log('fromCities ->', fromCities)
+  // console.log('fromCityGlobal ->', fromCityGlobal)
 
   const {
     data: toCities,
@@ -192,16 +193,19 @@ const FindTicket: React.FC = () => {
               onChange={(e) => setEndDate(e.target.value)}
             />
           </form>
+
+         
         </div>
 
-        {/* Кнопка */}
-        <Link to={"/train"} className="self-end">
+         {/* Кнопка */}
+         <Link to={"/train"} className="self-end">
           <button 
             className="bg-[#FFA800] text-black font-bold text-2xl py-3 px-6 rounded-lg uppercase hover:shadow-md active:bg-white active:text-[#FFA800] active:border active:border-[#FFA800] active:shadow-inner"
             >
             Найти билеты
           </button>
         </Link>
+        
       </div>
     </div>
   );

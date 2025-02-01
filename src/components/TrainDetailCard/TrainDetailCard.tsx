@@ -6,75 +6,34 @@ import WiFiIcon from "../../img/svg/wifi.svg?react";
 import CupIcon from "../../img/svg/cup.svg?react";
 import ExpressIcon from "../../img/svg/express.svg?react";
 import Currency from "../../img/svg/currency.svg?react"
-
-import DateFormate from "../DateFormate/DateFormate";
-
-import { IRoute } from "../../../src/utils/api/fetchRoutes";
 import { Link } from "react-router-dom";
-import { useSearchDirectionStore } from "../../store/searchDirectionStore";
-import { useCitiesQuery } from "../../utils/useCitiesQuery";
-import { useRoutesQuery } from "../../utils/useRoutesQuery";
-
-import { UseQueryResult } from "@tanstack/react-query";
-
-const TrainDetailCard: React.FC = () => {
-  const { fromCityGlobal, toCityGlobal, startDate, endDate } = useSearchDirectionStore();
-  console.log(fromCityGlobal, toCityGlobal)
-
-  const {
-    data: fromCities,
-    isLoading: fromCitiesLoading,
-    error: fromCitiesError,
-  } = useCitiesQuery(fromCityGlobal.name);
-
-  const {
-    data: toCities,
-    isLoading: toCitiesLoading,
-    error: toCitiesError,
-  } = useCitiesQuery(toCityGlobal.name);
-
-  const fromCityId = fromCities?.[0]?._id ?? '';
-  const toCityId = toCities?.[0]?._id ?? '';
-
-  // Получаем маршруты с сервера
-  const fromRoutes: UseQueryResult<IRoute, Error> = useRoutesQuery(
-    fromCityId,
-    toCityId
-  );
-
-  // Проверяем статус запроса
-  if (fromRoutes.isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  if (fromRoutes.isError || !fromRoutes.data) {
-    return <div>Error loading routes</div>;
-  }
 
 
-  const CarriageInfo = ({ type, availableSeats, price }: { type: string; availableSeats: number; price: number }) => {
-    if (!availableSeats) return null;
+const TrainDetailCard: React.FC = ({routesData}) => {
+
+  // const CarriageInfo = ({ type, availableSeats, price }: { type: string; availableSeats: number; price: number }) => {
+  //   if (!availableSeats) return null;
   
-    return (
-      <div className="flex justify-between items-baseline gap-4">
-        <div className="carriage-type">{type}</div>
-        <div className="text-[#FFA800]">{availableSeats}</div>
-        <div className="flex items-center gap-1">
-          <span className="text-gray-400">от</span>
-          <span className="text-2xl font-medium">{price}</span>
-          <Currency />
-        </div>
-      </div>
-    );
-  };
+  //   return (
+  //     <div className="flex justify-between items-baseline gap-4">
+  //       <div className="carriage-type">{type}</div>
+  //       <div className="text-[#FFA800]">{availableSeats}</div>
+  //       <div className="flex items-center gap-1">
+  //         <span className="text-gray-400">от</span>
+  //         <span className="text-2xl font-medium">{price}</span>
+  //         <Currency />
+  //       </div>
+  //     </div>
+  //   );
+  // };
 
-  const Amenities = ({ haveWifi, isExpress, haveAC }: { haveWifi: boolean; isExpress: boolean; haveAC: boolean }) => (
-    <div className="flex self-end gap-5">
-      {haveWifi && <WiFiIcon className="text-[#E5E5E5]" />}
-      {isExpress && <ExpressIcon className="text-[#E5E5E5]" />}
-      {haveAC && <CupIcon className="text-[#E5E5E5]" />}
-    </div>
-  );
+  // const Amenities = ({ haveWifi, isExpress, haveAC }: { haveWifi: boolean; isExpress: boolean; haveAC: boolean }) => (
+  //   <div className="flex self-end gap-5">
+  //     {haveWifi && <WiFiIcon className="text-[#E5E5E5]" />}
+  //     {isExpress && <ExpressIcon className="text-[#E5E5E5]" />}
+  //     {haveAC && <CupIcon className="text-[#E5E5E5]" />}
+  //   </div>
+  // );
 
   //  const carriages = [
   //   { type: 'Люкс', availableSeats: item.available_seats_info.first, price: item.departure.price_info.first?.bottom_price },
@@ -83,10 +42,9 @@ const TrainDetailCard: React.FC = () => {
   //   { type: 'Сидячий', availableSeats: item.available_seats_info.fourth, price: item.departure.price_info.fourth?.bottom_price },
   // ];
 
-
   return (
     <div className="flex flex-col gap-10 ">
-      {fromRoutes.data.items?.map((item) => {
+      {routesData.items?.map((item) => {
         // console.log(item);
         return (
           <div
@@ -106,12 +64,6 @@ const TrainDetailCard: React.FC = () => {
                     <ThinArrowIcon />
                   </span>
                 </div>
-                {/* <div className="flex items-center gap-2">
-                  Москва
-                  <span className="arrow">
-                    <ThinArrow />
-                  </span>
-                </div> */}
                 <div className="first-letter:uppercase">{item.departure.to.city.name}</div>
               </div>
             </div>
