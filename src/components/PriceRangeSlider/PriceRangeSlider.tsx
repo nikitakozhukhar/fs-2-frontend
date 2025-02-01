@@ -29,10 +29,10 @@ const PriceRangeSlider: React.FC<PriceRangeSliderProps> = ({ min, max, step = 10
         <div>до</div>
       </div>
 
-      <div className="relative mx-auto h-[19px] w-[294px] border-[1px] border-white rounded-lg">
+      <div className="relative mx-auto top-[1px] h-[19px] w-[294px] border-[1px] border-[#C4C4C4] rounded-lg">
         <div className="absolute top-0 left-0 right-0 h-[19px] #3E3C41 rounded-lg"></div>
         <div
-          className="absolute top-[-1px] h-[20px] bg-orange-500 rounded-lg"
+          className="absolute -top-[1px] h-[20px] bg-orange-500 rounded-lg"
           style={{
             left: `${((minValue - min) / (max - min)) * 100}%`,
             width: `${((maxValue - minValue) / (max - min)) * 100}%`,

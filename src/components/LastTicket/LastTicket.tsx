@@ -10,7 +10,6 @@ const features = [
   { key: "is_express", icon: <ExpressIcon /> },
 ];
 const LastTicket = ({ lastRoute }) => {
-  console.log(lastRoute);
 
   return (
     <div className="last-ticket-item">
