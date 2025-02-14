@@ -8,8 +8,14 @@ import ExpressIcon from "../../img/svg/express.svg?react";
 import Currency from "../../img/svg/currency.svg?react"
 import { Link } from "react-router-dom";
 
+//доработка запроса свободных мест
+import { useSeatsQuery } from "../../utils/useSeatsQuery";
+import { useSeatsStore } from '../../store/seatsStore'
+
 
 const TrainDetailCard: React.FC = ({routesData}) => {
+
+  const { setSeatsGlobal } = useSeatsStore();
 
   // console.log(dateFilter)
   // const CarriageInfo = ({ type, availableSeats, price }: { type: string; availableSeats: number; price: number }) => {
@@ -220,8 +226,9 @@ const TrainDetailCard: React.FC = ({routesData}) => {
               </div>
               <Link to={"/place"} className="self-end">
                 <button className="py-1 px-2 bg-[#FFA800] rounded-md text-white cursor-pointer text-lg"
-                onClick={() => console.log(item.departure.train._id)}>
+                onClick={() => setSeatsGlobal(item.departure.train._id) }>
                   Выбрать места
+                  
                 </button>
               </Link>
             </div>

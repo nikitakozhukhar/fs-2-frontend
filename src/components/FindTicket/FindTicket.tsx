@@ -27,7 +27,7 @@ const FindTicket: React.FC = () => {
     error: fromError,
   } = useCitiesQuery(fromCityLocal);
 
-  console.log('startDateGlobal ->', startDateGlobal)
+  // console.log('startDateGlobal ->', startDateGlobal)
 
   const {
     data: toCities,
