@@ -2,18 +2,18 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSearchDirectionStore } from "../../store/searchDirectionStore";
 import { useCitiesQuery } from "../../utils/useCitiesQuery";
-// import CustomDatepicker from "../CustomDatePicker/CustomDatepicker";
+// import CustomDatePicker from "../CustomDatePicker/CustomDatePicker";
 
 const FindTicket: React.FC = () => {
   const {
     fromCityGlobal,
     toCityGlobal,
-    startDate,
-    endDate,
+    startDateGlobal,
+    endDateGlobal,
     setFromCityGlobal,
     setToCityGlobal,
-    setStartDate,
-    setEndDate,
+    setStartDateGlobal,
+    setEndDateGlobal,
   } = useSearchDirectionStore();
 
   const [fromCityLocal, setFromCityLocal] = useState('');
@@ -27,7 +27,7 @@ const FindTicket: React.FC = () => {
     error: fromError,
   } = useCitiesQuery(fromCityLocal);
 
-  // console.log('fromCityGlobal ->', fromCityGlobal)
+  console.log('startDateGlobal ->', startDateGlobal)
 
   const {
     data: toCities,
@@ -183,14 +183,14 @@ const FindTicket: React.FC = () => {
               name="startDate"
               placeholder="дд/мм/гг"
               className="w-full h-12 pl-4 text-base text-gray-800 rounded-md focus:outline-none cursor-pointer"
-              onChange={(e) => setStartDate(e.target.value)}
+              onChange={(e) => setStartDateGlobal(e.target.value)}
             />
             <input
               type="date"
               name="endDate"
               placeholder="дд/мм/гг"
               className="w-full h-12 pl-4 text-base text-gray-800 rounded-md focus:outline-none cursor-pointer"
-              onChange={(e) => setEndDate(e.target.value)}
+              onChange={(e) => setEndDateGlobal(e.target.value)}
             />
           </form>
 

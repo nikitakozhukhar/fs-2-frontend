@@ -2,7 +2,7 @@ import React from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-const CustomDatepicker = ({ selected, onChange }) => {
+const CustomDatePicker = ({ selected, onChange }) => {
   return (
     <div className="relative">
       <DatePicker
@@ -51,4 +51,4 @@ const CustomDatepicker = ({ selected, onChange }) => {
   );
 };
 
-export default CustomDatepicker;
+export default CustomDatePicker;

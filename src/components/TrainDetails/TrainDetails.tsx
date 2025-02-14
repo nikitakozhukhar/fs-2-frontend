@@ -7,8 +7,10 @@ import { UseQueryResult } from "@tanstack/react-query";
 import PrevPageIcon from "../../img/svg/prevPage.svg?react";
 import NextPageIcon from "../../img/svg/nextPage.svg?react";
 
+import LoadingTrain from "../LoadingTrain/LoadingTrain";
+
 const TrainDetails = () => {
-  const { fromCityGlobal, toCityGlobal, startDate, endDate } = useSearchDirectionStore();
+  const { fromCityGlobal, toCityGlobal } = useSearchDirectionStore();
 
   const {
     data: fromCities,
@@ -23,7 +25,7 @@ const TrainDetails = () => {
   } = useCitiesQuery(toCityGlobal.name);
 
   if (fromCitiesLoading && toCitiesLoading) {
-    return <div>Loading...</div>;
+    return <LoadingTrain />;
   }
 
   const fromCityId = fromCities?.[0]?._id ?? '';
@@ -37,7 +39,7 @@ const TrainDetails = () => {
 
   // Проверяем статус запроса
   if (fromRoutes.isLoading) {
-    return <div>Loading...</div>;
+    return <LoadingTrain />;
   }
 
   const routesData = fromRoutes.data;

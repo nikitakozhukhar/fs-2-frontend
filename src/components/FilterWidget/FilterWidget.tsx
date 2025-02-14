@@ -3,7 +3,8 @@ import { v4 as uuidv4 } from "uuid";
 import { JSX } from "react/jsx-runtime";
 import CheckBox from "../CheckBox/CheckBox";
 import PriceRangeSlider from '../PriceRangeSlider/PriceRangeSlider';
-import CustomDatepicker from "../CustomDatePicker/CustomDatepicker";
+import CustomDatePicker from "../CustomDatePicker/CustomDatePicker";
+import TimeRangeSlider from "../TimeRangeSlider/TimeRangeSlider";
 
 import SecondClassIcon from "../../img/svg/compartment.svg?react";
 import ThirdClassIcon from "../../img/svg/reservedSeat.svg?react";
@@ -15,6 +16,8 @@ import ForwardArrowIcon from "../../img/svg/directionRigth.svg?react";
 import BackwardArrowIcon from "../../img/svg/directionLeft.svg?react";
 import OpenDetailsIcon from "../../img/svg/moreDetails.svg?react";
 import CloseDetailsIcon from "../../img/svg/closeDetails.svg?react";
+import { useSearchDirectionStore } from "../../store/searchDirectionStore";
+
 
 const amenities = [
   { svg: <SecondClassIcon />, name: "Купе", id: uuidv4() },
@@ -26,6 +29,11 @@ const amenities = [
 ];
 
 const FilterWidget: React.FC = () => {
+
+  const { startDateGlobal, endDateGlobal } = useSearchDirectionStore();
+
+  console.log('startDateGlobal', startDateGlobal)
+  
   const [openDetails, setOpenDetails] = useState<boolean>(false);
   const [openRouteDetails, setOpenRouteDetails] = useState<boolean>(false);
   const [startDate, setStartDate] = useState(null);
@@ -42,7 +50,7 @@ const FilterWidget: React.FC = () => {
           <label className="text-2xl" htmlFor="start-date">
             Дата поездки
           </label>
-          <CustomDatepicker
+          <CustomDatePicker
             selected={startDate}
             onChange={(date) => setStartDate(date)}
           />
@@ -51,7 +59,7 @@ const FilterWidget: React.FC = () => {
           <label className="text-2xl" htmlFor="end-date">
             Дата возвращения
           </label>
-          <CustomDatepicker
+          <CustomDatePicker
             selected={endDate}
             onChange={(date) => setEndDate(date)}
           />
@@ -81,10 +89,10 @@ const FilterWidget: React.FC = () => {
         <PriceRangeSlider min={1000} max={7000} step={100} />
       </div>
 
-      <div className="w-[370px] h-[1px] relative -left-5 bg-white"></div>
+      <div className="w-[370px] h-[1px] relative -left-5 bg-white mb-5"></div>
 
-      <div className="direction-forward flex justify-between items-center h-[96px]">
-        <div className="direction-forvard-left-col flex items-center gap-[20px] text-[1.5em]">
+      <div className="direction-forward flex justify-between items-center mb-5">
+        <div className="direction-forvard-left-col flex items-center gap-[20px] text-[1.5em] ">
           <ForwardArrowIcon />
           <div className="direction-forward-title">Туда</div>
         </div>
@@ -92,12 +100,30 @@ const FilterWidget: React.FC = () => {
           onClick={() => setOpenDetails(!openDetails)}
           className="cursor-pointer"
         >
-          {openDetails ? <CloseDetailsIcon /> : <OpenDetailsIcon />}
+          {openDetails ? (
+            <div className="hover: fill-red-200">
+              <CloseDetailsIcon />
+            </div>
+            
+            ) : (
+            <div className="hover: fill-red-200">
+              <OpenDetailsIcon />
+            </div>
+            
+            )}
         </div>
       </div>
       {openDetails && (
-        <div className="details-content">
-          {/* Контент для "Туда" */}
+        <div className="mb-3">
+          <div className="">
+            <div className="">Время отбытия</div>
+            <TimeRangeSlider min={0} max={24} step={1}/>
+          </div>
+          <div className="">
+            <div className="">Время прибытия</div>
+            <div className=""></div>
+            <div className=""></div>
+          </div>
         </div>
       )}
 
