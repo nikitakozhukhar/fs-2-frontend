@@ -60,7 +60,7 @@ const FirstClass = () => {
           <div className="">
             <WCRoomIcon />
           </div>
-          <div className="">
+          <div className="mt-2">
             <CoffeMakerIcon />
           </div>
         </div>
