@@ -13,7 +13,7 @@ import WifiIcon from "../../img/svg/wifi2.svg?react";
 import BeddingIcon from "../../img/svg/bedding.svg?react"
 import CupIcon from "../../img/svg/cup2.svg?react";
 
-import FirstClass from "../TrainDiagrams/FirstClass";
+import SecondClass from "../TrainDiagrams/SecondClass";
 import { Link } from "react-router-dom";
 
 const TrainPreview = () => {
@@ -102,19 +102,19 @@ const TrainPreview = () => {
         <div className="px-3 text-3xl font-bold mb-6">Тип вагона</div>
 
         <div className="flex justify-between px-7 mb-5">
-          <div className="flex flex-col gap-3 items-center">
+          <div className="flex flex-col gap-3 items-center cursor-pointer text-[#C4C4C4] hover:text-orange-400">
             <FourthClassIcon />
             <div className="">Сидячий</div>
           </div>
-          <div className="flex flex-col gap-3 items-center">
+          <div className="flex flex-col gap-3 items-center cursor-pointer text-[#C4C4C4] hover:text-orange-400">
             <ThirdClassIcon />
             <div className="">Плацкарт</div>
           </div>
-          <div className="flex flex-col gap-3 items-center">
+          <div className="flex flex-col gap-3 items-center cursor-pointer text-[#C4C4C4] hover:text-orange-400">
             <SecondClassIcon />
             <div className="">Купе</div>
           </div>
-          <div className="flex flex-col gap-3 items-center">
+          <div className="flex flex-col gap-3 items-center cursor-pointer text-[#C4C4C4] hover:text-orange-400">
             <FirstClassIcon />
             <div className="">Люкс</div>
           </div>
@@ -198,7 +198,7 @@ const TrainPreview = () => {
           </div>
         </div>
 
-        <FirstClass />
+        <SecondClass />
       </div>
 
       <div className="self-end ">
