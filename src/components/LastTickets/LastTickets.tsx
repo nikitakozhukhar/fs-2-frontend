@@ -3,8 +3,79 @@ import LastTicket from "../LastTicket/LastTicket";
 
 import { useLastRoutesQuery } from "../../utils/useLastRoutesQuery";
 
-const LastTickets = () => {
+// Типы для вложенных объектов
+interface IPriceClass {
+  price: number;
+  top_price: number;
+  bottom_price: number;
+  side_price: number;
+  linens_price: number;
+  wifi_price: number;
+}
 
+interface ISeatsClass {
+  first: number;
+  second: number;
+  third: number;
+  fourth: number;
+}
+
+interface ICity {
+  _id: string;
+  name: string;
+}
+
+interface ITrain {
+  _id: string;
+  name: string;
+}
+
+interface IDepartureArrival {
+  _id: string;
+  have_first_class: boolean;
+  have_second_class: boolean;
+  have_third_class: boolean;
+  have_fourth_class: boolean;
+  have_wifi: boolean;
+  have_air_conditioning: boolean;
+  train: ITrain;
+  from: {
+    railway_station_name: string;
+    city: ICity;
+    datetime: number;
+  };
+  to: {
+    railway_station_name: string;
+    city: ICity;
+    datetime: number;
+  };
+  min_price: number;
+  duration: number;
+  price_info: {
+    first: IPriceClass;
+    second: IPriceClass;
+    third: IPriceClass;
+    fourth: IPriceClass;
+  };
+  seats_info: ISeatsClass;
+}
+
+// Основной интерфейс для элемента массива
+export interface ILastRoute {
+  have_first_class: boolean;
+  have_second_class: boolean;
+  have_third_class: boolean;
+  have_fourth_class: boolean;
+  have_wifi: boolean;
+  have_air_conditioning: boolean;
+  is_express: boolean;
+  min_price: number;
+  arrival: IDepartureArrival;
+  departure: IDepartureArrival;
+  total_avaliable_seats: number;
+}
+
+const LastTickets = () => {
   const {
     data: lastRoutes,
     isLoading: lastRoutesLoading,
@@ -12,23 +83,23 @@ const LastTickets = () => {
   } = useLastRoutesQuery();
 
   if (lastRoutesLoading) {
-    console.log('loading')
+    console.log('loading');
     return <div>Loading...</div>;
   }
 
-  // console.log('lastRoutes', lastRoutes)
+  if (lastRoutesError) {
+    console.error('Error:', lastRoutesError);
+    return <div>Error loading data</div>;
+  }
+
   return (
     <div className="last-tickets-container">
-        <div className="last-tickets-title">Последние билеты</div>
-        <div className="last-tickets-column">
-          {
-            lastRoutes.map((lastRoute, index) => (
-              // console.log(lastRoute)
-              <LastTicket key={index} lastRoute={lastRoute} />  
-            ))
-          }
-                
-        </div>
+      <div className="last-tickets-title">Последние билеты</div>
+      <div className="last-tickets-column">
+        {lastRoutes.map((lastRoute: ILastRoute, index: number) => (
+          <LastTicket key={index} lastRoute={lastRoute} />
+        ))}
+      </div>
     </div>
   );
 };

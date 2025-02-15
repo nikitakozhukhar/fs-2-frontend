@@ -2,7 +2,12 @@ import React from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-const CustomDatePicker = ({ selected, onChange }) => {
+interface CustomDatePickerProps {
+  selected: Date | null;
+  onChange: (date: Date | null) => void;
+}
+
+const CustomDatePicker : React.FC<CustomDatePickerProps> = ({ selected, onChange }) => {
   return (
     <div className="relative">
       <DatePicker

@@ -18,8 +18,13 @@ import OpenDetailsIcon from "../../img/svg/moreDetails.svg?react";
 import CloseDetailsIcon from "../../img/svg/closeDetails.svg?react";
 import { useSearchDirectionStore } from "../../store/searchDirectionStore";
 
+interface Amenity {
+  svg: JSX.Element;
+  name: string;
+  id: string;
+}
 
-const amenities = [
+const amenities: Amenity[] = [
   { svg: <SecondClassIcon />, name: "Купе", id: uuidv4() },
   { svg: <ThirdClassIcon />, name: "Плацкарт", id: uuidv4() },
   { svg: <ForthClassIcon />, name: "Сидячий", id: uuidv4() },
@@ -36,13 +41,14 @@ const FilterWidget: React.FC = () => {
   
   const [openDetails, setOpenDetails] = useState<boolean>(false);
   const [openRouteDetails, setOpenRouteDetails] = useState<boolean>(false);
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
+  const [startDate, setStartDate] = useState<Date | null>(null);
+  const [endDate, setEndDate] = useState<Date | null>(null);
 
   const handleClick = (option: { svg?: JSX.Element; name?: string; id: string; }) => {
     console.log(option);
   };
 
+  
   return (
     <div className="w-[370px] p-[30px_20px] mb-[50px] bg-[#3E3C41] text-white">
       <form className="flex flex-col mb-[10px] relative">
@@ -52,7 +58,7 @@ const FilterWidget: React.FC = () => {
           </label>
           <CustomDatePicker
             selected={startDate}
-            onChange={(date) => setStartDate(date)}
+            onChange={(date: Date | null) => setStartDate(date)}
           />
         </div>
         <div className="arrive-date-end flex flex-col mb-3">
@@ -61,7 +67,7 @@ const FilterWidget: React.FC = () => {
           </label>
           <CustomDatePicker
             selected={endDate}
-            onChange={(date) => setEndDate(date)}
+            onChange={(date: Date | null) => setEndDate(date)}
           />
         </div>
         {/* Линия после формы */}

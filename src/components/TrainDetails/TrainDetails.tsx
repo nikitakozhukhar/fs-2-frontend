@@ -70,7 +70,7 @@ const TrainDetails = () => {
 
       {/* Вторая строка: Детали поездов */}
       <div className="flex flex-col gap-[25px] mb-[30px]">
-        <TrainDetailCard routesData={routesData} />
+        {routesData && <TrainDetailCard routesData={routesData} />}
       </div>
 
       {/* Третья строка: Пагинация */}

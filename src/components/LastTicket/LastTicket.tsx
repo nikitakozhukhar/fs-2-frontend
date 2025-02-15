@@ -4,13 +4,19 @@ import ExpressIcon from "../../img/svg/express.svg?react";
 import ConditionIcon from "../../img/svg/conditioner.svg?react";
 import CupIcon from "../../img/svg/cup.svg?react";
 
-const features = [
+import { ILastRoute } from '../LastTickets/LastTickets'
+
+interface ILastTicketProps {
+  lastRoute: ILastRoute;
+}
+
+const features: { key: keyof ILastRoute; icon: JSX.Element }[] = [
   { key: "have_wifi", icon: <WifiIcon /> },
   { key: "have_air_conditioning", icon: <ConditionIcon /> },
   { key: "is_express", icon: <ExpressIcon /> },
 ];
-const LastTicket = ({ lastRoute }) => {
 
+const LastTicket: React.FC<ILastTicketProps> = ({ lastRoute }) => {
   return (
     <div className="last-ticket-item">
       <div className="last-ticket-left-col">
@@ -36,7 +42,9 @@ const LastTicket = ({ lastRoute }) => {
       </div>
       <div className="last-ticket-right-col">
         <div className="arrival-place">
-          <div className="arrival-city first-letter:uppercase">{lastRoute.departure.to.city.name}</div>
+          <div className="arrival-city first-letter:uppercase">
+            {lastRoute.departure.to.city.name}
+          </div>
           <div className="arrival-station">
             {lastRoute.departure.to.railway_station_name}
           </div>

@@ -7,13 +7,17 @@ import CupIcon from "../../img/svg/cup.svg?react";
 import ExpressIcon from "../../img/svg/express.svg?react";
 import Currency from "../../img/svg/currency.svg?react"
 import { Link } from "react-router-dom";
+import { IRoute } from "../../utils/api/fetchRoutes";
+
 
 //доработка запроса свободных мест
-import { useSeatsQuery } from "../../utils/useSeatsQuery";
 import { useSeatsStore } from '../../store/seatsStore'
 
+interface TrainDetailCardProps {
+  routesData: IRoute;
+}
 
-const TrainDetailCard: React.FC = ({routesData}) => {
+const TrainDetailCard: React.FC<TrainDetailCardProps> = ({routesData}) => {
 
   const { setSeatsGlobal } = useSeatsStore();
 
@@ -51,7 +55,7 @@ const TrainDetailCard: React.FC = ({routesData}) => {
 
   return (
     <div className="flex flex-col gap-10 ">
-      {routesData.items?.map((item) => {
+      {routesData.items?.map((item: IRoute['items'][0]) => {
         // console.log(item);
         return (
           <div
@@ -148,7 +152,7 @@ const TrainDetailCard: React.FC = ({routesData}) => {
                       <div className="flex items-center gap-1">
                         <span className="text-gray-400">от</span>
                         <span className="text-2xl font-medium">
-                          {item.departure.price_info.first.bottom_price}
+                          {item.departure.price_info.first?.bottom_price}
                         </span>
                         <Currency />
                       </div>
@@ -163,7 +167,7 @@ const TrainDetailCard: React.FC = ({routesData}) => {
                       <div className="flex items-center gap-1">
                         <span className="text-gray-400">от</span>
                         <span className="text-2xl font-medium">
-                          {item.departure.price_info.second.bottom_price}
+                          {item.departure.price_info.second?.bottom_price}
                         </span>
                         <Currency />
                       </div>
@@ -178,7 +182,7 @@ const TrainDetailCard: React.FC = ({routesData}) => {
                       <div className="flex items-center gap-1">
                         <span className="text-gray-400">от</span>
                         <span className="text-2xl font-medium">
-                          {item.departure.price_info.third.bottom_price}
+                          {item.departure.price_info.third?.bottom_price}
                         </span>
                         <Currency />
                       </div>
@@ -193,7 +197,7 @@ const TrainDetailCard: React.FC = ({routesData}) => {
                       <div className="flex items-center gap-1">
                         <span className="text-gray-400">от</span>
                         <span className="text-2xl font-medium">
-                          {item.departure.price_info.fourth.bottom_price}
+                          {item.departure.price_info.fourth?.bottom_price}
                         </span>
                         <Currency />
                       </div>
