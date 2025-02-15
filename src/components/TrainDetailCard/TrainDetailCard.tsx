@@ -11,7 +11,7 @@ import { IRoute } from "../../utils/api/fetchRoutes";
 
 
 //доработка запроса свободных мест
-import { useSeatsStore } from '../../store/seatsStore'
+import { useSeatsIdStore } from '../../store/seatsIdStore'
 
 interface TrainDetailCardProps {
   routesData: IRoute;
@@ -19,7 +19,7 @@ interface TrainDetailCardProps {
 
 const TrainDetailCard: React.FC<TrainDetailCardProps> = ({routesData}) => {
 
-  const { setSeatsGlobal } = useSeatsStore();
+  const { setSeatsIdGlobal } = useSeatsIdStore();
 
   // console.log(dateFilter)
   // const CarriageInfo = ({ type, availableSeats, price }: { type: string; availableSeats: number; price: number }) => {
@@ -230,7 +230,7 @@ const TrainDetailCard: React.FC<TrainDetailCardProps> = ({routesData}) => {
               </div>
               <Link to={"/place"} className="self-end">
                 <button className="py-1 px-2 bg-[#FFA800] rounded-md text-white cursor-pointer text-lg"
-                onClick={() => setSeatsGlobal(item.departure.train._id) }>
+                onClick={() => setSeatsIdGlobal(item.departure.train._id) }>
                   Выбрать места
                   
                 </button>

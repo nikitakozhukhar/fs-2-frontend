@@ -16,19 +16,19 @@ import CupIcon from "../../img/svg/cup2.svg?react";
 import SecondClass from "../TrainDiagrams/SecondClass";
 import { Link } from "react-router-dom";
 
-import { useSeatsStore } from "../../store/seatsStore";
+import { useSeatsIdStore } from "../../store/seatsIdStore";
 import { useSeatsQuery } from "../../utils/useSeatsQuery";
 
 
 const TrainPreview = () => {
 
-  const { seatsGlobal } = useSeatsStore();
+  const { seatsIdGlobal } = useSeatsIdStore();
 
   const {
     data: seatData,
     isLoading: seatsLoading,
     error: seatsError,
-  } = useSeatsQuery(seatsGlobal);
+  } = useSeatsQuery(seatsIdGlobal);
 
   if (seatsLoading) return <div>Loading...</div>;
   if (seatsError) return <div>Error: {seatsError.message}</div>;
