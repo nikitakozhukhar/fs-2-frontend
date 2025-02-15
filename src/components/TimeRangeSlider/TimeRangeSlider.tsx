@@ -10,6 +10,12 @@ const TimeRangeSlider: React.FC<TimeRangeSliderProps> = ({ min, max, step = 1 })
   const [minValue, setMinValue] = useState<number>(min);
   const [maxValue, setMaxValue] = useState<number>(max);
 
+  const formatTime = (hours: number): string => {
+    const formattedHours = Math.floor(hours); // Округляем до целого числа
+    const formattedMinutes = Math.round((hours % 1) * 60); // Преобразуем дробную часть в минуты
+    return `${formattedHours}:${formattedMinutes.toString().padStart(2, '0')}`; // Добавляем ведущий ноль для минут
+  };
+
   const handleMinChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = Math.min(Number(e.target.value), maxValue - step);
     setMinValue(value);
@@ -106,8 +112,8 @@ const TimeRangeSlider: React.FC<TimeRangeSliderProps> = ({ min, max, step = 1 })
       </div>
 
       <div className="flex justify-between text-white mt-1">
-        <div>{minValue}</div>
-        <div>{maxValue}</div>
+        <div>{formatTime(minValue)}</div>
+        <div>{formatTime(maxValue)}</div>
       </div>
     </div>
   );
