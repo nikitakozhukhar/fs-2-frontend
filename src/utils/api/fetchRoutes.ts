@@ -81,7 +81,8 @@ export interface IRoute {
       available_seats_info: ISeatsInfo;
       total_avaliable_seats: number;
     }
-  ];
+  ],
+  total_count: number;
   
 }
 
