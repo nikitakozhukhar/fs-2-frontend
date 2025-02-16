@@ -43,12 +43,13 @@ const TrainDetails = () => {
   }
 
   const routesData = fromRoutes.data;
+  console.log(routesData)
 
   return (
     <div className="flex flex-col justify-between w-[960px]">
       {/* Первая строка: Найдено и сортировка */}
       <div className="flex flex-row justify-between mb-[30px]">
-        <div className="founded-trains">Найдено: {routesData?.items?.length}</div>
+        <div className="founded-trains">Найдено: {routesData?.total_count}</div>
         <div className="founded-trains-right-col">
           <div className="flex flex-row gap-[20px]">
             <label htmlFor="options-select">Сортировать по:</label>
