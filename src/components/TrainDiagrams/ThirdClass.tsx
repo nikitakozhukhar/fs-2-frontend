@@ -5,9 +5,9 @@ import TrashIcon from "../../img/svg/trash-can-svgrepo-com.svg?react";
 import NoSmokingIcon from "../../img/svg/no-smoking-sign-svgrepo-com.svg?react";
 
 import Seat from "./Seat";
-import { secondClassSeats } from "./seatsData";
+import { thirdClassSeats } from "./seatsData";
 
-const SecondClass = () => {
+const ThirdClass = () => {
   return (
     <div className="flex w-[921px] h-[145px] m-auto mb-5 border-2 rounded-3xl ">
       <div className="flex relative z-0 h-[100%] ">
@@ -42,23 +42,26 @@ const SecondClass = () => {
       </div>
 
       <div className="relative z-0 flex w-[700px] h-full">
-        {secondClassSeats.map((coupe) => (
+        {thirdClassSeats.map((coupe) => (
           <div
             key={coupe.id}
             className={`relative flex flex-col justify-between w-[88px] h-full border-4 border-gray-500`}
           >
             <div className="flex justify-between">
-              <div className="flex flex-col-reverse gap-3 w-8 h-[86px] border-b-4 border-[#999999]">
+              <div className="flex flex-col-reverse gap-3 w-8 h-[86px]">
                 <Seat seatNumber={coupe.seat1.number} seatId={coupe.seat1.id} />
                 <Seat seatNumber={coupe.seat2.number} seatId={coupe.seat2.id} />
               </div>
-              <div className="flex flex-col-reverse gap-3 w-8 h-[86px] border-b-4 border-[#999999]">
+              <div className="flex flex-col-reverse gap-3 w-8 h-[86px]">
                 <Seat seatNumber={coupe.seat3.number} seatId={coupe.seat3.id} />
                 <Seat seatNumber={coupe.seat4.number} seatId={coupe.seat4.id} />
               </div>
             </div>
+            <div className="flex justify-between">
+              <Seat seatNumber={coupe.seat5.number} seatId={coupe.seat5.id} />
+              <Seat seatNumber={coupe.seat6.number} seatId={coupe.seat6.id} />
+            </div>
             
-            <span className="absolute z-0 bottom-[17px] w-[82px] h-[1px] bg-slate-200"></span>
           </div>
         ))}
         
@@ -85,4 +88,4 @@ const SecondClass = () => {
   );
 };
 
-export default SecondClass;
+export default ThirdClass;

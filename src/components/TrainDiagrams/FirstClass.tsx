@@ -5,33 +5,8 @@ import ConductorIcon from "../../img/svg/conductor_umi9qkxgsyzx.svg?react";
 import TrashIcon from "../../img/svg/trash-can-svgrepo-com.svg?react";
 import NoSmokingIcon from "../../img/svg/no-smoking-sign-svgrepo-com.svg?react";
 
-interface SeatData {
-  seat1: number;
-  seat2: number;
-  id: string;
-}
-
-interface SeatProps {
-  seatNumber: number;
-}
-
-const Seat: React.FC<SeatProps> = ({ seatNumber }) => (
-  <div className="px-[1px] border-b-4 border-[#999999] flex-1 flex flex-col justify-end items-center cursor-pointer bg-blue-50 text-xl font-bold">
-    {seatNumber}
-  </div>
-);
-
-const data = [
-  { seat1: 1, seat2: 2, id: uuidv4() },
-  { seat1: 3, seat2: 4, id: uuidv4() },
-  { seat1: 5, seat2: 6, id: uuidv4() },
-  { seat1: 7, seat2: 8, id: uuidv4() },
-  { seat1: 9, seat2: 10, id: uuidv4() },
-  { seat1: 11, seat2: 12, id: uuidv4() },
-  { seat1: 13, seat2: 14, id: uuidv4() },
-  { seat1: 15, seat2: 16, id: uuidv4() },
-  { seat1: 17, seat2: 18, id: uuidv4() },
-];
+import Seat from './Seat';
+import { firstClassSeats } from './seatsData';
 
 const FirstClass = () => (
   <div className="flex w-[921px] h-[145px] m-auto mb-5 border-2 rounded-3xl">
@@ -59,12 +34,13 @@ const FirstClass = () => (
 
     {/* Основные места */}
     <div className="relative z-0 flex w-[700px] h-full">
-      {data.map(({ id, seat1, seat2 }) => (
-        <div key={id} className="flex flex-col justify-between w-[78px]">
+      {firstClassSeats.map((coupe) => (
+
+        <div key={coupe.id} className="flex flex-col justify-between w-[78px]">
           <div className="flex justify-evenly items-stretch h-[100%] border-l-4 border-r-4 border-t-4 border-[#999999]">
-            <Seat seatNumber={seat1} />
+            <Seat seatNumber={coupe.seat1.number} seatId={coupe.seat1.id} />
             <div className="border-2 border-white flex-1 flex flex-col justify-end" />
-            <Seat seatNumber={seat2} />
+            <Seat seatNumber={coupe.seat2.number} seatId={coupe.seat2.id}/>
           </div>
 
           <div className="h-[40px] w-[87px] border-4 border-white" />

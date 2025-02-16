@@ -13,10 +13,12 @@ import WifiIcon from "../../img/svg/wifi2.svg?react";
 import BeddingIcon from "../../img/svg/bedding.svg?react"
 import CupIcon from "../../img/svg/cup2.svg?react";
 
-import FirstClass from "../TrainDiagrams/SecondClass";
+import FirstClass from "../TrainDiagrams/FirstClass";
 import SecondClass from "../TrainDiagrams/SecondClass";
-import { Link } from "react-router-dom";
+import ThirdClass from "../TrainDiagrams/ThirdClass";
+import FourthClass from "../TrainDiagrams/FourthClass";
 
+import { Link } from "react-router-dom";
 import { useSeatsIdStore } from "../../store/seatsIdStore";
 import { useSeatsQuery } from "../../utils/useSeatsQuery";
 
@@ -217,8 +219,10 @@ const TrainPreview = () => {
           </div>
         </div>
 
-        <SecondClass />
         <FirstClass />
+        <SecondClass />
+        <ThirdClass />
+        <FourthClass />
       </div>
 
       <div className="self-end ">
