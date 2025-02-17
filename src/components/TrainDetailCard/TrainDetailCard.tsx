@@ -230,7 +230,7 @@ const TrainDetailCard: React.FC<TrainDetailCardProps> = ({routesData}) => {
               </div>
               <Link to={"/place"} className="self-end">
                 <button className="py-1 px-2 bg-[#FFA800] rounded-md text-white cursor-pointer text-lg"
-                onClick={() => setSeatsIdGlobal(item.departure.train._id) }>
+                onClick={() => setSeatsIdGlobal(item.departure._id) }>
                   Выбрать места
                   
                 </button>
