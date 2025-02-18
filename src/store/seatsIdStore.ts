@@ -1,11 +1,11 @@
 import { create } from 'zustand'
 
 interface ISeats {
- seatsIdGlobal: any; 
+ seatsIdGlobal: string; 
  setSeatsIdGlobal: (query: string) => void
 }
 
 export const useSeatsIdStore = create<ISeats>((set) => ({
-  seatsIdGlobal: [],
+  seatsIdGlobal: '',
   setSeatsIdGlobal: (seatsIdGlobal: any) => set({ seatsIdGlobal }),
 }))
