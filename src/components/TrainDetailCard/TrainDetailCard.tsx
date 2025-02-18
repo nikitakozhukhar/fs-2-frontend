@@ -7,7 +7,9 @@ import CupIcon from "../../img/svg/cup.svg?react";
 import ExpressIcon from "../../img/svg/express.svg?react";
 import Currency from "../../img/svg/currency.svg?react"
 import { Link } from "react-router-dom";
-import { IRoute } from "../../utils/api/fetchRoutes";
+import { IRoute } from "../../utils/api/fetchRoutes";;
+import timeFormate from "../TimeFormate/TimeFormate";
+
 
 
 //доработка запроса свободных мест
@@ -56,7 +58,7 @@ const TrainDetailCard: React.FC<TrainDetailCardProps> = ({routesData}) => {
   return (
     <div className="flex flex-col gap-10 ">
       {routesData.items?.map((item: IRoute['items'][0]) => {
-        // console.log(item);
+        console.log(item.departure);
         return (
           <div
             key={item.departure.train._id}
@@ -83,7 +85,7 @@ const TrainDetailCard: React.FC<TrainDetailCardProps> = ({routesData}) => {
               <div className="flex justify-between">
                 <div className="flex flex-col">
                   {/* <DateFormate time={item.departure.from.datetime}/> */}
-                  <div className="text-2xl font-medium">00:10</div>
+                  <div className="text-2xl font-medium">{timeFormate(item.departure.from.datetime)}</div>
                   <div className="first-letter:uppercase">{item.departure.from.city.name}</div>
                   <div className="text-gray-400">
                     {item.departure.from.railway_station_name}
@@ -91,14 +93,14 @@ const TrainDetailCard: React.FC<TrainDetailCardProps> = ({routesData}) => {
                 </div>
 
                 <div className="flex flex-col">
-                  <div className="text-gray-400">9:42</div>
+                  <div className="text-gray-400">{timeFormate(item.departure.duration)}</div>
                   <div className="direct-arrow-right text-[#FFA800]">
                     <RightOrangeArrowIcon />
                   </div>
                 </div>
 
                 <div className="flex flex-col">
-                  <div className="text-2xl font-medium">9:52</div>
+                  <div className="text-2xl font-medium">{timeFormate(item.departure.to.datetime)}</div>
                   <div className="first-letter:uppercase">{item.departure.to.city.name}</div>
                   <div className="text-gray-400">
                     {item.departure.to.railway_station_name}
@@ -108,7 +110,7 @@ const TrainDetailCard: React.FC<TrainDetailCardProps> = ({routesData}) => {
 
               <div className="flex justify-between">
                 <div className="flex flex-col">
-                  <div className="text-2xl font-medium">00:10</div>
+                  <div className="text-2xl font-medium">{timeFormate(item.departure.from.datetime)}</div>
                   <div className="first-letter:uppercase">
                     {item.departure.from.city.name}
                   </div>
@@ -118,14 +120,14 @@ const TrainDetailCard: React.FC<TrainDetailCardProps> = ({routesData}) => {
                 </div>
 
                 <div className="flex flex-col">
-                  <div className="text-gray-400">9:42</div>
+                  <div className="text-gray-400">{timeFormate(item.departure.duration)}</div>
                   <div className="text-[#FFA800]">
                     <LeftOrangeArrowIcon />
                   </div>
                 </div>
 
                 <div className="flex flex-col">
-                  <div className="text-2xl font-medium">9:52</div>
+                  <div className="text-2xl font-medium">{timeFormate(item.departure.to.datetime)}</div>
                   <div className="first-letter:uppercase">{item.departure.to.city.name}</div>
                   <div className="text-gray-400">
                     {item.departure.to.railway_station_name}
@@ -152,7 +154,7 @@ const TrainDetailCard: React.FC<TrainDetailCardProps> = ({routesData}) => {
                       <div className="flex items-center gap-1">
                         <span className="text-gray-400">от</span>
                         <span className="text-2xl font-medium">
-                          {item.departure.price_info.first?.bottom_price}
+                          {item.departure.price_info.first?.top_price}
                         </span>
                         <Currency />
                       </div>
@@ -167,7 +169,7 @@ const TrainDetailCard: React.FC<TrainDetailCardProps> = ({routesData}) => {
                       <div className="flex items-center gap-1">
                         <span className="text-gray-400">от</span>
                         <span className="text-2xl font-medium">
-                          {item.departure.price_info.second?.bottom_price}
+                          {item.departure.price_info.second?.top_price}
                         </span>
                         <Currency />
                       </div>
@@ -182,7 +184,7 @@ const TrainDetailCard: React.FC<TrainDetailCardProps> = ({routesData}) => {
                       <div className="flex items-center gap-1">
                         <span className="text-gray-400">от</span>
                         <span className="text-2xl font-medium">
-                          {item.departure.price_info.third?.bottom_price}
+                          {item.departure.price_info.third?.top_price}
                         </span>
                         <Currency />
                       </div>
@@ -197,7 +199,7 @@ const TrainDetailCard: React.FC<TrainDetailCardProps> = ({routesData}) => {
                       <div className="flex items-center gap-1">
                         <span className="text-gray-400">от</span>
                         <span className="text-2xl font-medium">
-                          {item.departure.price_info.fourth?.bottom_price}
+                          {item.departure.price_info.fourth?.top_price}
                         </span>
                         <Currency />
                       </div>
