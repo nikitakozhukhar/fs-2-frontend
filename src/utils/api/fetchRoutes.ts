@@ -87,13 +87,13 @@ export interface IRoute {
 }
 
 export const fetchRoutes = async (
-  from: string, 
-  to: string, 
+  fromCityId: string, 
+  toCityId: string, 
   limits: number = 5, 
   offset: number = 5,
   sort: string = '',
 ): Promise<IRoute> => {
-  const { data } = await axiosInstance.get<IRoute>(`routes?from_city_id=${from}&to_city_id=${to}&limit=${limits}&offset=${offset}&sort=${sort}`);
+  const { data } = await axiosInstance.get<IRoute>(`routes?from_city_id=${fromCityId}&to_city_id=${toCityId}&limit=${limits}&offset=${offset}&sort=${sort}`);
   
   return data
 }

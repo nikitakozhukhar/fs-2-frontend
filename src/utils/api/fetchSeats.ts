@@ -4,7 +4,7 @@ import axiosInstance from "../axiosInstance/axiosInstance";
 export interface ISeats {
   _id: string,
   name: string,
-  class_type: string,
+  classType: string,
 }
 
 export const fetchSeats = async (query: string): Promise<ISeats[]> => {
