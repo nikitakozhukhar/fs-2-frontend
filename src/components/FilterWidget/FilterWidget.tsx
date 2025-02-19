@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { JSX } from "react/jsx-runtime";
 import CheckBox from "../CheckBox/CheckBox";
-import PriceRangeSlider from "../PriceRangeSlider/PriceRangeSlider";
 import CustomDatePicker from "../CustomDatePicker/CustomDatePicker";
-import TimeRangeSlider from "../TimeRangeSlider/TimeRangeSlider";
 import RangeSlider from "../RangeSlider/RangeSlider";
 
 import SecondClassIcon from "../../img/svg/compartment.svg?react";
@@ -17,7 +15,6 @@ import ForwardArrowIcon from "../../img/svg/directionRigth.svg?react";
 import BackwardArrowIcon from "../../img/svg/directionLeft.svg?react";
 import OpenDetailsIcon from "../../img/svg/moreDetails.svg?react";
 import CloseDetailsIcon from "../../img/svg/closeDetails.svg?react";
-import { useSearchDirectionStore } from "../../store/searchDirectionStore";
 
 interface Amenity {
   svg: JSX.Element;
