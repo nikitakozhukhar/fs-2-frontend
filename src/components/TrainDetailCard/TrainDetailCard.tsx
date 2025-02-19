@@ -8,7 +8,7 @@ import ExpressIcon from "../../img/svg/express.svg?react";
 import Currency from "../../img/svg/currency.svg?react"
 import { Link } from "react-router-dom";
 import { IRoute } from "../../utils/api/fetchRoutes";;
-import timeFormate from "../TimeFormate/TimeFormate";
+import timeFormate from "../TimeFormate/timeFormate";
 
 
 
