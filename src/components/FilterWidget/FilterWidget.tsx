@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { JSX } from "react/jsx-runtime";
 import CheckBox from "../CheckBox/CheckBox";
-import PriceRangeSlider from '../PriceRangeSlider/PriceRangeSlider';
+import PriceRangeSlider from "../PriceRangeSlider/PriceRangeSlider";
 import CustomDatePicker from "../CustomDatePicker/CustomDatePicker";
 import TimeRangeSlider from "../TimeRangeSlider/TimeRangeSlider";
+import RangeSlider from "../RangeSlider/RangeSlider";
 
 import SecondClassIcon from "../../img/svg/compartment.svg?react";
 import ThirdClassIcon from "../../img/svg/reservedSeat.svg?react";
@@ -35,20 +36,38 @@ const amenities: Amenity[] = [
 
 const FilterWidget: React.FC = () => {
 
-  const { startDateGlobal, endDateGlobal } = useSearchDirectionStore();
-
-  console.log('startDateGlobal', startDateGlobal)
-  
   const [openDetails, setOpenDetails] = useState<boolean>(false);
   const [openRouteDetails, setOpenRouteDetails] = useState<boolean>(false);
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [endDate, setEndDate] = useState<Date | null>(null);
 
-  const handleClick = (option: { svg?: JSX.Element; name?: string; id: string; }) => {
+  //-------------
+
+  const [priceRange, setPriceRange] = useState([0, 7000]); // в тыс. ₽
+  const [timeRangeDepartureStraight, setTimeRangeDepartureStraight] = useState([0, 1440]);
+  const [timeRangeArrivalStraight, setTimeRangeArrivalStraight] = useState([0, 1440]);
+  const [timeRangeDepartureBack, setTimeRangeDepartureBack] = useState([0, 1440]);
+  const [timeRangeArrivalBack, setTimeRangeArrivalBack] = useState([0, 1440]);
+
+  const formatPrice = (value: number) => `${value}`;
+
+  // Форматирует минуты в "чч:мм"
+  const formatTime = (minutes: number) => {
+    const hours = Math.floor(minutes / 60);
+    const mins = minutes % 60;
+    return `${String(hours).padStart(2, "0")}:${String(mins).padStart(2, "0")}`;
+  };
+
+  //---------------------
+
+  const handleClick = (option: {
+    svg?: JSX.Element;
+    name?: string;
+    id: string;
+  }) => {
     console.log(option);
   };
 
-  
   return (
     <div className="w-[370px] p-[30px_20px] mb-[50px] bg-[#3E3C41] text-white">
       <form className="flex flex-col mb-[10px] relative">
@@ -91,8 +110,26 @@ const FilterWidget: React.FC = () => {
         <div className="w-[370px] h-[1px] bg-white"></div>
       </div>
 
-      <div className="filter-cost my-[20px]">
+      {/* <div className="filter-cost my-[20px]">
         <PriceRangeSlider min={1000} max={7000} step={100} />
+      </div> */}
+
+      <div className="flex flex-col my-3">
+        <div className="text-white text-3xl mb-2">Стоимость</div>
+
+        <div className="mb-8">
+          <div className="flex justify-between text-white">
+            <span>от</span>
+            <span>до</span>
+          </div>
+          <RangeSlider
+            min={0}
+            max={7000}
+            value={priceRange}
+            onChange={setPriceRange}
+            formatValue={formatPrice}
+          />
+        </div>
       </div>
 
       <div className="w-[370px] h-[1px] relative -left-5 bg-white mb-5"></div>
@@ -110,28 +147,49 @@ const FilterWidget: React.FC = () => {
             <div className="hover: fill-red-200">
               <CloseDetailsIcon />
             </div>
-            
-            ) : (
+          ) : (
             <div className="hover: fill-red-200">
               <OpenDetailsIcon />
             </div>
-            
-            )}
+          )}
         </div>
       </div>
       {openDetails && (
-        <div className="mb-3">
-          <div className="">
-            <div className="">Время отбытия</div>
-            <TimeRangeSlider min={0} max={24} step={1}/>
+        <div className="flex flex-col my-3 font-normal">
+
+          <div className="flex flex-col mb-5">
+            <div className="text-[#E5E5E5] text-xl mb-">Время отбытия</div>
+
+            <div className="mb-8">
+              <RangeSlider
+                min={0}
+                max={1440}
+                value={timeRangeDepartureStraight}
+                onChange={setTimeRangeDepartureStraight}
+                formatValue={formatTime}
+              />
+            </div>
           </div>
-          <div className="">
-            <div className="">Время прибытия</div>
-            <div className=""></div>
-            <div className=""></div>
+          <div className="flex flex-col">
+            <div className="self-end text-[#E5E5E5] text-xl mb-2">
+              Время прибытия
+            </div>
+
+            <div className="mb-8">
+              <RangeSlider
+                min={0}
+                max={1440}
+                value={timeRangeArrivalStraight}
+                onChange={setTimeRangeArrivalStraight}
+                formatValue={formatTime}
+              />
+            </div>
           </div>
         </div>
       )}
+
+
+ 
 
       <div className="w-[370px] h-[1px] relative -left-5 bg-white"></div>
 
@@ -148,9 +206,39 @@ const FilterWidget: React.FC = () => {
         </div>
       </div>
       {openRouteDetails && (
-        <div className="details-content">
-          {/* Контент для "Обратно" */}
+        <div className="details-content">{
+          <div className="flex flex-col my-3 font-normal">
+
+          <div className="flex flex-col mb-5">
+            <div className="text-[#E5E5E5] text-xl mb-">Время отбытия</div>
+
+            <div className="mb-8">
+              <RangeSlider
+                min={0}
+                max={1440}
+                value={timeRangeDepartureBack}
+                onChange={setTimeRangeDepartureBack}
+                formatValue={formatTime}
+              />
+            </div>
+          </div>
+          <div className="flex flex-col">
+            <div className="self-end text-[#E5E5E5] text-xl mb-2">
+              Время прибытия
+            </div>
+
+            <div className="mb-8">
+              <RangeSlider
+                min={0}
+                max={1440}
+                value={timeRangeArrivalBack}
+                onChange={setTimeRangeArrivalBack}
+                formatValue={formatTime}
+              />
+            </div>
+          </div>
         </div>
+        }</div>
       )}
     </div>
   );
