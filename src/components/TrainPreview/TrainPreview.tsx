@@ -1,6 +1,7 @@
+import { useNavigate } from "react-router-dom";
 import "./TrainPreview.css";
 import ArrowRightIcon from "../../img/svg/tp-arrowRight.svg?react";
-import OrangeTrainIcon from "../../img/svg/orangeTrain.svg?react"
+import OrangeTrainIcon from "../../img/svg/orangeTrain.svg?react";
 import ThinArrowIcon from "../../img/svg/thinArrow.svg?react";
 import ThinOrangeArrowIcon from "../../img/svg/tp-orangeRightArrow.svg?react";
 import OrangeWatchIcon from "../../img/svg/tp-watch.svg?react";
@@ -10,7 +11,7 @@ import ThirdClassIcon from "../../img/svg/thirdClass.svg?react";
 import FourthClassIcon from "../../img/svg/fourClass.svg?react";
 import ConditionerIcon from "../../img/svg/conditioner.svg?react";
 import WifiIcon from "../../img/svg/wifi2.svg?react";
-import BeddingIcon from "../../img/svg/bedding.svg?react"
+import BeddingIcon from "../../img/svg/bedding.svg?react";
 import CupIcon from "../../img/svg/cup2.svg?react";
 
 import FirstClass from "../TrainDiagrams/FirstClass";
@@ -19,13 +20,25 @@ import ThirdClass from "../TrainDiagrams/ThirdClass";
 import FourthClass from "../TrainDiagrams/FourthClass";
 
 import { Link } from "react-router-dom";
+import { useTrainDetailsStore } from "../../store/trainDetailsStore";
 import { useSeatsIdStore } from "../../store/seatsIdStore";
 import { useSeatsQuery } from "../../utils/useSeatsQuery";
-
+import timeFormate from "../TimeFormate/timeFormate";
 
 const TrainPreview = () => {
+  const navigate = useNavigate();
 
   const { seatsIdGlobal } = useSeatsIdStore();
+  const {
+    trainName,
+    fromCityName,
+    toCityName,
+    fromDateTime,
+    toDateTime,
+    fromRailwayStation,
+    toRailwayStation,
+    duration,
+  } = useTrainDetailsStore();
 
   const {
     data: seatData,
@@ -36,7 +49,7 @@ const TrainPreview = () => {
   if (seatsLoading) return <div>Loading...</div>;
   if (seatsError) return <div>Error: {seatsError.message}</div>;
 
-  console.log('seatData-->', seatData)
+  console.log("seatData-->", seatData);
 
   return (
     <div className="flex flex-col mb-5 ">
@@ -46,7 +59,10 @@ const TrainPreview = () => {
           <div className="mr-2 cursor-pointer">
             <ArrowRightIcon />
           </div>
-          <button className="flex items-center justify-center h-[60px] text-center rounded px-4 border-2 text-2xl font-bold">
+          <button
+            onClick={() => navigate(-1)}
+            className="flex items-center justify-center h-[60px] text-center rounded px-4 border-2 text-2xl font-bold"
+          >
             Выбрать другой поезд
           </button>
         </div>
@@ -55,41 +71,41 @@ const TrainPreview = () => {
             <OrangeTrainIcon />
           </div>
           <div className="flex flex-col">
-            <div className="text-xl font-medium">116C</div>
+            <div className="text-xl font-medium">{trainName}</div>
             <div className="flex items-center gap-1 text-slate-400">
-              Адлер{" "}
+              <span className="first-letter:uppercase">{fromCityName}</span>
               <span className="flex items-center">
                 <ThinArrowIcon />
               </span>
             </div>
-            <div className="flex items-center gap-1">
-              Москва{" "}
+            <div className="flex items-center gap-1 first-letter:uppercase">
+              <span className="first-letter:uppercase">{toCityName}</span>
               <span className="flex items-center">
                 <ThinArrowIcon />
               </span>
             </div>
-            <div className="">Санкт-Петербург</div>
+            <div className="first-letter:uppercase">{fromCityName}</div>
           </div>
           <div className="flex flex-col">
-            <div className="text-xl font-medium">00:10</div>
-            <div className="">Москва</div>
-            <div className="text-slate-400">Курский вокзал</div>
+            <div className="text-xl font-medium">{timeFormate(fromDateTime)}</div>
+            <div className="first-letter:uppercase">{fromCityName}</div>
+            <div className="text-slate-400">{fromRailwayStation}</div>
           </div>
           <div className="">
             <ThinOrangeArrowIcon />
           </div>
           <div className="flex flex-col">
-            <div className="text-xl font-medium">09:52</div>
-            <div className="">Санкт-Петербург</div>
-            <div className="text-slate-400">Ладожский вокзал</div>
+            <div className="text-xl font-medium">{timeFormate(toDateTime)}</div>
+            <div className="first-letter:uppercase">{toCityName}</div>
+            <div className="text-slate-400">{toRailwayStation}</div>
           </div>
           <div className="flex items-center gap-2">
             <div className="">
               <OrangeWatchIcon />
             </div>
             <div className="flex flex-col">
-              <div className="">9 часов</div>
-              <div className="">42 минуты</div>
+              <div className="">{`${timeFormate(duration).slice(0, 2)} ч`}</div>
+              <div className="">{`${timeFormate(duration).slice(3, 5)} мин`}</div>
             </div>
           </div>
         </div>
@@ -190,25 +206,21 @@ const TrainPreview = () => {
           <div className="flex flex-col items-start justify-center gap-2">
             <div className="font-light">Обслуживание ФПК</div>
             <div className="flex gap-3 cursor-pointer ">
-
               <div className="fill-white stroke-black-500 hover:fill-[#FFA800] active:text-white active:fill-[#FFA800]">
-                <ConditionerIcon fill='inherit'/>
+                <ConditionerIcon fill="inherit" />
               </div>
 
               <div className="fill-white stroke-black-500 hover:fill-[#FFA800]">
-                <WifiIcon fill='inherit'/>
+                <WifiIcon fill="inherit" />
               </div>
 
               <div className="fill-white stroke-black-500 hover:fill-[#FFA800]">
-                <BeddingIcon fill='inherit'/>
+                <BeddingIcon fill="inherit" />
               </div>
-              
+
               <div className="fill-white stroke-white-500 hover:fill-[#FFA800]">
-                <CupIcon fill='inherit'/>
+                <CupIcon fill="inherit" />
               </div>
-              
-             
-              
             </div>
           </div>
         </div>
@@ -227,7 +239,9 @@ const TrainPreview = () => {
 
       <div className="self-end ">
         <Link to={"/passangers"}>
-          <button className="py-4 px-12 border-2 border-[#FFA800] rounded-lg bg-[#FFA800] text-white text-2xl uppercase">далее</button>
+          <button className="py-4 px-12 border-2 border-[#FFA800] rounded-lg bg-[#FFA800] text-white text-2xl uppercase">
+            далее
+          </button>
         </Link>
       </div>
     </div>

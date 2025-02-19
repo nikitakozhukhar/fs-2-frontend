@@ -5,28 +5,28 @@ import LeftOrangeArrowIcon from "../../img/svg/leftArrowTime.svg?react";
 import WiFiIcon from "../../img/svg/wifi.svg?react";
 import CupIcon from "../../img/svg/cup.svg?react";
 import ExpressIcon from "../../img/svg/express.svg?react";
-import Currency from "../../img/svg/currency.svg?react"
+import Currency from "../../img/svg/currency.svg?react";
 import { Link } from "react-router-dom";
-import { IRoute } from "../../utils/api/fetchRoutes";;
+import { IRoute } from "../../utils/api/fetchRoutes";
 import timeFormate from "../TimeFormate/timeFormate";
 
-
-
-//доработка запроса свободных мест
-import { useSeatsIdStore } from '../../store/seatsIdStore'
+import { useTrainDetailsStore } from "../../store/trainDetailsStore";
+import { useSeatsIdStore } from "../../store/seatsIdStore";
 
 interface TrainDetailCardProps {
   routesData: IRoute;
 }
 
-const TrainDetailCard: React.FC<TrainDetailCardProps> = ({routesData}) => {
+const TrainDetailCard: React.FC<TrainDetailCardProps> = ({ routesData }) => {
+  console.log(routesData);
 
   const { setSeatsIdGlobal } = useSeatsIdStore();
+  const { setTrainDetails } = useTrainDetailsStore();
 
   // console.log(dateFilter)
   // const CarriageInfo = ({ type, availableSeats, price }: { type: string; availableSeats: number; price: number }) => {
   //   if (!availableSeats) return null;
-  
+
   //   return (
   //     <div className="flex justify-between items-baseline gap-4">
   //       <div className="carriage-type">{type}</div>
@@ -57,12 +57,13 @@ const TrainDetailCard: React.FC<TrainDetailCardProps> = ({routesData}) => {
 
   return (
     <div className="flex flex-col gap-10 ">
-      {routesData.items?.map((item: IRoute['items'][0]) => {
+      {routesData.items?.map((item: IRoute["items"][0]) => {
         console.log(item.departure);
         return (
           <div
             key={item.departure.train._id}
-            className="flex w-[960px] h-[353px] border gap-5">
+            className="flex w-[960px] h-[353px] border gap-5"
+          >
             <div className="flex flex-col items-center gap-3 bg-[#E4E0E9] justify-center basis-48">
               <div className="text-white">
                 <TrainImageIcon />
@@ -77,40 +78,18 @@ const TrainDetailCard: React.FC<TrainDetailCardProps> = ({routesData}) => {
                     <ThinArrowIcon />
                   </span>
                 </div>
-                <div className="first-letter:uppercase">{item.departure.to.city.name}</div>
+                <div className="first-letter:uppercase">
+                  {item.departure.to.city.name}
+                </div>
               </div>
             </div>
 
             <div className="flex flex-col justify-between w-[480px] py-16 px-10">
               <div className="flex justify-between">
                 <div className="flex flex-col">
-                  {/* <DateFormate time={item.departure.from.datetime}/> */}
-                  <div className="text-2xl font-medium">{timeFormate(item.departure.from.datetime)}</div>
-                  <div className="first-letter:uppercase">{item.departure.from.city.name}</div>
-                  <div className="text-gray-400">
-                    {item.departure.from.railway_station_name}
+                  <div className="text-2xl font-medium">
+                    {timeFormate(item.departure.from.datetime)}
                   </div>
-                </div>
-
-                <div className="flex flex-col">
-                  <div className="text-gray-400">{timeFormate(item.departure.duration)}</div>
-                  <div className="direct-arrow-right text-[#FFA800]">
-                    <RightOrangeArrowIcon />
-                  </div>
-                </div>
-
-                <div className="flex flex-col">
-                  <div className="text-2xl font-medium">{timeFormate(item.departure.to.datetime)}</div>
-                  <div className="first-letter:uppercase">{item.departure.to.city.name}</div>
-                  <div className="text-gray-400">
-                    {item.departure.to.railway_station_name}
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex justify-between">
-                <div className="flex flex-col">
-                  <div className="text-2xl font-medium">{timeFormate(item.departure.from.datetime)}</div>
                   <div className="first-letter:uppercase">
                     {item.departure.from.city.name}
                   </div>
@@ -120,23 +99,62 @@ const TrainDetailCard: React.FC<TrainDetailCardProps> = ({routesData}) => {
                 </div>
 
                 <div className="flex flex-col">
-                  <div className="text-gray-400">{timeFormate(item.departure.duration)}</div>
+                  <div className="text-gray-400">
+                    {timeFormate(item.departure.duration)}
+                  </div>
+                  <div className="direct-arrow-right text-[#FFA800]">
+                    <RightOrangeArrowIcon />
+                  </div>
+                </div>
+
+                <div className="flex flex-col">
+                  <div className="text-2xl font-medium">
+                    {timeFormate(item.departure.to.datetime)}
+                  </div>
+                  <div className="first-letter:uppercase">
+                    {item.departure.to.city.name}
+                  </div>
+                  <div className="text-gray-400">
+                    {item.departure.to.railway_station_name}
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex justify-between">
+                <div className="flex flex-col">
+                  <div className="text-2xl font-medium">
+                    {timeFormate(item.departure.from.datetime)}
+                  </div>
+                  <div className="first-letter:uppercase">
+                    {item.departure.from.city.name}
+                  </div>
+                  <div className="text-gray-400">
+                    {item.departure.from.railway_station_name}
+                  </div>
+                </div>
+
+                <div className="flex flex-col">
+                  <div className="text-gray-400">
+                    {timeFormate(item.departure.duration)}
+                  </div>
                   <div className="text-[#FFA800]">
                     <LeftOrangeArrowIcon />
                   </div>
                 </div>
 
                 <div className="flex flex-col">
-                  <div className="text-2xl font-medium">{timeFormate(item.departure.to.datetime)}</div>
-                  <div className="first-letter:uppercase">{item.departure.to.city.name}</div>
+                  <div className="text-2xl font-medium">
+                    {timeFormate(item.departure.to.datetime)}
+                  </div>
+                  <div className="first-letter:uppercase">
+                    {item.departure.to.city.name}
+                  </div>
                   <div className="text-gray-400">
                     {item.departure.to.railway_station_name}
                   </div>
                 </div>
               </div>
             </div>
-
-            
 
             <div className="flex flex-col justify-between gap-4 w-72 px-5 pt-10 pb-2">
               {(item.available_seats_info ||
@@ -231,10 +249,21 @@ const TrainDetailCard: React.FC<TrainDetailCardProps> = ({routesData}) => {
                 )}
               </div>
               <Link to={"/place"} className="self-end">
-                <button className="py-1 px-2 bg-[#FFA800] rounded-md text-white cursor-pointer text-lg"
-                onClick={() => setSeatsIdGlobal(item.departure._id) }>
+                <button
+                  className="py-1 px-2 bg-[#FFA800] rounded-md text-white cursor-pointer text-lg"
+                  onClick={() => {
+                    setSeatsIdGlobal(item.departure._id);
+                    setTrainDetails("trainName", item.departure.train.name);
+                    setTrainDetails("fromCityName", item.departure.from.city.name);
+                    setTrainDetails("toCityName", item.departure.to.city.name);
+                    setTrainDetails("fromDateTime", item.departure.from.datetime);
+                    setTrainDetails("fromRailwayStation", item.departure.from.railway_station_name); 
+                    setTrainDetails("toDateTime", item.departure.to.datetime);
+                    setTrainDetails("toRailwayStation", item.departure.to.railway_station_name); 
+                    setTrainDetails("duration", item.departure.duration);
+                  }}
+                >
                   Выбрать места
-                  
                 </button>
               </Link>
             </div>
