@@ -41,7 +41,7 @@ const FourthClass = () => {
         </div>
       </div>
 
-      <div className="relative z-0 flex w-[700px] gap-5">
+      <div className="relative z-0 flex w-[700px] gap-5 border-4 border-gray-500">
         {fourthClassSeats.map((coupe) => (
           <div key={coupe.id} className="relative flex flex-col w-[70px]">
             <div className="flex justify-between mb-4">
