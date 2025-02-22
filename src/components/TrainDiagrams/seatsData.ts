@@ -1,26 +1,104 @@
 import { v4 as uuidv4 } from 'uuid';
 
 export const firstClassSeats = [
-  { seat1: {number: 1, id: uuidv4()}, seat2: {number: 2, id: uuidv4()}, id: uuidv4()},
-  { seat1: {number: 3, id: uuidv4()}, seat2: {number: 4, id: uuidv4()}, id: uuidv4()},
-  { seat1: {number: 5, id: uuidv4()}, seat2: {number: 6, id: uuidv4()}, id: uuidv4()},
-  { seat1: {number: 7, id: uuidv4()}, seat2: {number: 8, id: uuidv4()}, id: uuidv4()},
-  { seat1: {number: 9, id: uuidv4()}, seat2: {number: 10, id: uuidv4()}, id: uuidv4()},
-  { seat1: {number: 11, id: uuidv4()}, seat2: {number: 12, id: uuidv4()}, id: uuidv4()},
-  { seat1: {number: 13, id: uuidv4()}, seat2: {number: 14, id: uuidv4()}, id: uuidv4()},
-  { seat1: {number: 15, id: uuidv4()}, seat2: {number: 16, id: uuidv4()}, id: uuidv4()},
-  { seat1: {number: 17, id: uuidv4()}, seat2: {number: 18, id: uuidv4()}, id: uuidv4()},
+  { 
+    seat1: {number: 1, id: uuidv4()}, 
+    seat2: {number: 2, id: uuidv4()}, 
+    id: uuidv4()
+  },
+  { 
+    seat1: {number: 3, id: uuidv4()}, 
+    seat2: {number: 4, id: uuidv4()}, 
+    id: uuidv4()
+},
+  { 
+    seat1: {number: 5, id: uuidv4()}, 
+    seat2: {number: 6, id: uuidv4()}, 
+    id: uuidv4()    
+},
+  { 
+    seat1: {number: 7, id: uuidv4()}, 
+    seat2: {number: 8, id: uuidv4()}, 
+    id: uuidv4()
+},
+  { 
+    seat1: {number: 9, id: uuidv4()}, 
+    seat2: {number: 10, id: uuidv4()}, 
+    id: uuidv4()
+},
+  { 
+    seat1: {number: 11, id: uuidv4()}, 
+    seat2: {number: 12, id: uuidv4()}, 
+    id: uuidv4()
+},
+  { 
+    seat1: {number: 13, id: uuidv4()}, 
+    seat2: {number: 14, id: uuidv4()}, 
+    id: uuidv4()
+},
+  { 
+    seat1: {number: 15, id: uuidv4()}, 
+    seat2: {number: 16, id: uuidv4()}, 
+    id: uuidv4()
+},
+  { 
+    seat1: {number: 17, id: uuidv4()}, 
+    seat2: {number: 18, id: uuidv4()}, 
+    id: uuidv4()
+},
 ];
 
 export const secondClassSeats = [
-  { seat1: {number: 1, id: uuidv4()}, seat2: {number: 2, id: uuidv4()}, seat3: {number: 3, id: uuidv4()}, seat4: {number: 4, id: uuidv4()}, id: uuidv4() },
-  { seat1: {number: 5, id: uuidv4()}, seat2: {number: 6, id: uuidv4()}, seat3: {number: 7, id: uuidv4()}, seat4: {number: 8, id: uuidv4()}, id: uuidv4() },
-  { seat1: {number: 9, id: uuidv4()}, seat2: {number: 10, id: uuidv4()}, seat3: {number: 11, id: uuidv4()}, seat4: {number: 12, id: uuidv4()}, id: uuidv4() },
-  { seat1: {number: 13, id: uuidv4()}, seat2: {number: 14, id: uuidv4()}, seat3: {number: 15, id: uuidv4()}, seat4: {number: 16, id: uuidv4()}, id: uuidv4() },
-  { seat1: {number: 17, id: uuidv4()}, seat2: {number: 18, id: uuidv4()}, seat3: {number: 19, id: uuidv4()}, seat4: {number: 20, id: uuidv4()}, id: uuidv4() },
-  { seat1: {number: 21, id: uuidv4()}, seat2: {number: 22, id: uuidv4()}, seat3: {number: 23, id: uuidv4()}, seat4: {number: 24, id: uuidv4()}, id: uuidv4() },
-  { seat1: {number: 25, id: uuidv4()}, seat2: {number: 26, id: uuidv4()}, seat3: {number: 27, id: uuidv4()}, seat4: {number: 28, id: uuidv4()}, id: uuidv4() },
-  { seat1: {number: 29, id: uuidv4()}, seat2: {number: 30, id: uuidv4()}, seat3: {number: 31, id: uuidv4()}, seat4: {number: 32, id: uuidv4()}, id: uuidv4() },
+  { 
+    seat1: {number: 1, id: uuidv4()}, 
+    seat2: {number: 2, id: uuidv4()}, 
+    seat3: {number: 3, id: uuidv4()}, 
+    seat4: {number: 4, id: uuidv4()}, 
+    id: uuidv4() 
+  },
+  { 
+    seat1: {number: 5, id: uuidv4()}, 
+    seat2: {number: 6, id: uuidv4()}, 
+    seat3: {number: 7, id: uuidv4()}, 
+    seat4: {number: 8, id: uuidv4()}, 
+    id: uuidv4() 
+  },
+  { 
+    seat1: {number: 9, id: uuidv4()}, 
+    seat2: {number: 10, id: uuidv4()}, 
+    seat3: {number: 11, id: uuidv4()}, 
+    seat4: {number: 12, id: uuidv4()}, 
+    id: uuidv4() },
+  { 
+    seat1: {number: 13, id: uuidv4()}, 
+    seat2: {number: 14, id: uuidv4()}, 
+    seat3: {number: 15, id: uuidv4()}, 
+    seat4: {number: 16, id: uuidv4()}, 
+    id: uuidv4() },
+  { 
+    seat1: {number: 17, id: uuidv4()}, 
+    seat2: {number: 18, id: uuidv4()}, 
+    seat3: {number: 19, id: uuidv4()}, 
+    seat4: {number: 20, id: uuidv4()}, 
+    id: uuidv4() },
+  { 
+    seat1: {number: 21, id: uuidv4()}, 
+    seat2: {number: 22, id: uuidv4()}, 
+    seat3: {number: 23, id: uuidv4()}, 
+    seat4: {number: 24, id: uuidv4()}, 
+    id: uuidv4() },
+  { 
+    seat1: {number: 25, id: uuidv4()}, 
+    seat2: {number: 26, id: uuidv4()}, 
+    seat3: {number: 27, id: uuidv4()}, 
+    seat4: {number: 28, id: uuidv4()}, 
+    id: uuidv4() },
+  { 
+    seat1: {number: 29, id: uuidv4()}, 
+    seat2: {number: 30, id: uuidv4()}, 
+    seat3: {number: 31, id: uuidv4()}, 
+    seat4: {number: 32, id: uuidv4()}, 
+    id: uuidv4() },
 ];
 
 export const thirdClassSeats = [
