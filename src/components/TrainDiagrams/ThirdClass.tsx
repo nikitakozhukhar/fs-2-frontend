@@ -5,9 +5,33 @@ import TrashIcon from "../../img/svg/trash-can-svgrepo-com.svg?react";
 import NoSmokingIcon from "../../img/svg/no-smoking-sign-svgrepo-com.svg?react";
 
 import Seat from "./Seat";
-import { thirdClassSeats } from "./seatsData";
+import { thirdClassSeats, ProcessedWagon, Wagon  } from "./seatsData";
+import wagonStore from "../../store/wagonStore";
 
 const ThirdClass = () => {
+
+  const { renderClassType, activeWagonNumber } = wagonStore();
+
+  const thirdClassWagons: Wagon[] = (renderClassType.find((item) => item.name === "third")?.wagons ?? []) as Wagon[];
+
+  if (!thirdClassWagons) {
+    return null; 
+  }
+
+  const processedData: ProcessedWagon[] = thirdClassSeats(thirdClassWagons);
+
+  const activeWagonData = processedData.find(
+    (wagon) => wagon.coachName === activeWagonNumber
+  );
+
+  // Если данные для активного вагона отсутствуют, возвращаем null или заглушку
+  if (!activeWagonData) {
+    return <div>Выберите вагон</div>
+  }
+
+  const coutedCoupeWidth = Math.floor(700 / activeWagonData.seats.length);
+  console.log(coutedCoupeWidth)
+
   return (
     <div className="flex w-[921px] h-[145px] m-auto mb-5 border-2 rounded-3xl ">
       <div className="flex relative z-0 h-[100%] ">
@@ -42,24 +66,48 @@ const ThirdClass = () => {
       </div>
 
       <div className="relative z-0 flex w-[700px] h-full">
-        {thirdClassSeats.map((coupe) => (
+        {activeWagonData.seats.map((coupe) => (
           <div
             key={coupe.id}
-            className={`relative flex flex-col justify-between w-[88px] h-full border-4 border-gray-500`}
+            className={`relative flex flex-col justify-between h-full border-4 border-gray-500`}
+            style={{ width: `${coutedCoupeWidth}px` }}
           >
             <div className="flex justify-between">
               <div className="flex flex-col-reverse gap-3 w-8 h-[86px]">
-                <Seat seatNumber={coupe.seat1.number} seatId={coupe.seat1.id} />
-                <Seat seatNumber={coupe.seat2.number} seatId={coupe.seat2.id} />
+                <Seat 
+                  seatNumber={coupe.seat1?.number} 
+                  seatId={coupe.seat1?.id}
+                  available={coupe.seat1?.available} 
+                  />
+                <Seat 
+                 seatNumber={coupe.seat2?.number} 
+                 seatId={coupe.seat2?.id}
+                 available={coupe.seat2?.available} />
               </div>
               <div className="flex flex-col-reverse gap-3 w-8 h-[86px]">
-                <Seat seatNumber={coupe.seat3.number} seatId={coupe.seat3.id} />
-                <Seat seatNumber={coupe.seat4.number} seatId={coupe.seat4.id} />
+                <Seat 
+                  seatNumber={coupe.seat3?.number} 
+                 seatId={coupe.seat3?.id}
+                 available={coupe.seat3?.available} 
+                />
+                <Seat 
+                  seatNumber={coupe.seat4?.number} 
+                  seatId={coupe.seat4?.id}
+                  available={coupe.seat4?.available}  
+                />
               </div>
             </div>
             <div className="flex justify-between">
-              <Seat seatNumber={coupe.seat5.number} seatId={coupe.seat5.id} />
-              <Seat seatNumber={coupe.seat6.number} seatId={coupe.seat6.id} />
+              <Seat 
+                seatNumber={coupe.seat5?.number} 
+                seatId={coupe.seat5?.id}
+                available={coupe.seat5?.available}
+              />
+              <Seat 
+                seatNumber={coupe.seat6?.number} 
+                seatId={coupe.seat6?.id}
+                available={coupe.seat6?.available}
+              />
             </div>
             
           </div>

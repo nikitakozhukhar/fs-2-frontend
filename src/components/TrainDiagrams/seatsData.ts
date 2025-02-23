@@ -1,266 +1,101 @@
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 
-export const firstClassSeats = [
-  { 
-    seat1: {number: 1, id: uuidv4()}, 
-    seat2: {number: 2, id: uuidv4()}, 
-    id: uuidv4()
-  },
-  { 
-    seat1: {number: 3, id: uuidv4()}, 
-    seat2: {number: 4, id: uuidv4()}, 
-    id: uuidv4()
-},
-  { 
-    seat1: {number: 5, id: uuidv4()}, 
-    seat2: {number: 6, id: uuidv4()}, 
-    id: uuidv4()    
-},
-  { 
-    seat1: {number: 7, id: uuidv4()}, 
-    seat2: {number: 8, id: uuidv4()}, 
-    id: uuidv4()
-},
-  { 
-    seat1: {number: 9, id: uuidv4()}, 
-    seat2: {number: 10, id: uuidv4()}, 
-    id: uuidv4()
-},
-  { 
-    seat1: {number: 11, id: uuidv4()}, 
-    seat2: {number: 12, id: uuidv4()}, 
-    id: uuidv4()
-},
-  { 
-    seat1: {number: 13, id: uuidv4()}, 
-    seat2: {number: 14, id: uuidv4()}, 
-    id: uuidv4()
-},
-  { 
-    seat1: {number: 15, id: uuidv4()}, 
-    seat2: {number: 16, id: uuidv4()}, 
-    id: uuidv4()
-},
-  { 
-    seat1: {number: 17, id: uuidv4()}, 
-    seat2: {number: 18, id: uuidv4()}, 
-    id: uuidv4()
-},
-];
+// Тип для группированного места
+export interface GroupedSeat {
+  number: number;
+  available: boolean;
+  id: string;
+}
 
-export const secondClassSeats = [
-  { 
-    seat1: {number: 1, id: uuidv4()}, 
-    seat2: {number: 2, id: uuidv4()}, 
-    seat3: {number: 3, id: uuidv4()}, 
-    seat4: {number: 4, id: uuidv4()}, 
-    id: uuidv4() 
-  },
-  { 
-    seat1: {number: 5, id: uuidv4()}, 
-    seat2: {number: 6, id: uuidv4()}, 
-    seat3: {number: 7, id: uuidv4()}, 
-    seat4: {number: 8, id: uuidv4()}, 
-    id: uuidv4() 
-  },
-  { 
-    seat1: {number: 9, id: uuidv4()}, 
-    seat2: {number: 10, id: uuidv4()}, 
-    seat3: {number: 11, id: uuidv4()}, 
-    seat4: {number: 12, id: uuidv4()}, 
-    id: uuidv4() },
-  { 
-    seat1: {number: 13, id: uuidv4()}, 
-    seat2: {number: 14, id: uuidv4()}, 
-    seat3: {number: 15, id: uuidv4()}, 
-    seat4: {number: 16, id: uuidv4()}, 
-    id: uuidv4() },
-  { 
-    seat1: {number: 17, id: uuidv4()}, 
-    seat2: {number: 18, id: uuidv4()}, 
-    seat3: {number: 19, id: uuidv4()}, 
-    seat4: {number: 20, id: uuidv4()}, 
-    id: uuidv4() },
-  { 
-    seat1: {number: 21, id: uuidv4()}, 
-    seat2: {number: 22, id: uuidv4()}, 
-    seat3: {number: 23, id: uuidv4()}, 
-    seat4: {number: 24, id: uuidv4()}, 
-    id: uuidv4() },
-  { 
-    seat1: {number: 25, id: uuidv4()}, 
-    seat2: {number: 26, id: uuidv4()}, 
-    seat3: {number: 27, id: uuidv4()}, 
-    seat4: {number: 28, id: uuidv4()}, 
-    id: uuidv4() },
-  { 
-    seat1: {number: 29, id: uuidv4()}, 
-    seat2: {number: 30, id: uuidv4()}, 
-    seat3: {number: 31, id: uuidv4()}, 
-    seat4: {number: 32, id: uuidv4()}, 
-    id: uuidv4() },
-];
+export interface Coupe {
+  seat1: GroupedSeat | null;
+  seat2?: GroupedSeat | null;
+  seat3?: GroupedSeat | null;
+  seat4?: GroupedSeat | null;
+  seat5?: GroupedSeat | null;
+  seat6?: GroupedSeat | null;
+  seat7?: GroupedSeat | null;
+  seat8?: GroupedSeat | null;
+  id: string;
+}
 
-export const thirdClassSeats = [
-  { 
-    seat1: {number: 1, id: uuidv4()}, 
-    seat2: {number: 2, id: uuidv4()}, 
-    seat3: {number: 3, id: uuidv4()}, 
-    seat4: {number: 4, id: uuidv4()}, 
-    seat5: {number: 33, id: uuidv4()},
-    seat6: {number: 34, id: uuidv4()},
-    id: uuidv4() 
-  },
-  { 
-    seat1: {number: 5, id: uuidv4()}, 
-    seat2: {number: 6, id: uuidv4()}, 
-    seat3: {number: 7, id: uuidv4()}, 
-    seat4: {number: 8, id: uuidv4()}, 
-    seat5: {number: 35, id: uuidv4()},
-    seat6: {number: 36, id: uuidv4()},
-    id: uuidv4() 
-  },
-  { 
-    seat1: {number: 9, id: uuidv4()}, 
-    seat2: {number: 10, id: uuidv4()}, 
-    seat3: {number: 11, id: uuidv4()}, 
-    seat4: {number: 12, id: uuidv4()}, 
-    seat5: {number: 37, id: uuidv4()},
-    seat6: {number: 38, id: uuidv4()},
-    id: uuidv4() 
-  },
-  { 
-    seat1: {number: 13, id: uuidv4()}, 
-    seat2: {number: 14, id: uuidv4()}, 
-    seat3: {number: 15, id: uuidv4()}, 
-    seat4: {number: 16, id: uuidv4()}, 
-    seat5: {number: 39, id: uuidv4()},
-    seat6: {number: 40, id: uuidv4()},
-    id: uuidv4() 
-  },
-  { 
-    seat1: {number: 17, id: uuidv4()}, 
-    seat2: {number: 18, id: uuidv4()}, 
-    seat3: {number: 19, id: uuidv4()}, 
-    seat4: {number: 20, id: uuidv4()}, 
-    seat5: {number: 41, id: uuidv4()},
-    seat6: {number: 42, id: uuidv4()},
-    id: uuidv4() 
-  },
-  { 
-    seat1: {number: 21, id: uuidv4()}, 
-    seat2: {number: 22, id: uuidv4()}, 
-    seat3: {number: 23, id: uuidv4()}, 
-    seat4: {number: 24, id: uuidv4()}, 
-    seat5: {number: 43, id: uuidv4()},
-    seat6: {number: 44, id: uuidv4()},
-    id: uuidv4() 
-  },
-  { 
-    seat1: {number: 25, id: uuidv4()}, 
-    seat2: {number: 26, id: uuidv4()}, 
-    seat3: {number: 27, id: uuidv4()}, 
-    seat4: {number: 28, id: uuidv4()}, 
-    seat5: {number: 45, id: uuidv4()},
-    seat6: {number: 46, id: uuidv4()},
-    id: uuidv4() 
-  },
-  { 
-    seat1: {number: 29, id: uuidv4()}, 
-    seat2: {number: 30, id: uuidv4()}, 
-    seat3: {number: 31, id: uuidv4()}, 
-    seat4: {number: 32, id: uuidv4()}, 
-    seat5: {number: 47, id: uuidv4()},
-    seat6: {number: 48, id: uuidv4()},
-    id: uuidv4() 
-  },
-];
+// Тип для обработанных данных о вагоне
+export interface ProcessedWagon {
+  coachName: string;
+  seats: Coupe[];
+}
 
-export const fourthClassSeats = [
-  { 
-    seat1: {number: 1, id: uuidv4()}, 
-    seat2: {number: 2, id: uuidv4()}, 
-    seat3: {number: 3, id: uuidv4()}, 
-    seat4: {number: 4, id: uuidv4()}, 
-    seat5: {number: 33, id: uuidv4()},
-    seat6: {number: 34, id: uuidv4()},
-    seat7: {number: 35, id: uuidv4()}, 
-    id: uuidv4() 
-  },
-  { 
-    seat1: {number: 5, id: uuidv4()}, 
-    seat2: {number: 6, id: uuidv4()}, 
-    seat3: {number: 7, id: uuidv4()}, 
-    seat4: {number: 8, id: uuidv4()}, 
-    seat5: {number: 36, id: uuidv4()},
-    seat6: {number: 37, id: uuidv4()},
-    seat7: {number: 38, id: uuidv4()}, 
-    seat8: {number: 39, id: uuidv4()},
-    id: uuidv4() 
-  },
-  { 
-    seat1: {number: 9, id: uuidv4()}, 
-    seat2: {number: 10, id: uuidv4()}, 
-    seat3: {number: 11, id: uuidv4()}, 
-    seat4: {number: 12, id: uuidv4()}, 
-    seat5: {number: 40, id: uuidv4()},
-    seat6: {number: 41, id: uuidv4()},
-    seat7: {number: 42, id: uuidv4()}, 
-    seat8: {number: 43, id: uuidv4()},
-    id: uuidv4() 
-  },
-  { 
-    seat1: {number: 13, id: uuidv4()}, 
-    seat2: {number: 14, id: uuidv4()}, 
-    seat3: {number: 15, id: uuidv4()}, 
-    seat4: {number: 16, id: uuidv4()}, 
-    seat5: {number: 44, id: uuidv4()},
-    seat6: {number: 45, id: uuidv4()},
-    seat7: {number: 46, id: uuidv4()}, 
-    seat8: {number: 47, id: uuidv4()},
-    id: uuidv4() 
-  },
-  { 
-    seat1: {number: 17, id: uuidv4()}, 
-    seat2: {number: 18, id: uuidv4()}, 
-    seat3: {number: 19, id: uuidv4()}, 
-    seat4: {number: 20, id: uuidv4()}, 
-    seat5: {number: 48, id: uuidv4()},
-    seat6: {number: 49, id: uuidv4()},
-    seat7: {number: 50, id: uuidv4()}, 
-    seat8: {number: 51, id: uuidv4()},
-    id: uuidv4() 
-  },
-  { 
-    seat1: {number: 21, id: uuidv4()}, 
-    seat2: {number: 22, id: uuidv4()}, 
-    seat3: {number: 23, id: uuidv4()}, 
-    seat4: {number: 24, id: uuidv4()}, 
-    seat5: {number: 52, id: uuidv4()},
-    seat6: {number: 53, id: uuidv4()},
-    seat7: {number: 54, id: uuidv4()}, 
-    seat8: {number: 55, id: uuidv4()},
-    id: uuidv4() 
-  },
-  { 
-    seat1: {number: 25, id: uuidv4()}, 
-    seat2: {number: 26, id: uuidv4()}, 
-    seat3: {number: 27, id: uuidv4()}, 
-    seat4: {number: 28, id: uuidv4()}, 
-    seat5: {number: 56, id: uuidv4()},
-    seat6: {number: 57, id: uuidv4()},
-    seat7: {number: 58, id: uuidv4()}, 
-    seat8: {number: 59, id: uuidv4()},
-    id: uuidv4() 
-  },
-  { 
-    seat1: {number: 29, id: uuidv4()}, 
-    seat2: {number: 30, id: uuidv4()}, 
-    seat3: {number: 31, id: uuidv4()}, 
-    seat4: {number: 32, id: uuidv4()}, 
-    seat5: {number: 60, id: uuidv4()},
-    seat6: {number: 61, id: uuidv4()}, 
-    seat7: {number: 62, id: uuidv4()},
-    id: uuidv4() 
-  },
-]
+// Тип для места
+interface Seat {
+  index: number;
+  available: boolean;
+}
+
+// Тип для данных о вагоне
+export interface Wagon {
+  coach: {
+    name: string;
+    available_seats: number;
+    bottom_price: number;
+    class_type: string;
+    have_air_conditioning: boolean;
+    have_wifi: boolean;
+    is_linens_included: boolean;
+    linens_price: number;
+    price: number;
+    side_price: number;
+    top_price: number;
+    train: string;
+    wifi_price: number;
+    _id: string;
+  };
+  seats?: Seat[];
+}
+
+// Функция группировки мест в купе
+const groupSeats = (seats: Seat[] = [], groupSize: number): Coupe[] => {
+  const groupedSeats: Coupe[] = [];
+
+  for (let i = 0; i < seats.length; i += groupSize) {
+    const coupe: Coupe = {
+      id: uuidv4(),
+      seat1: seats[i] ? { number: seats[i].index, available: seats[i].available, id: uuidv4() } : null,
+      seat2: seats[i + 1] ? { number: seats[i + 1].index, available: seats[i + 1].available, id: uuidv4() } : null,
+      seat3: seats[i + 2] ? { number: seats[i + 2].index, available: seats[i + 2].available, id: uuidv4() } : null,
+      seat4: seats[i + 3] ? { number: seats[i + 3].index, available: seats[i + 3].available, id: uuidv4() } : null,
+      seat5: seats[i + 4] ? { number: seats[i + 4].index, available: seats[i + 4].available, id: uuidv4() } : null,
+      seat6: seats[i + 5] ? { number: seats[i + 5].index, available: seats[i + 5].available, id: uuidv4() } : null,
+      seat7: seats[i + 6] ? { number: seats[i + 6].index, available: seats[i + 6].available, id: uuidv4() } : null,
+      seat8: seats[i + 7] ? { number: seats[i + 7].index, available: seats[i + 7].available, id: uuidv4() } : null,
+    };
+
+    groupedSeats.push(coupe);
+  }
+
+  return groupedSeats;
+};
+
+// Функции обработки вагонов
+export const firstClassSeats = (wagons: Wagon[]): ProcessedWagon[] =>
+  wagons.map((wagon) => ({
+    coachName: wagon.coach.name,
+    seats: groupSeats(wagon.seats ?? [], 2), // Теперь всегда передается массив
+  }));
+
+export const secondClassSeats = (wagons: Wagon[]): ProcessedWagon[] =>
+  wagons.map((wagon) => ({
+    coachName: wagon.coach.name,
+    seats: groupSeats(wagon.seats ?? [], 4),
+  }));
+
+export const thirdClassSeats = (wagons: Wagon[]): ProcessedWagon[] =>
+  wagons.map((wagon) => ({
+    coachName: wagon.coach.name,
+    seats: groupSeats(wagon.seats ?? [], 6),
+  }));
+
+export const fourthClassSeats = (wagons: Wagon[]): ProcessedWagon[] =>
+  wagons.map((wagon) => ({
+    coachName: wagon.coach.name,
+    seats: groupSeats(wagon.seats ?? [], 8),
+  }));
