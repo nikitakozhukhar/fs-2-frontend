@@ -5,19 +5,10 @@ import OrangeTrainIcon from "../../img/svg/orangeTrain.svg?react";
 import ThinArrowIcon from "../../img/svg/thinArrow.svg?react";
 import ThinOrangeArrowIcon from "../../img/svg/tp-orangeRightArrow.svg?react";
 import OrangeWatchIcon from "../../img/svg/tp-watch.svg?react";
-import FirstClassIcon from "../../img/svg/firstClass.svg?react";
-import SecondClassIcon from "../../img/svg/secondClass.svg?react";
-import ThirdClassIcon from "../../img/svg/thirdClass.svg?react";
-import FourthClassIcon from "../../img/svg/fourClass.svg?react";
 import ConditionerIcon from "../../img/svg/conditioner.svg?react";
 import WifiIcon from "../../img/svg/wifi2.svg?react";
 import BeddingIcon from "../../img/svg/bedding.svg?react";
 import CupIcon from "../../img/svg/cup2.svg?react";
-
-import FirstClass from "../TrainDiagrams/FirstClass";
-import SecondClass from "../TrainDiagrams/SecondClass";
-import ThirdClass from "../TrainDiagrams/ThirdClass";
-import FourthClass from "../TrainDiagrams/FourthClass";
 
 import { Link } from "react-router-dom";
 import { useTrainDetailsStore } from "../../store/trainDetailsStore";
@@ -25,10 +16,15 @@ import { useSeatsIdStore } from "../../store/seatsIdStore";
 import { useSeatsQuery } from "../../utils/useSeatsQuery";
 import timeFormate from "../TimeFormate/timeFormate";
 
+import wagonStore from "../../store/wagonStore";
+import { useEffect } from "react";
+
+
 const TrainPreview = () => {
   const navigate = useNavigate();
 
   const { seatsIdGlobal } = useSeatsIdStore();
+
   const {
     trainName,
     fromCityName,
@@ -46,10 +42,26 @@ const TrainPreview = () => {
     error: seatsError,
   } = useSeatsQuery(seatsIdGlobal);
 
+  const {
+    groupedWagons,
+    renderClassType,
+    activeClassIcon,
+    activeWagonNumber,
+    setWagonData,
+    setActiveClassIcon,
+    setActiveWagonNumber,
+  } = wagonStore();
+
+  console.log(renderClassType)
+
+  useEffect(() => {
+    if (seatData) {
+      setWagonData(seatData);
+    }
+  }, [seatData, setWagonData]);
+
   if (seatsLoading) return <div>Loading...</div>;
   if (seatsError) return <div>Error: {seatsError.message}</div>;
-
-  console.log("seatData-->", seatData);
 
   return (
     <div className="flex flex-col mb-5 ">
@@ -87,7 +99,9 @@ const TrainPreview = () => {
             <div className="first-letter:uppercase">{fromCityName}</div>
           </div>
           <div className="flex flex-col">
-            <div className="text-xl font-medium">{timeFormate(fromDateTime)}</div>
+            <div className="text-xl font-medium">
+              {timeFormate(fromDateTime)}
+            </div>
             <div className="first-letter:uppercase">{fromCityName}</div>
             <div className="text-slate-400">{fromRailwayStation}</div>
           </div>
@@ -105,7 +119,10 @@ const TrainPreview = () => {
             </div>
             <div className="flex flex-col">
               <div className="">{`${timeFormate(duration).slice(0, 2)} ч`}</div>
-              <div className="">{`${timeFormate(duration).slice(3, 5)} мин`}</div>
+              <div className="">{`${timeFormate(duration).slice(
+                3,
+                5
+              )} мин`}</div>
             </div>
           </div>
         </div>
@@ -139,22 +156,28 @@ const TrainPreview = () => {
         <div className="px-3 text-3xl font-bold mb-6">Тип вагона</div>
 
         <div className="flex justify-between px-7 mb-5">
-          <div className="flex flex-col gap-3 items-center cursor-pointer text-[#C4C4C4] hover:text-orange-400">
-            <FourthClassIcon />
-            <div className="">Сидячий</div>
-          </div>
-          <div className="flex flex-col gap-3 items-center cursor-pointer text-[#C4C4C4] hover:text-orange-400">
-            <ThirdClassIcon />
-            <div className="">Плацкарт</div>
-          </div>
-          <div className="flex flex-col gap-3 items-center cursor-pointer text-[#C4C4C4] hover:text-orange-400">
-            <SecondClassIcon />
-            <div className="">Купе</div>
-          </div>
-          <div className="flex flex-col gap-3 items-center cursor-pointer text-[#C4C4C4] hover:text-orange-400">
-            <FirstClassIcon />
-            <div className="">Люкс</div>
-          </div>
+          {renderClassType.map((item) => (
+            <div
+              key={item.name}
+              onClick={() => setActiveClassIcon(item.name)}
+              className={`flex flex-col gap-3 items-center cursor-pointer text-[#C4C4C4] ${
+                activeClassIcon === item.name
+                  ? "text-orange-400"
+                  : "hover:text-gray-400"
+              }`}
+            >
+              {item.icon}
+              <div className="">
+                {item.name === "first"
+                  ? "Люкс"
+                  : item.name === "second"
+                  ? "Купе"
+                  : item.name === "third"
+                  ? "Плацкарт"
+                  : "Сидячий"}
+              </div>
+            </div>
+          ))}
         </div>
 
         <div
@@ -164,12 +187,18 @@ const TrainPreview = () => {
           <div className="flex gap-2 items-center">
             <span className="font-medium text-lg">Вагоны:</span>
             <div className="flex gap-1 cursor-pointer">
-              <span className="px-2 py-1 bg-white text-black rounded-md shadow-sm">
-                07
-              </span>
-              <span className="px-2 py-1 bg-white text-black rounded-md shadow-sm">
-                09
-              </span>
+              {activeClassIcon &&
+                renderClassType
+                  .find((item) => item.name === activeClassIcon)
+                  ?.wagons.map((wagon, index) => (
+                    <span
+                      key={index}
+                      onClick={() => setActiveWagonNumber(wagon.coach.name)}
+                      className="px-2 py-1 bg-white text-black rounded-md shadow-sm"
+                    >
+                      {wagon.coach.name}
+                    </span>
+                  ))}
             </div>
           </div>
           <div className="flex gap-1 text-gray-700 text-sm">
@@ -178,10 +207,11 @@ const TrainPreview = () => {
           </div>
         </div>
 
+
         <div className="flex justify-between pl-0 px-6 basis-44">
-          <div className="flex flex-col items-center justify-center gap-2 px-16 bg-[#FFD98F]">
-            <div className="text-5xl font-semibold">07</div>
-            <div className="">вагон</div>
+          <div className="flex flex-col items-center justify-center gap-2 px-10 bg-[#FFD98F]">
+            <div className="text-3xl font-semibold w-32">{activeWagonNumber}</div>
+            <div className="text-2xl">вагон</div>
           </div>
           <div className="flex flex-col items-start justify-center gap-2">
             <div className="font-light">
@@ -230,11 +260,11 @@ const TrainPreview = () => {
             11 человек выбирают места в этом поезде
           </div>
         </div>
-
-        <FirstClass />
-        <SecondClass />
-        <ThirdClass />
-        <FourthClass />
+        {
+          renderClassType.map(item => (
+            activeClassIcon === item.name ? item.diagram : null 
+          ))
+        }
       </div>
 
       <div className="self-end ">
