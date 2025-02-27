@@ -116,7 +116,7 @@ const TrainDetailCard: React.FC<TrainDetailCardProps> = ({ routesData }) => {
             <div className="flex flex-col grow max-h-60">
               {renderCarriageInfo("Люкс", item.available_seats_info.first, item.departure.price_info.first?.top_price)}
               {renderCarriageInfo("Купе", item.available_seats_info.second, item.departure.price_info.second?.top_price)}
-              {renderCarriageInfo("Плацкарт", item.available_seats_info.third, item.departure.price_info.third?.top_price)}
+              {renderCarriageInfo("Плацкарт", item.available_seats_info.third, item.departure.price_info.third?.side_price)}
               {renderCarriageInfo("Сидячий", item.available_seats_info.fourth, item.departure.price_info.fourth?.top_price)}
             </div>
 

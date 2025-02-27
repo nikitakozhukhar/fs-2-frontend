@@ -53,7 +53,7 @@ const TrainPreview = () => {
   } = wagonStore();
 
   // console.log(renderClassType[1].wagons[0].coach.name);
-  // console.log('activeWagonNumber', activeWagonNumber)
+  console.log('activeClassIcon', activeClassIcon)
 
   useEffect(() => {
     if (seatData) {
@@ -216,21 +216,31 @@ const TrainPreview = () => {
             <div className="text-3xl font-semibold w-32">{activeWagonNumber}</div>
             <div className="text-2xl">вагон</div>
           </div>
-          {renderClassType.map(item => (
-             <div className="flex flex-col items-start justify-center gap-2">
-             <div className="font-light">
-               Места <span className="font-normal">11</span>
-             </div>
-             <div className="font-normal">
-               Верхние <span className="font-semibold">3</span>
-             </div>
-             <div className="font-normal">
-               Нижние <span className="font-semibold">8</span>
-             </div>
-           </div>
-          ))
-           
+          {activeClassIcon === 'fourth' ? (
+            renderClassType.map(item => ( 
+              <div className="flex flex-col items-start justify-center gap-2">
+                
+              <div className="font-light">
+                Места <span className="font-normal">{item.wagons[0].coach.available_seats}</span>
+              </div>
+              
+            </div>
+            ))
+          ) : (
+            <div className="flex flex-col items-start justify-center gap-2">
+            <div className="font-light">
+              Места <span className="font-normal">11</span>
+            </div>
+            <div className="font-normal">
+              Верхние <span className="font-semibold">3</span>
+            </div>
+            <div className="font-normal">
+              Нижние <span className="font-semibold">8</span>
+            </div>
+          </div>
+          )
           }
+
           {/* <div className="flex flex-col items-start justify-center gap-2">
             <div className="font-light">
               Места <span className="font-normal">11</span>
@@ -242,6 +252,7 @@ const TrainPreview = () => {
               Нижние <span className="font-semibold">8</span>
             </div>
           </div> */}
+
           <div className="flex flex-col items-start justify-center gap-2">
             <div className="font-light">Стоимость</div>
             <div className="font-medium">

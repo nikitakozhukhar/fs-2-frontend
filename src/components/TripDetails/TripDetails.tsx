@@ -6,7 +6,26 @@ import LeftArrowIcon from "../../img/svg/smallLeftArrow.svg?react";
 import PassangerIcon from "../../img/svg/orangePassanger.svg?react";
 
 
+import { useSearchDirectionStore } from "../../store/searchDirectionStore";
+import { useTrainDetailsStore } from "../../store/trainDetailsStore";
+import timeFormate from "../TimeFormate/timeFormate";
+
+
 const TripDetails = () => {
+  
+  const { startDateGlobal, endDateGlobal } = useSearchDirectionStore();
+
+   const {
+      trainName,
+      fromCityName,
+      toCityName,
+      fromDateTime,
+      toDateTime,
+      fromRailwayStation,
+      toRailwayStation,
+      duration,
+    } = useTrainDetailsStore();
+
   return (
     <div className="flex flex-col w-[360px] mb-5 bg-[#3E3C41] ">
       <div className="px-5 py-7 text-3xl text-center text-gray-50 uppercase">
@@ -21,7 +40,7 @@ const TripDetails = () => {
               <RightArrowIcon />
             </div>
             <div className="text-gray-50 text-2xl">Туда</div>
-            <div className="text-gray-50 text-xl self-end">30.08.2025</div>
+            <div className="text-gray-50 text-xl self-end">{startDateGlobal}</div>
           </div>
           <div className="self-end">
             <CloseDetailsIcon />
@@ -31,13 +50,13 @@ const TripDetails = () => {
         <div className="flex flex-col justify-between gap-5 text-xl text-gray-50">
           <div className="flex justify-between">
             <div className="font-normal text-[#E5E5E5]">№ Поезда</div>
-            <div className="font-semibold">116С</div>
+            <div className="font-semibold">{trainName}</div>
           </div>
           <div className="flex justify-between">
             <div className="font-normal text-[#E5E5E5]">Название</div>
             <div className="flex flex-col">
-              <div className="self-end">Адлер</div>
-              <div className="">Санкт-Петербург</div>
+              <div className="self-end first-letter:uppercase">{fromCityName}</div>
+              <div className="first-letter:uppercase">{toCityName}</div>
             </div>
           </div>
         </div>
@@ -45,12 +64,12 @@ const TripDetails = () => {
         <div className="flex flex-col gap-5">
           <div className="flex justify-between">
             <div className="flex flex-col">
-              <div className="text-2xl text-gray-50 font-medium">00:10</div>
-              <div className="text-[#928F94]">30.08.2024</div>
+              <div className="text-2xl text-gray-50 font-medium">{timeFormate(fromDateTime)}</div>
+              <div className="text-[#928F94]">{startDateGlobal}</div>
             </div>
 
             <div className="flex flex-col">
-              <div className="text-[#E5E5E5]">9:42</div>
+              <div className="text-[#E5E5E5]">{timeFormate(duration)}</div>
               <div className="">
                 <RightOrangeArrowIcon />
               </div>
@@ -58,19 +77,19 @@ const TripDetails = () => {
 
             <div className="flex flex-col">
               <div className="text-2xl text-gray-50 font-medium self-end">
-                9:52
+                {timeFormate(toDateTime)}
               </div>
-              <div className="text-[#928F94]">31.08.2024</div>
+              <div className="text-[#928F94]">{toDateTime}</div>
             </div>
           </div>
           <div className="flex justify-between">
             <div className="flex flex-col">
-              <div className="text-gray-50">Москва</div>
-              <div className="text-[#928F94]">Курский вокзал</div>
+              <div className="text-gray-50 first-letter:uppercase">{fromCityName}</div>
+              <div className="text-[#928F94] first-letter:uppercase">{fromRailwayStation}</div>
             </div>
             <div className="flex flex-col">
-              <div className="self-end text-gray-50">Санкт-Петербург</div>
-              <div className="text-[#928F94]">Ладожский вокзал</div>
+              <div className="self-end text-gray-50 first-letter:uppercase">{toCityName}</div>
+              <div className="self-end text-[#928F94] first-letter:uppercase">{toRailwayStation}</div>
             </div>
           </div>
         </div>
@@ -84,7 +103,7 @@ const TripDetails = () => {
               <LeftArrowIcon />
             </div>
             <div className="text-gray-50 text-2xl">Обратно</div>
-            <div className="text-gray-50 text-xl self-end">09.09.2025</div>
+            <div className="text-gray-50 text-xl self-end">{endDateGlobal}</div>
           </div>
           <div className="self-end">
             <CloseDetailsIcon />
@@ -94,13 +113,13 @@ const TripDetails = () => {
         <div className="flex flex-col justify-between gap-5 text-xl text-gray-50">
           <div className="flex justify-between">
             <div className="font-light text-[#E5E5E5]">№ Поезда</div>
-            <div className="font-semibold">116С</div>
+            <div className="font-semibold">{trainName}</div>
           </div>
           <div className="flex justify-between">
             <div className="font-light text-[#E5E5E5]">Название</div>
             <div className="flex flex-col">
-              <div className="self-end">Адлер</div>
-              <div className="">Санкт-Петербург</div>
+              <div className="self-end first-letter:uppercase">{toCityName}</div>
+              <div className="self-end first-letter:uppercase">{fromCityName}</div>
             </div>
           </div>
         </div>
@@ -108,12 +127,12 @@ const TripDetails = () => {
         <div className="flex flex-col gap-5">
           <div className="flex justify-between">
             <div className="flex flex-col">
-              <div className="text-2xl text-gray-50 font-medium">00:10</div>
-              <div className="text-[#928F94]">30.08.2024</div>
+              <div className="text-2xl text-gray-50 font-medium">{timeFormate(toDateTime)}</div>
+              <div className="text-[#928F94]">{endDateGlobal}</div>
             </div>
 
             <div className="flex flex-col">
-              <div className="text-[#E5E5E5]">9:42</div>
+              <div className="text-[#E5E5E5]">{timeFormate(duration)}</div>
               <div className="">
                 <LeftOrangeArrowIcon />
               </div>
@@ -121,19 +140,19 @@ const TripDetails = () => {
 
             <div className="flex flex-col">
               <div className="text-2xl text-gray-50 font-medium self-end">
-                9:52
+                {timeFormate(fromDateTime)}
               </div>
-              <div className="text-[#928F94]">31.08.2024</div>
+              <div className="text-[#928F94]">{startDateGlobal}</div>
             </div>
           </div>
           <div className="flex justify-between">
             <div className="flex flex-col">
-              <div className="text-gray-50">Москва</div>
-              <div className="text-[#928F94]">Курский вокзал</div>
+              <div className="text-gray-50 first-letter:uppercase">{fromCityName}</div>
+              <div className="text-[#928F94] first-letter:uppercase">{fromRailwayStation}</div>
             </div>
             <div className="flex flex-col">
-              <div className="self-end text-gray-50">Санкт-Петербург</div>
-              <div className="text-[#928F94]">Ладожский вокзал</div>
+              <div className="self-end text-gray-50 first-letter:uppercase">{toCityName}</div>
+              <div className="self-end text-[#928F94] first-letter:uppercase">{toRailwayStation}</div>
             </div>
           </div>
         </div>

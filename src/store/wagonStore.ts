@@ -30,8 +30,20 @@ type Diagrams = {
 // Тип для вагона
 type Wagon = {
   coach: {
-    class_type: string;
     name: string;
+    available_seats: number;
+    bottom_price: number;
+    class_type: string;
+    have_air_conditioning: boolean;
+    have_wifi: boolean;
+    is_linens_included: boolean;
+    linens_price: number;
+    price: number;
+    side_price: number;
+    top_price: number;
+    train: string;
+    wifi_price: number;
+    _id: string;
   };
 };
 
@@ -44,17 +56,6 @@ type RenderClassType = {
   icon: ReactNode;
   diagram: ReactNode;
   wagons: Wagon[];
-};
-
-// Состояние хранилища
-type WagonStore = {
-  groupedWagons: GroupedWagons | null;
-  renderClassType: RenderClassType[];
-  activeClassIcon: string | null;
-  activeWagonNumber: string;
-  setWagonData: (seatData: Wagon[]) => void;
-  setActiveClassIcon: (classType: string) => void;
-  setActiveWagonNumber: (wagonNumber: string) => void;
 };
 
 // Иконки и схемы вагонов
@@ -70,6 +71,17 @@ const diagrams: Diagrams = {
   second: SecondClass,
   third: ThirdClass,
   fourth: FourthClass,
+};
+
+// Состояние хранилища
+type WagonStore = {
+  groupedWagons: GroupedWagons | null;
+  renderClassType: RenderClassType[];
+  activeClassIcon: string | null;
+  activeWagonNumber: string;
+  setWagonData: (seatData: Wagon[]) => void;
+  setActiveClassIcon: (classType: string) => void;
+  setActiveWagonNumber: (wagonNumber: string) => void;
 };
 
 // Создание хранилища
