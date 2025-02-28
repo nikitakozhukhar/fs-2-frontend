@@ -141,7 +141,7 @@ const TripDetails = () => {
           </div>
           <div
             onClick={() => setOpenArrivalDetails(!openArrivalDetails)}
-            className="self-end"
+            className="self-end cursor-pointer"
           >
             {openArrivalDetails ? (
               <div className="hover: fill-red-200">
