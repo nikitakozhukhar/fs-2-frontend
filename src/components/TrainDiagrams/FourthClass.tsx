@@ -28,7 +28,7 @@ const FourthClass = () => {
     return <div>Выберите вагон</div>
   }
 
-  const coutedCoupeWidth = Math.floor(700 / activeWagonData.seats.length);
+  const countedCoupeWidth = Math.floor(700 / activeWagonData.seats.length);
 
   return (
     <div className="flex w-[921px] h-[145px] m-auto mb-5 border-2 rounded-3xl ">
@@ -65,7 +65,8 @@ const FourthClass = () => {
 
       <div className="relative z-0 flex w-[700px] gap-5 border-4 border-gray-500">
         {activeWagonData.seats.map((coupe) => (
-          <div key={coupe.id} className="relative flex flex-col" style={{ width: `${coutedCoupeWidth}px` }}>
+          <div key={coupe.id} className="relative flex flex-col" style={{ width: `${countedCoupeWidth}px`}}>
+           
             <div className="flex justify-between mb-4">
               <div className="flex flex-col-reverse gap-1 w-8 ">
                 <Seat 
