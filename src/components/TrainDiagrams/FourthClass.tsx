@@ -7,10 +7,13 @@ import NoSmokingIcon from "../../img/svg/no-smoking-sign-svgrepo-com.svg?react";
 import Seat from "./Seat";
 import { fourthClassSeats, ProcessedWagon, Wagon } from "./seatsData";
 import wagonStore from "../../store/wagonStore";
+// import orderStore from "../../store/orderStore";
 
 const FourthClass = () => {
 
   const { renderClassType, activeWagonNumber } = wagonStore();
+
+  // const { updateNewSeat } = orderStore();
 
   const fourthClassWagons: Wagon[] = (renderClassType.find((item) => item.name === "fourth")?.wagons ?? []) as Wagon[];
 
@@ -23,6 +26,8 @@ const FourthClass = () => {
   const activeWagonData = processedData.find(
     (wagon) => wagon.coachName === activeWagonNumber
   );
+
+  console.log(activeWagonData)
 
   if (!activeWagonData) {
     return <div>Выберите вагон</div>
@@ -84,7 +89,9 @@ const FourthClass = () => {
                 <Seat 
                   seatNumber={coupe.seat3?.number} 
                   seatId={coupe.seat3?.id} 
-                  available={coupe.seat3?.available}/>
+                  available={coupe.seat3?.available}
+                />
+                  
                 <Seat 
                   seatNumber={coupe.seat4?.number} 
                   seatId={coupe.seat4?.id} 

@@ -136,6 +136,8 @@ const wagonStore = create<WagonStore>((set) => ({
 
   // Функция для обновления активного номера вагона
   setActiveWagonNumber: (wagonNumber) => set({ activeWagonNumber: wagonNumber }),
+
+
 }));
 
 export default wagonStore;

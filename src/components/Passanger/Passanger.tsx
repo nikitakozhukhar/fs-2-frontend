@@ -2,11 +2,27 @@ import { Link } from "react-router-dom";
 import OpenedCircle from "../../img/svg/openedCircle.svg?react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import usePersonInfoStore from "../../store/personInfoStore";
+import orderStore from "../../store/orderStore";
 
 const Passanger = () => {
 
-  const { personData, setPersonData } = usePersonInfoStore();
+  const { user, departure, setUserData, setDepartureData, updateNewSeat, addSeat } = orderStore();
+
+  // const initialValues = {
+  //   category: "adult", // или "child", в зависимости от данных
+  //   firstName: departure.seats[0]?.personInfo.firstName || "",
+  //   secondName: departure.seats[0]?.personInfo.lastName || "",
+  //   patronymic: departure.seats[0]?.personInfo.patronymic || "",
+  //   gender: departure.seats[0]?.personInfo.gender ? "male" : "female",
+  //   birthDate: departure.seats[0]?.personInfo.birthday || "",
+  //   mobility: false, // или другое значение, если есть в данных
+  //   documentType: departure.seats[0]?.personInfo.documentType || "",
+  //   documentData: {
+  //     series: departure.seats[0]?.personInfo.documentData.split(" ")[0] || "",
+  //     number: departure.seats[0]?.personInfo.documentData.split(" ")[1] || "",
+  //   },
+  // };
+
   
   const validationSchema = Yup.object({
     category: Yup.string().required(""),
@@ -22,14 +38,47 @@ const Passanger = () => {
       number: Yup.string().required(""),
     }),
   });
+  // console.log('user', user)
 
   const formik = useFormik({
-    initialValues: personData,
+    initialValues: {
+      category: "adult",
+      firstName: "",
+      secondName: "",
+      patronymic: "",
+      gender: "male",
+      birthDate: "",
+      mobility: false,
+      documentType: "passport",
+      documentData: {
+        series: "",
+        number: "",
+      },
+    },
     validationSchema,
     onSubmit: (values) => {
-      setPersonData(values);
+      updateNewSeat({
+        seatNumber: 10, // Пример номера места (можно заменить на динамическое значение)
+        isChild: values.category === "child",
+        includeChildrenSeat: false, // Пример значения
+        personInfo: {
+          isAdult: values.category === "adult",
+          firstName: values.firstName,
+          lastName: values.secondName,
+          patronymic: values.patronymic,
+          gender: values.gender === "male",
+          birthday: values.birthDate,
+          documentType: values.documentType,
+          documentData: `${values.documentData.series} ${values.documentData.number}`,
+        },
+      });
+      addSeat();
+
+      console.log("Данные сохранены в хранилище:", values);
     },
   });
+
+  
 
   return (
     <div className="flex flex-col w-[960px] ">
@@ -329,7 +378,9 @@ const Passanger = () => {
         </Link>
       </div>
     </div>
-  );
+  )
+    
+  
 };
 
 export default Passanger;

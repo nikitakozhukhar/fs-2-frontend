@@ -1,7 +1,7 @@
 import "./LastTicket.css";
 import WifiIcon from "../../img/svg/wifi.svg?react";
 import ExpressIcon from "../../img/svg/express.svg?react";
-import ConditionIcon from "../../img/svg/conditioner.svg?react";
+import ConditionIcon from "../../img/svg/condition.svg?react";
 import CupIcon from "../../img/svg/cup.svg?react";
 
 import { ILastRoute } from '../LastTickets/LastTickets'
