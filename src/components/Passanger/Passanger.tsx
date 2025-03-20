@@ -8,22 +8,6 @@ const Passanger = () => {
 
   const { user, departure, setUserData, setDepartureData, updateNewSeat, addSeat } = orderStore();
 
-  // const initialValues = {
-  //   category: "adult", // или "child", в зависимости от данных
-  //   firstName: departure.seats[0]?.personInfo.firstName || "",
-  //   secondName: departure.seats[0]?.personInfo.lastName || "",
-  //   patronymic: departure.seats[0]?.personInfo.patronymic || "",
-  //   gender: departure.seats[0]?.personInfo.gender ? "male" : "female",
-  //   birthDate: departure.seats[0]?.personInfo.birthday || "",
-  //   mobility: false, // или другое значение, если есть в данных
-  //   documentType: departure.seats[0]?.personInfo.documentType || "",
-  //   documentData: {
-  //     series: departure.seats[0]?.personInfo.documentData.split(" ")[0] || "",
-  //     number: departure.seats[0]?.personInfo.documentData.split(" ")[1] || "",
-  //   },
-  // };
-
-  
   const validationSchema = Yup.object({
     category: Yup.string().required(""),
     firstName: Yup.string().required(""),
@@ -38,7 +22,6 @@ const Passanger = () => {
       number: Yup.string().required(""),
     }),
   });
-  // console.log('user', user)
 
   const formik = useFormik({
     initialValues: {

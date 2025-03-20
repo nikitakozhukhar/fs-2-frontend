@@ -1,6 +1,6 @@
 import axiosInstance from "../axiosInstance/axiosInstance";
 
-interface ITrain {
+export interface ITrain {
   have_first_class: boolean;
   have_second_class: boolean;
   have_third_class: boolean;
@@ -35,7 +35,7 @@ interface ITrain {
   _id: string;
 }
 
-interface ISeatsInfo {
+export interface ISeatsInfo {
   first?: number;
   second?: number;
   third?: number;

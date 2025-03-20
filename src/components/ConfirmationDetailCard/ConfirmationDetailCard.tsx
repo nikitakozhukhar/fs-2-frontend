@@ -9,33 +9,14 @@ import Currency from "../../img/svg/currency.svg?react";
 import { Link } from "react-router-dom";
 import { IRoute } from "../../utils/api/fetchRoutes";
 import timeFormate from "../TimeFormate/timeFormate";
-import { useTrainDetailsStore } from "../../store/trainDetailsStore";
-import { useSeatsIdStore } from "../../store/seatsIdStore";
 
-import { choosenRoute, IRouteInfo } from "../../../src/store/choosenRoute";
+import { IRouteInfo } from "../../../src/store/choosenRoute";
 
-interface TrainDetailCardProps {
-  routesData?: IRoute;
-  routeInfo?: IRouteInfo[];
+interface ConfirmationDetailCardProps {
+  routeInfo: IRouteInfo[];
 }
 
-const TrainDetailCard: React.FC<TrainDetailCardProps> = ({ routesData }) => {
-  const { setSeatsIdGlobal } = useSeatsIdStore();
-  const { setTrainDetails } = useTrainDetailsStore();
-  const { setRouteInfo } = choosenRoute();
-
-  const handleSelectSeats = (item: IRoute["items"][0]) => {
-    setSeatsIdGlobal(item.departure._id);
-    setTrainDetails("trainName", item.departure.train.name);
-    setTrainDetails("fromCityName", item.departure.from.city.name);
-    setTrainDetails("toCityName", item.departure.to.city.name);
-    setTrainDetails("fromDateTime", item.departure.from.datetime);
-    setTrainDetails("fromRailwayStation", item.departure.from.railway_station_name);
-    setTrainDetails("toDateTime", item.departure.to.datetime);
-    setTrainDetails("toRailwayStation", item.departure.to.railway_station_name);
-    setTrainDetails("duration", item.departure.duration);
-    setRouteInfo([item])
-  };
+const ConfirmationDetailCard: React.FC<ConfirmationDetailCardProps> = ({ routeInfo }) => {
   
   const renderCarriageInfo = (type: string, seats: number | undefined, price: number | undefined) => {
     if (!seats) return null;
@@ -63,7 +44,7 @@ const TrainDetailCard: React.FC<TrainDetailCardProps> = ({ routesData }) => {
 
   return (
     <div className="flex flex-col gap-10">
-      {routesData?.items?.map((item) => (
+      {routeInfo.map((item) => (
         <div key={item.departure.train._id} className="flex w-[960px] h-[353px] border gap-5">
           <div className="flex flex-col items-center gap-3 bg-[#E4E0E9] justify-center basis-48">
             <TrainImageIcon className="text-white" />
@@ -127,12 +108,12 @@ const TrainDetailCard: React.FC<TrainDetailCardProps> = ({ routesData }) => {
 
             {renderAmenities(item)}
 
-            <Link to="/place" className="self-end">
+            <Link to="/train" className="self-end">
               <button
-                className="py-1 px-2 bg-[#FFA800] rounded-md text-white cursor-pointer text-lg"
-                onClick={() => handleSelectSeats(item)}
+                className="py-1 px-10 bg-white border-2 border-black rounded-md text-black cursor-pointer text-lg"
+                onClick={() => console.log('first')}
               >
-                Выбрать места
+                Изменить
               </button>
             </Link>
           </div>
@@ -142,4 +123,4 @@ const TrainDetailCard: React.FC<TrainDetailCardProps> = ({ routesData }) => {
   );
 };
 
-export default TrainDetailCard;
+export default ConfirmationDetailCard;

@@ -27,8 +27,13 @@ type Diagrams = {
   fourth: typeof FourthClass;
 };
 
+interface ISeats {
+  index: number,
+  available: boolean,
+}
+
 // Тип для вагона
-type Wagon = {
+interface Wagon {
   coach: {
     name: string;
     available_seats: number;
@@ -45,6 +50,7 @@ type Wagon = {
     wifi_price: number;
     _id: string;
   };
+  seats: ISeats[];
 };
 
 // Тип для группировки вагонов

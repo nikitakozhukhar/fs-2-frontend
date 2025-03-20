@@ -23,13 +23,13 @@ interface Departure {
   seats: Seat[];
 }
 
-interface User {
+export interface User {
   firstName: string;
   lastName: string;
   patronymic: string;
   phone: string;
   email: string;
-  paymentMethod: "cash" | "online";
+  paymentMethod: "cash" | "online" | '';
 }
 
 interface BookingData {
@@ -49,14 +49,14 @@ const orderStore = create<BookingData>((set) => ({
     patronymic: '',
     phone: '',
     email: '',
-    paymentMethod: 'cash',
+    paymentMethod: '',
   },
   departure: {
     routeDirectionId: '',
     seats: [], // Изначально seats пуст
   },
   newSeat: {}, // Промежуточное состояние для нового места
-  setUserData: (key, value) =>
+  setUserData: (key, value) => 
     set((state) => ({
       user: {
         ...state.user,
