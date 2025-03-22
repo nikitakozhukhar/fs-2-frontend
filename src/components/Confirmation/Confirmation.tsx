@@ -1,13 +1,15 @@
 import { Link } from "react-router-dom";
 import orderStore from "../../store/orderStore";
+import PassangerIcon from "../../img/svg/passanger.svg?react";
 
-import ConfirmationDetailCard from '../ConfirmationDetailCard/ConfirmationDetailCard';
+import ConfirmationDetailCard from "../ConfirmationDetailCard/ConfirmationDetailCard";
 
 import { choosenRoute } from "../../../src/store/choosenRoute";
 
-
 const Confirmation = () => {
-  const { user } = orderStore();
+  const { user, departure } = orderStore();
+
+  const { seats } = departure;
 
   const { routeInfo } = choosenRoute();
 
@@ -18,76 +20,69 @@ const Confirmation = () => {
           <div className="text-2xl font-medium">Поезд</div>
         </div>
 
-        <ConfirmationDetailCard routeInfo={routeInfo}/>
-        
+        <ConfirmationDetailCard routeInfo={routeInfo} />
       </div>
 
       <div className="flex flex-col w-[960px]">
         <div className="flex justify-between items-center py-8 px-8 bg-[#F9F9F9] border-2 border-[#C4C4C4]">
           <div className="text-2xl font-medium">Пассажиры</div>
         </div>
+
         <div className="py-8 px-5 border-2 border-[#C4C4C4]">
           <div className="flex flex-col gap-8">
-            <div className="flex gap-5">
-              <div className="flex flex-col justify-center items-center gap-2">
-                <div className="w-[50px] h-[50px] bg-orange-500 rounded-full"></div>
-                <div className="">Тариф</div>
-              </div>
-              <div className="flex flex-col gap-2">
-                <div className="font-semibold">Мартынюк Ирина Эдуардовна</div>
-                <div className="text-[#928F94]">пол женский</div>
-                <div className="text-[#928F94]">дата рождения</div>
-                <div className="text-[#928F94]">Документ</div>
-              </div>
-            </div>
-            <div className="flex gap-5">
-              <div className="flex flex-col justify-center items-center gap-2">
-                <div className="w-[50px] h-[50px] bg-orange-500 rounded-full"></div>
-                <div className="">Тариф</div>
-              </div>
-              <div className="flex flex-col gap-2">
-                <div className="font-semibold">Мартынюк Кирилл Сергеевич</div>
-                <div className="text-[#928F94]">пол мужской</div>
-                <div className="text-[#928F94]">дата рождения</div>
-                <div className="text-[#928F94]">Документ</div>
-              </div>
-            </div>
-            <div className="flex gap-5 justify-between">
-              <div className="flex gap-5 ">
+            {seats.map((item) => (
+              <div className="flex gap-5">
                 <div className="flex flex-col justify-center items-center gap-2">
-                  <div className="w-[50px] h-[50px] bg-orange-500 rounded-full"></div>
-                  <div className="">Тариф</div>
+                  <div className="">
+                    <PassangerIcon />
+                  </div>
+                  <div className="">
+                    {item.personInfo.isAdult ? "Взрослый" : "Детский"}
+                  </div>
                 </div>
-                <div className="flex flex-col ">
-                  <div className="font-semibold">Мартынюк Сергей Петрович</div>
-                  <div className="text-[#928F94]">пол мужской</div>
-                  <div className="text-[#928F94]">дата рождения</div>
-                  <div className="text-[#928F94]">Документ</div>
+                <div className="flex flex-col gap-2 ml-2 text-xl">
+                  <div className="font-semibold">
+                    {item.personInfo.firstName}
+                  </div>
+                  <div className="text-[#928F94]">
+                    Пол {item.personInfo.gender ? "Мужской" : "Женский"}
+                  </div>
+                  <div className="text-[#928F94]">
+                    Дата рождения {item.personInfo.birthday}
+                  </div>
+                  <div className="text-[#928F94]">
+                    {item.personInfo.documentType === "passport"
+                      ? `Пасспорт РФ ${item.personInfo.documentData}`
+                      : `Свидетельство о роождении ${item.personInfo.documentData}`}
+                  </div>
                 </div>
               </div>
-              <div className="flex self-end">
+            ))}
+            <div className="flex self-end">
                 <span className="text-xl mr-5">Всего</span>
                 <span className="text-xl font-bold">7 760</span>
                 <span className="text-xl after:content-['\20BD'] after:text-[#928F94]"></span>
               </div>
-            </div>
-            <button className="self-end py-2 px-8 border-2 border-[#292929] rounded-md font-bold text-lg">
-              Изменить
-            </button>
+           <Link className="self-end" to={'/passangers'}>
+            <button className=" py-2 px-8 border-2 border-[#292929] rounded-md font-bold text-lg">
+                Изменить
+              </button>
+           </Link>
           </div>
         </div>
-        <div className=""></div>
       </div>
 
       <div className="flex flex-col w-[960px] mb-5  border-2 border-[#C4C4C4]">
         <div className="flex justify-between items-center py-8 px-8 bg-[#F9F9F9] border-b-2 border-[#C4C4C4]">
-          <div className="text-2xl font-medium">Пассажиры</div>
+          <div className="text-2xl font-medium">Способ оплаты</div>
         </div>
         <div className="flex flex-col gap-5 p-5">
-          <div className="">Наличными</div>
-          <button className="self-end py-2 px-8 border-2 border-[#292929] rounded-md font-bold text-lg">
-            Изменить
-          </button>
+          <div className="px-5 text-xl">{user.paymentMethod === 'online' ? 'Онлайн' : 'Наличными'}</div>
+          <Link className='self-end' to={"/payment"}>
+            <button className="py-2 px-8 border-2 border-[#292929] rounded-md font-bold text-lg">
+              Изменить
+            </button>
+          </Link>
         </div>
       </div>
 
