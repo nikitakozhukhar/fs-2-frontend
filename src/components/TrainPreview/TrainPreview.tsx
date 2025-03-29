@@ -65,7 +65,7 @@ const TrainPreview = () => {
   if (seatsLoading) return <div>Loading...</div>;
   if (seatsError) return <div>Error: {seatsError.message}</div>;
 
-  console.log(renderClassType)
+  console.log(seatData)
 
   return (
     <div className="flex flex-col mb-5 ">
@@ -163,6 +163,7 @@ const TrainPreview = () => {
 
       <div className="self-end ">
         <Link to={"/passangers"}>
+        
           <button className="py-4 px-12 border-2 border-[#FFA800] rounded-lg bg-[#FFA800] text-white text-2xl uppercase">
             далее
           </button>

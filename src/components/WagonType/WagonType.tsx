@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import ConditionerIcon from "../../img/svg/condition.svg?react";
 import WifiIcon from "../../img/svg/wifi2.svg?react";
 import BeddingIcon from "../../img/svg/bedding.svg?react";
@@ -17,6 +17,7 @@ const WagonType = () => {
     setActiveClassIcon,
     setActiveWagonNumber,
   } = wagonStore();
+
 
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
