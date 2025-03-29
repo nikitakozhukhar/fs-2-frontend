@@ -11,6 +11,7 @@ import { IRoute } from "../../utils/api/fetchRoutes";
 import timeFormate from "../TimeFormate/timeFormate";
 import { useTrainDetailsStore } from "../../store/trainDetailsStore";
 import { useSeatsIdStore } from "../../store/seatsIdStore";
+import orderStore from "../../store/orderStore"
 
 import { choosenRoute, IRouteInfo } from "../../../src/store/choosenRoute";
 
@@ -23,6 +24,7 @@ const TrainDetailCard: React.FC<TrainDetailCardProps> = ({ routesData }) => {
   const { setSeatsIdGlobal } = useSeatsIdStore();
   const { setTrainDetails } = useTrainDetailsStore();
   const { setRouteInfo } = choosenRoute();
+  const { addrouteDirectionId } = orderStore();
 
   const handleSelectSeats = (item: IRoute["items"][0]) => {
     setSeatsIdGlobal(item.departure._id);
@@ -35,6 +37,7 @@ const TrainDetailCard: React.FC<TrainDetailCardProps> = ({ routesData }) => {
     setTrainDetails("toRailwayStation", item.departure.to.railway_station_name);
     setTrainDetails("duration", item.departure.duration);
     setRouteInfo([item])
+    addrouteDirectionId(item.departure._id)
   };
   
   const renderCarriageInfo = (type: string, seats: number | undefined, price: number | undefined) => {
