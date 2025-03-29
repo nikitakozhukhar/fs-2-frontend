@@ -29,6 +29,8 @@ const WagonType = () => {
     setHoveredIndex(null);
   };
 
+  // console.log(renderClassType)
+
   const services = [
     { icon: <ConditionerIcon fill="inherit" />, name: "кондиционер" },
     { icon: <WifiIcon fill="inherit" />, name: "WI-FI" },
