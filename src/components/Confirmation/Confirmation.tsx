@@ -11,6 +11,8 @@ const Confirmation = () => {
 
   const { seats } = departure;
 
+  console.log(seats)
+
   const { routeInfo } = choosenRoute();
 
   return (
@@ -30,30 +32,30 @@ const Confirmation = () => {
 
         <div className="py-8 px-5 border-2 border-[#C4C4C4]">
           <div className="flex flex-col gap-8">
-            {seats.map((item) => (
+            {seats.map((seat) => (
               <div className="flex gap-5">
                 <div className="flex flex-col justify-center items-center gap-2">
                   <div className="">
                     <PassangerIcon />
                   </div>
                   <div className="">
-                    {item.personInfo.isAdult ? "Взрослый" : "Детский"}
+                    {seat.personInfo?.isAdult ? "Взрослый" : "Детский"}
                   </div>
                 </div>
                 <div className="flex flex-col gap-2 ml-2 text-xl">
                   <div className="font-semibold">
-                    {item.personInfo.firstName}
+                    {seat.personInfo?.firstName}
                   </div>
                   <div className="text-[#928F94]">
-                    Пол {item.personInfo.gender ? "Мужской" : "Женский"}
+                    Пол {seat.personInfo?.gender ? "Мужской" : "Женский"}
                   </div>
                   <div className="text-[#928F94]">
-                    Дата рождения {item.personInfo.birthday}
+                    Дата рождения {seat.personInfo?.birthday}
                   </div>
                   <div className="text-[#928F94]">
-                    {item.personInfo.documentType === "passport"
-                      ? `Пасспорт РФ ${item.personInfo.documentData}`
-                      : `Свидетельство о роождении ${item.personInfo.documentData}`}
+                    {seat.personInfo?.documentType === "passport"
+                      ? `Пасспорт РФ ${seat.personInfo.documentData}`
+                      : `Свидетельство о роождении ${seat.personInfo?.documentData}`}
                   </div>
                 </div>
               </div>
