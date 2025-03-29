@@ -129,7 +129,7 @@ const TrainDetailCard: React.FC<TrainDetailCardProps> = ({ routesData }) => {
 
             <Link to="/place" className="self-end">
               <button
-                className="py-1 px-2 bg-[#FFA800] rounded-md text-white cursor-pointer text-lg"
+                className="py-1 px-2 bg-[#FFA800] rounded-md text-white cursor-pointer text-lg hover:shadow-md hover:shadow-[#bebcbe] active:bg-white active:text-[#FFA800] active:border active:border-[#FFA800]"
                 onClick={() => handleSelectSeats(item)}
               >
                 Выбрать места

@@ -200,7 +200,7 @@ const FindTicket: React.FC = () => {
          {/* Кнопка */}
          <Link to={"/train"} className="self-end">
           <button 
-            className="bg-[#FFA800] text-black font-bold text-2xl py-3 px-6 rounded-lg uppercase hover:shadow-md active:bg-white active:text-[#FFA800] active:border active:border-[#FFA800] active:shadow-inner"
+            className="bg-[#FFA800] text-black font-bold text-2xl py-3 px-6 rounded-lg uppercase hover:shadow-md hover:shadow-[#bebcbe] active:bg-white active:text-[#FFA800] active:border active:border-[#FFA800] active:shadow-inner"
             >
             Найти билеты
           </button>

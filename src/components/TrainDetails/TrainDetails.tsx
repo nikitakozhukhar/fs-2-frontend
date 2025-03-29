@@ -154,7 +154,7 @@ const TrainDetails = () => {
         <div
           className={`flex items-center justify-center w-[50px] p-[10px_15px] border cursor-pointer ${
             page === page
-              ? "border-[#FFA800] bg-white text-[#FFA800]"
+              ? "border-[#FFA800] bg-[#FFA800] text-white"
               : "border-[#E4E0E9] text-[#928F94] hover:border-[#FFA800] hover:bg-white hover:text-[#FFA800]"
           }`}
         >
