@@ -1,3 +1,4 @@
+import { useState } from "react";
 import RightArrowIcon from "../../img/svg/smallRightArrow.svg?react";
 import CloseDetailsIcon from "../../img/svg/closeDetails.svg?react";
 import OpenDetailsIcon from "../../img/svg/moreDetails.svg?react";
@@ -8,8 +9,8 @@ import PassangerIcon from "../../img/svg/orangePassanger.svg?react";
 
 import { useSearchDirectionStore } from "../../store/searchDirectionStore";
 import { useTrainDetailsStore } from "../../store/trainDetailsStore";
+import orderStore from "../../store/orderStore";
 import timeFormate from "../TimeFormate/timeFormate";
-import { useState } from "react";
 
 const TripDetails = () => {
   const { startDateGlobal, endDateGlobal } = useSearchDirectionStore();
@@ -25,11 +26,21 @@ const TripDetails = () => {
     duration,
   } = useTrainDetailsStore();
 
+  const { departure } = orderStore();
+
   const [openDepartureDetails, setOpenDepartureDetails] =
     useState<boolean>(false);
   const [openArrivalDetails, setOpenArrivalDetails] = useState<boolean>(false);
   const [openPassangerDetails, setOpenPassangerDetails] =
     useState<boolean>(false);
+
+  const adults = departure.seats.filter((seat) => !seat.isChild);
+  const children = departure.seats.filter((seat) => seat.isChild);
+
+  const adultPrice = adults.reduce((sum, seat) => sum + (seat.price || 0), 0);
+  const childPrice = children.reduce((sum, seat) => sum + (seat.price || 0), 0);
+
+  const totalPrice = adultPrice + childPrice;
 
   return (
     <div className="flex flex-col w-[360px] mb-5 bg-[#3E3C41] ">
@@ -54,13 +65,9 @@ const TripDetails = () => {
             className="self-end cursor-pointer"
           >
             {openDepartureDetails ? (
-              <div className="hover: fill-red-200">
-                <CloseDetailsIcon />
-              </div>
+              <CloseDetailsIcon className="fill-transparent stroke-white text-white hover:stroke-[#FFA800] hover:text-[#FFA800]" />
             ) : (
-              <div className="hover: fill-red-200">
-                <OpenDetailsIcon />
-              </div>
+              <OpenDetailsIcon className="fill-transparent stroke-white text-white hover:stroke-[#FFA800] hover:text-[#FFA800]" />
             )}
           </div>
         </div>
@@ -144,13 +151,9 @@ const TripDetails = () => {
             className="self-end cursor-pointer"
           >
             {openArrivalDetails ? (
-              <div className="hover: fill-red-200">
-                <CloseDetailsIcon />
-              </div>
+              <CloseDetailsIcon className="fill-transparent stroke-white text-white hover:stroke-[#FFA800] hover:text-[#FFA800]" />
             ) : (
-              <div className="hover: fill-red-200">
-                <OpenDetailsIcon />
-              </div>
+              <OpenDetailsIcon className="fill-transparent stroke-white text-white hover:stroke-[#FFA800] hover:text-[#FFA800]" />
             )}
           </div>
         </div>
@@ -225,9 +228,7 @@ const TripDetails = () => {
 
       <div className="flex justify-between px-5 py-5">
         <div className="flex gap-3">
-          <div className="">
-            <PassangerIcon />
-          </div>
+          <PassangerIcon />
           <div className="text-2xl font-medium text-gray-50">Пассажиры</div>
         </div>
         <div
@@ -235,13 +236,9 @@ const TripDetails = () => {
           className="cursor-pointer"
         >
           {openPassangerDetails ? (
-            <div className="hover: fill-red-200">
-              <CloseDetailsIcon />
-            </div>
+            <CloseDetailsIcon className="fill-transparent stroke-white text-white hover:stroke-[#FFA800] hover:text-[#FFA800]" />
           ) : (
-            <div className="hover: fill-red-200">
-              <OpenDetailsIcon />
-            </div>
+            <OpenDetailsIcon className="fill-transparent stroke-white text-white hover:stroke-[#FFA800] hover:text-[#FFA800]" />
           )}
         </div>
       </div>
@@ -249,17 +246,19 @@ const TripDetails = () => {
       {openPassangerDetails && (
         <div className="flex flex-col gap-2 px-5 mb-5">
           <div className="flex justify-between">
-            <div className="text-[#928F94]">2 Взрослых</div>
+            <div className="text-[#928F94]">{adults.length} взрослых</div>
             <div className="text-gray-50 text-xl font-semibold">
-              5 840 <span className="text-gray-500">&#8381;</span>
+              {adultPrice} <span className="text-gray-500">₽</span>
             </div>
           </div>
-          <div className="flex justify-between">
-            <div className="text-[#928F94]">1 Ребенок</div>
-            <div className="text-gray-50 text-xl font-semibold">
-              1 920 <span className="text-gray-500">&#8381;</span>
+          {children.length > 0 && (
+            <div className="flex justify-between">
+              <div className="text-[#928F94]">{children?.length} Ребенок</div>
+              <div className="text-gray-50 text-xl font-semibold">
+                {childPrice} <span className="text-gray-500">₽</span>
+              </div>
             </div>
-          </div>
+          )}
         </div>
       )}
 
@@ -267,10 +266,10 @@ const TripDetails = () => {
 
       <div className="flex justify-between px-5 py-5">
         <div className="text-2xl text-gray-50 font-semibold uppercase">
-          итог
+          Итог
         </div>
         <div className="text-3xl text-[#FFA800] font-semibold">
-          7 760 <span className="text-gray-400">&#8381;</span>
+          {totalPrice} <span className="text-gray-400">₽</span>
         </div>
       </div>
     </div>
