@@ -5,15 +5,20 @@ import PassangerIcon from "../../img/svg/passanger.svg?react";
 import ConfirmationDetailCard from "../ConfirmationDetailCard/ConfirmationDetailCard";
 
 import { choosenRoute } from "../../../src/store/choosenRoute";
+import fetchOrder from "../../utils/api/fetchOrder"
 
 const Confirmation = () => {
   const { user, departure } = orderStore();
-
-  const { seats } = departure;
-
-  console.log(seats)
-
+  
   const { routeInfo } = choosenRoute();
+  
+  const { seats } = departure;
+  
+  const totalPrice = seats.reduce((sum, seat) => sum + (seat.price || 0), 0)
+
+  const confirmData = {user, departure};
+
+  console.log(fetchOrder(confirmData).then(resp => console.log(resp)))
 
   return (
     <div className="flex flex-col gap-8 w-[960px] mb-14">
@@ -21,7 +26,6 @@ const Confirmation = () => {
         <div className="flex justify-between items-center py-8 px-8 bg-[#F9F9F9]">
           <div className="text-2xl font-medium">Поезд</div>
         </div>
-
         <ConfirmationDetailCard routeInfo={routeInfo} />
       </div>
 
@@ -35,16 +39,17 @@ const Confirmation = () => {
             {seats.map((seat) => (
               <div className="flex gap-5">
                 <div className="flex flex-col justify-center items-center gap-2">
-                  <div className="">
                     <PassangerIcon />
-                  </div>
                   <div className="">
                     {seat.personInfo?.isAdult ? "Взрослый" : "Детский"}
                   </div>
                 </div>
                 <div className="flex flex-col gap-2 ml-2 text-xl">
                   <div className="font-semibold">
-                    {seat.personInfo?.firstName}
+                    {`
+                    ${seat.personInfo?.lastName}
+                    ${seat.personInfo?.firstName}
+                    ${seat.personInfo?.patronymic}`}
                   </div>
                   <div className="text-[#928F94]">
                     Пол {seat.personInfo?.gender ? "Мужской" : "Женский"}
@@ -62,7 +67,7 @@ const Confirmation = () => {
             ))}
             <div className="flex self-end">
                 <span className="text-xl mr-5">Всего</span>
-                <span className="text-xl font-bold">7 760</span>
+                <span className="text-xl font-bold">{totalPrice}</span>
                 <span className="text-xl after:content-['\20BD'] after:text-[#928F94]"></span>
               </div>
            <Link className="self-end" to={'/passangers'}>
