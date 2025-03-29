@@ -38,6 +38,7 @@ interface BookingData {
   departure: Departure;
   addSeat: (coachId: string, seatNumber: number | null) => void;
   updatePassengerInfo: (seatIndex: number, personInfo: PersonInfo, isChild: boolean) => void;
+  setUserData: <K extends keyof User>(key: K, value: User[K]) => void;
   
 }
 
@@ -92,7 +93,14 @@ const orderStore = create<BookingData>((set) => ({
           seats: updatedSeats
         }
       };
-    })
+    }),
+    setUserData: (key, value) => 
+      set((state) => ({
+        user: {
+          ...state.user,
+          [key]: value, // Обновляем конкретное поле в user
+        },
+      })),
   
        
 }));
