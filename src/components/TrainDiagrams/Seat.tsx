@@ -1,5 +1,6 @@
 import { useState } from "react";
 import orderStore from "../../store/orderStore";
+import wagonStore from "../../store/wagonStore";
 
 interface SeatProps {
   seatNumber: number | null;
@@ -16,18 +17,35 @@ const Seat: React.FC<SeatProps> = ({
 
   const [choosen, setIsChoosen] = useState(false)
 
+  const { renderClassType, activeClassIcon} = wagonStore();
+
   const handleSeatClick = () => {
     if (!available) return;
 
-    addSeat(
-      coachId,
-      seatNumber, 
-    );
+    const currentClass = renderClassType.find(item => item.name === activeClassIcon);
+    if (!currentClass) return;
 
-    setIsChoosen(!choosen)
+    const currentWagon = currentClass.wagons.find(wagon => wagon.coach._id === coachId);
+    if (!currentWagon) return;
+
+    let price = 0;
+    const coach = currentWagon.coach;
+
+    if (activeClassIcon === 'fourth') {
+     
+      price = coach.top_price;
+    } else {
+      const isUpperSeat = seatNumber ? seatNumber % 2 === 0 : false;
+      price = isUpperSeat ? coach.top_price : coach.bottom_price;
+    }
+
+    addSeat(coachId, seatNumber, price);
+    setIsChoosen(!choosen);
   };
-  const choosenSeat = departure.seats.map((item) => {item.seatNumber === seatNumber})
-  // console.log(choosenSeat)
+
+  const isSelected = departure.seats.some(
+    seat => seat.coachId === coachId && seat.seatNumber === seatNumber
+  );
 
   return (
     <div
@@ -38,7 +56,7 @@ const Seat: React.FC<SeatProps> = ({
           available ? `bg-blue-50` 
           : `bg-gray-300 cursor-not-allowed`
         } 
-        ${choosen ? 'bg-white border-2 border-[#FFA800]' : ''}
+        ${isSelected ? 'bg-white border-2 border-[#FFA800]' : ''}
           hover:bg-blue-200 text-xl font-medium
       `}
     >
