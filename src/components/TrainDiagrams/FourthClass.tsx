@@ -75,53 +75,53 @@ const FourthClass = () => {
             <div className="flex justify-between mb-4">
               <div className="flex flex-col-reverse gap-1 w-8 ">
                 <Seat 
-                  seatNumber={coupe.seat1?.number} 
-                  seatId={coupe.seat1?.id} 
+                  seatNumber={coupe.seat1?.number ?? null} 
                   available={coupe.seat1?.available}
+                  coachId={activeWagonData.coachId}
                 />
                 <Seat 
-                  seatNumber={coupe.seat2?.number} 
-                  seatId={coupe.seat2?.id} 
+                  seatNumber={coupe.seat2?.number ?? null} 
                   available={coupe.seat2?.available}
+                  coachId={activeWagonData.coachId}
                 />
               </div>
               <div className="flex flex-col-reverse gap-1 w-8 ">
                 <Seat 
-                  seatNumber={coupe.seat3?.number} 
-                  seatId={coupe.seat3?.id} 
+                  seatNumber={coupe.seat3?.number ?? null} 
                   available={coupe.seat3?.available}
+                  coachId={activeWagonData.coachId}
                 />
                   
                 <Seat 
-                  seatNumber={coupe.seat4?.number} 
-                  seatId={coupe.seat4?.id} 
+                  seatNumber={coupe.seat4?.number ?? null} 
                   available={coupe.seat4?.available}
+                  coachId={activeWagonData.coachId}
                 />
               </div>
             </div>
             <div className="flex justify-between">
               <div className="flex flex-col-reverse gap-1 w-8">
                 <Seat 
-                  seatNumber={coupe.seat5?.number} 
-                  seatId={coupe.seat5?.id}
+                  seatNumber={coupe.seat5?.number ?? null} 
                   available={coupe.seat5?.available}
+                  coachId={activeWagonData.coachId}
                 />
                 <Seat 
-                  seatNumber={coupe.seat6?.number} 
-                  seatId={coupe.seat6?.id}
+                  seatNumber={coupe.seat6?.number ?? null} 
                   available={coupe.seat6?.available}
+                  coachId={activeWagonData.coachId}
                 />
               </div>
               <div className="flex flex-col gap-1 w-8 ">
                 <Seat 
-                  seatNumber={coupe.seat7?.number} 
-                  seatId={coupe.seat7?.id} 
+                  seatNumber={coupe.seat7?.number ?? null} 
                   available={coupe.seat7?.available}
+                  coachId={activeWagonData.coachId}
                 />
                 <Seat 
-                  seatNumber={coupe.seat8?.number} 
-                  seatId={coupe.seat8?.id} 
+                  seatNumber={coupe.seat8?.number ?? null} 
                   available={coupe.seat8?.available}
+                  coachId={activeWagonData.coachId}
                 />
               </div>
             </div>

@@ -27,6 +27,7 @@ const FirstClass: React.FC = () => {
     return null; 
   }
 
+  console.log(activeWagonData)
   const coutedCoupeWidth = Math.floor(700 / activeWagonData.seats.length);
 
   return (
@@ -73,15 +74,15 @@ const FirstClass: React.FC = () => {
           >
             <div className="flex justify-evenly items-stretch h-[100%] border-l-4 border-r-4 border-t-4 border-[#999999]">
               <Seat
-                seatNumber={coupe.seat1?.number}
-                seatId={coupe.seat1?.id}
+                seatNumber={coupe.seat1?.number ?? null}
                 available={coupe.seat1?.available}
+                coachId={activeWagonData.coachId}
               />
               <div className="border-2 border-white flex-1 flex flex-col justify-end" />
               <Seat
-                seatNumber={coupe.seat2?.number}
-                seatId={coupe.seat2?.id}
+                seatNumber={coupe.seat2?.number ?? null}
                 available={coupe.seat2?.available}
+                coachId={activeWagonData.coachId}
               />
             </div>
 

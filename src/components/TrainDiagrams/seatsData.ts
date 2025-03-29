@@ -21,6 +21,7 @@ export interface Coupe {
 
 // Тип для обработанных данных о вагоне
 export interface ProcessedWagon {
+  coachId: string;
   coachName: string;
   seats: Coupe[];
 }
@@ -78,24 +79,28 @@ const groupSeats = (seats: Seat[] = [], groupSize: number): Coupe[] => {
 // Функции обработки вагонов
 export const firstClassSeats = (wagons: Wagon[]): ProcessedWagon[] =>
   wagons.map((wagon) => ({
+    coachId: wagon.coach._id,
     coachName: wagon.coach.name,
     seats: groupSeats(wagon.seats ?? [], 2), // Теперь всегда передается массив
   }));
 
 export const secondClassSeats = (wagons: Wagon[]): ProcessedWagon[] =>
   wagons.map((wagon) => ({
+    coachId: wagon.coach._id,
     coachName: wagon.coach.name,
     seats: groupSeats(wagon.seats ?? [], 4),
   }));
 
 export const thirdClassSeats = (wagons: Wagon[]): ProcessedWagon[] =>
   wagons.map((wagon) => ({
+    coachId: wagon.coach._id,
     coachName: wagon.coach.name,
     seats: groupSeats(wagon.seats ?? [], 6),
   }));
 
 export const fourthClassSeats = (wagons: Wagon[]): ProcessedWagon[] =>
   wagons.map((wagon) => ({
+    coachId: wagon.coach._id,
     coachName: wagon.coach.name,
     seats: groupSeats(wagon.seats ?? [], 8),
   }));

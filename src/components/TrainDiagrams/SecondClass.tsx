@@ -74,23 +74,26 @@ const SecondClass = () => {
             <div className="flex justify-between">
               <div className="flex flex-col-reverse gap-3 w-8 h-[86px] border-b-4 border-[#999999]">
                 <Seat 
-                  seatNumber={coupe.seat1?.number} 
-                  seatId={coupe.seat1?.id} 
-                  available={coupe.seat1?.available}/>
+                  seatNumber={coupe.seat1?.number ?? null} 
+                  available={coupe.seat1?.available}
+                  coachId={activeWagonData.coachId}
+                  />
                 <Seat 
-                  seatNumber={coupe.seat2?.number} 
-                  seatId={coupe.seat2?.id} 
-                  available={coupe.seat2?.available}/>
+                  seatNumber={coupe.seat2?.number ?? null} 
+                  available={coupe.seat2?.available}
+                  coachId={activeWagonData.coachId}
+                  />
               </div>
               <div className="flex flex-col-reverse gap-3 w-8 h-[86px] border-b-4 border-[#999999]">
                 <Seat 
-                seatNumber={coupe.seat3?.number} 
-                seatId={coupe.seat3?.id} 
-                available={coupe.seat3?.available}/>
+                seatNumber={coupe.seat3?.number ?? null} 
+                available={coupe.seat3?.available}
+                coachId={activeWagonData.coachId}
+                />
                 <Seat 
-                seatNumber={coupe.seat4?.number} 
-                seatId={coupe.seat4?.id} 
+                seatNumber={coupe.seat4?.number ?? null} 
                 available={coupe.seat4?.available}
+                coachId={activeWagonData.coachId}
                 />
               </div>
             </div>
