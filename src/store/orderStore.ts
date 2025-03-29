@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-interface PersonInfo {
+export interface PersonInfo {
   isAdult: boolean;
   firstName: string;
   lastName: string;
@@ -11,15 +11,16 @@ interface PersonInfo {
   documentData: string;
 }
 
-interface Seat {
+export interface Seat {
   coachId: string;
+  price: number;
   personInfo: PersonInfo | null;
   seatNumber: number | null;
   isChild: boolean;
   includeChildrenSeat: boolean;
 }
 
-interface Departure {
+export interface Departure {
   routeDirectionId: string;
   seats: Seat[];
 }
@@ -36,13 +37,14 @@ export interface User {
 interface BookingData {
   user: User;
   departure: Departure;
-  addSeat: (coachId: string, seatNumber: number | null) => void;
+  addrouteDirectionId: (directionId: string) => void;
+  addSeat: (coachId: string, seatNumber: number | null, price: number) => void;
   updatePassengerInfo: (seatIndex: number, personInfo: PersonInfo, isChild: boolean) => void;
   setUserData: <K extends keyof User>(key: K, value: User[K]) => void;
-  
+  isPassengerDataComplete: (seatIndex: number) => boolean;
 }
 
-const orderStore = create<BookingData>((set) => ({
+const orderStore = create<BookingData>((set, get) => ({
   user: {
     firstName: '',
     lastName: '',
@@ -55,7 +57,14 @@ const orderStore = create<BookingData>((set) => ({
     routeDirectionId: '',
     seats: [], // Изначально seats пуст
   },
-  addSeat: (coachId, seatNumber) => set((state) => {
+  addrouteDirectionId: (directionId) => set((state) => ({
+    departure: {
+      ...state.departure,
+      routeDirectionId: directionId
+    }
+  })),
+
+  addSeat: (coachId, seatNumber, price) => set((state) => {
     const isAlreadyAdded = state.departure.seats.some(
       seat => seat.coachId === coachId && seat.seatNumber === seatNumber
     );
@@ -70,6 +79,7 @@ const orderStore = create<BookingData>((set) => ({
           {
             coachId,
             seatNumber,
+            price,
             personInfo: null,
             isChild: false,
             includeChildrenSeat: false
@@ -101,7 +111,19 @@ const orderStore = create<BookingData>((set) => ({
           [key]: value, // Обновляем конкретное поле в user
         },
       })),
-  
+      isPassengerDataComplete: (seatIndex) => {
+        const seat = get().departure.seats[seatIndex];
+        if (!seat) return false;
+        
+        return (
+          seat.personInfo !== null &&
+          seat.personInfo.firstName !== '' &&
+          seat.personInfo.lastName !== '' &&
+          seat.personInfo.patronymic !== '' &&
+          seat.personInfo.birthday !== '' &&
+          seat.personInfo.documentData !== ''
+        );
+      },
        
 }));
 
