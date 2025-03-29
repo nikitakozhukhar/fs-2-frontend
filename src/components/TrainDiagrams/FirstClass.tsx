@@ -11,12 +11,14 @@ import wagonStore from "../../store/wagonStore";
 const FirstClass: React.FC = () => {
   const { renderClassType, activeWagonNumber } = wagonStore();
 
-  const firstClassWagons: Wagon[] = (renderClassType.find((item) => item.name === "first")?.wagons ?? []) as Wagon[];
+  const firstClassWagons: Wagon[] = (renderClassType.find(
+    (item) => item.name === "first"
+  )?.wagons ?? []) as Wagon[];
 
   if (!firstClassWagons) {
-    return null; 
+    return null;
   }
-  
+
   const processedData: ProcessedWagon[] = firstClassSeats(firstClassWagons);
 
   const activeWagonData = processedData.find(
@@ -24,10 +26,8 @@ const FirstClass: React.FC = () => {
   );
 
   if (!activeWagonData) {
-    return null; 
+    return null;
   }
-
-  console.log(activeWagonData)
   const coutedCoupeWidth = Math.floor(700 / activeWagonData.seats.length);
 
   return (
