@@ -10,12 +10,13 @@ import NextPageIcon from "../../img/svg/nextPage.svg?react";
 import LoadingTrain from "../LoadingTrain/LoadingTrain";
 import { useState } from "react";
 
+
 const TrainDetails = () => {
   const { fromCityGlobal, toCityGlobal } = useSearchDirectionStore();
   const [limit, setNewLimit] = useState<number>(5);
   const [page, setPage] = useState<number>(1);
   const [sortBy, setSortBy] = useState<string>('');
-
+  
   const {
     data: fromCities,
     isLoading: fromCitiesLoading,
@@ -47,11 +48,6 @@ const TrainDetails = () => {
     page,
     sortBy
   );
-
-  // Проверяем статус запроса
-  if (fromRoutes.isLoading) {
-    return <LoadingTrain />;
-  }
 
   if (fromRoutes.error) {
     return <div>Произошла ошибка при загрузке маршрутов.</div>;
