@@ -15,25 +15,25 @@ import { Link } from "react-scroll";
 const Footer = () => {
   return (
     <footer id="footer" className="w-full mt-auto bg-[#2d2b30]">
-      <div className="container mx-auto my-0">
+      <div className="container mx-auto my-7">
         <div className="flex flex-col">
           <div className="flex justify-between mb-12">
             <div className="footer-left">
-              <div className="flex flex-col gap-5 text-white">
-                <h4 className="text-xl">Свяжитесь с нами</h4>
-                <div className="flex items-center text-xl gap-5">
+              <div className="flex flex-col gap-5 text-white text-2xl">
+                <h4 className="mb-4 text-3xl">Свяжитесь с нами</h4>
+                <div className="flex items-center gap-5">
                   <PhoneIcon />
                   <div className="contact-info">8 (800) 000 00 00</div>
                 </div>
-                <div className="flex items-center text-xl gap-5">
+                <div className="flex items-center gap-5">
                   <EmailIcon />
                   <div className="contact-info">inbox@mail.ru</div>
                 </div>
-                <div className="flex items-center text-xl gap-5">
+                <div className="flex items-center gap-5">
                   <SkypeIcon />
                   <div className="contact-info">tu.train.ticket</div>
                 </div>
-                <div className="flex items-center text-xl gap-5">
+                <div className="flex items-center gap-5">
                   <LocationIcon />
                   <div>
                     г. Москва, ул. Московская 27-35 555 555
@@ -43,41 +43,41 @@ const Footer = () => {
             </div>
             <div className="text-xl text-white">
               <div className="footer-subscribe-form">
-                <h4 className="contacts-title">Подписка</h4>
+                <h4 className="mb-4 text-3xl">Подписка</h4>
                 <form className="form">
-                  <div className="mb-4">Будте в курсе событий</div>
-                  <div className="flex gap-8">
+                  <div className="mb-4 text-2xl">Будте в курсе событий</div>
+                  <div className="flex gap-8 mb-4">
                     <input type="text" className="w-[450px] h-14 text-xl outline-none" />
                     <button className="w-[170px] h-14 border border-white uppercase">Отправить</button>
                   </div>
                 </form>
               </div>
               <div className="footer-socials">
-                <h4 className="contacts-title">Подписывайтесь на нас</h4>
-                <ul className="flex gap-5">
-                  <li className="socials-list-item">
-                    <a href="" className="socials-list-link">
-                      <YotubeIcon />
+                <h4 className="contacts-title text-3xl mb-3">Подписывайтесь на нас</h4>
+                <ul className="flex gap-10">
+                  <li className="">
+                    <a href="https://www.youtube.com" target="blank" className="">
+                      <YotubeIcon className="active:text-[#FFA800]"/>
                     </a>
                   </li>
                   <li className="socials-list-item">
-                    <a href="" className="socials-list-link">
-                      <InIcon />
+                    <a href="#" target="blank" className="socials-list-link">
+                      <InIcon className="active:text-[#FFA800]"/>
                     </a>
                   </li>
                   <li className="socials-list-item">
-                    <a href="" className="socials-list-link">
-                      <GooglePlusIcon />
+                    <a href="https://www.googleplus.com" target="blank" className="socials-list-link">
+                      <GooglePlusIcon className="active:text-[#FFA800]"/>
                     </a>
                   </li>
                   <li className="socials-list-item">
-                    <a href="" className="socials-list-link">
-                      <FacabookIcon />
+                    <a href="https://www.facebook.com" target="blank" className="socials-list-link">
+                      <FacabookIcon className="active:text-[#FFA800]"/>
                     </a>
                   </li>
                   <li className="socials-list-item">
-                    <a href="" className="socials-list-link">
-                      <TweeterIcon />
+                    <a href="https://www.x.com">
+                      <TweeterIcon className="active:text-[#FFA800]"/>
                     </a>
                   </li>
                 </ul>
@@ -94,11 +94,11 @@ const Footer = () => {
                 <ArrowUpIcon />
               </Link>
             </div>
-            <div className="text-white">2025 WEB</div>
+            <div className="text-white text-2xl">2025 WEB</div>
           </div>
         </div>
       </div>
-      <div className="relative w-[100vw] h-[1px] bottom-[78px] bg-white"></div>
+      <div className="relative w-[100vw] h-[1px] bottom-[100px] bg-white"></div>
     </footer>
   );
 };
