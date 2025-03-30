@@ -103,13 +103,9 @@ const FilterWidget: React.FC = () => {
             <CheckBox id={amenitie.id} />
           </div>
         ))}
-        {/* Линия после опций */}
+      
         <div className="w-[370px] h-[1px] bg-white"></div>
       </div>
-
-      {/* <div className="filter-cost my-[20px]">
-        <PriceRangeSlider min={1000} max={7000} step={100} />
-      </div> */}
 
       <div className="flex flex-col my-3">
         <div className="text-white text-3xl mb-2">Стоимость</div>
@@ -142,11 +138,11 @@ const FilterWidget: React.FC = () => {
         >
           {openDetails ? (
             <div className="hover: fill-red-200">
-              <CloseDetailsIcon />
+              <CloseDetailsIcon className="text-white stroke-white fill-transparent"/>
             </div>
           ) : (
             <div className="hover: fill-red-200">
-              <OpenDetailsIcon />
+              <OpenDetailsIcon className="text-white stroke-white fill-transparent"/>
             </div>
           )}
         </div>
@@ -185,9 +181,6 @@ const FilterWidget: React.FC = () => {
         </div>
       )}
 
-
- 
-
       <div className="w-[370px] h-[1px] relative -left-5 bg-white"></div>
 
       <div className="direction-backward flex justify-between items-center h-[96px]">
@@ -199,7 +192,7 @@ const FilterWidget: React.FC = () => {
           onClick={() => setOpenRouteDetails(!openRouteDetails)}
           className="cursor-pointer"
         >
-          {openRouteDetails ? <CloseDetailsIcon /> : <OpenDetailsIcon />}
+          {openRouteDetails ? <CloseDetailsIcon className="text-white stroke-white fill-transparent"/> : <OpenDetailsIcon className="text-white stroke-white fill-transparent"/>}
         </div>
       </div>
       {openRouteDetails && (
