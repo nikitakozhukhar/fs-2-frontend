@@ -10,11 +10,17 @@ import trainImage from "../../img/bluredTrain.png";
 import defaultImage from "../../img/banner.png";
 import successImage from "../../img/successPageBanner.png";
 
+import { progressStore } from "../../store/progressStore";
+import ProgressLoadingBar from "../ProgressLoadingBar/ProgressLoadingBar";
+
 const Header: React.FC<HeaderProps> = ({
   location = "default",
   text = "default",
   findForm,
 }) => {
+
+  const { progress } = progressStore();
+
   let imgBannerSrc: string = location;
 
   if (location === "train") {
@@ -30,7 +36,7 @@ const Header: React.FC<HeaderProps> = ({
   return (
     <header id="header" className="h-[985px]">
       <Logo />
-      <div className="absolute w-[100vw] h-[95px] left-0 bg-[#292929] z-10 md:h-[75px]"></div>
+      <div className="absolute w-full h-[95px] left-0 bg-[#292929] z-10 md:h-[75px]"></div>
       <div className="flex justify-start items-center h-[95px] max-w-[1440px] m-auto md:h-[75px]">
         <nav className="flex md:text-xs md:gap-4">
           <ul className="relative z-20 flex gap-[100px] text-white text-2xl">
@@ -70,6 +76,10 @@ const Header: React.FC<HeaderProps> = ({
       </div>
 
       <Banner src={imgBannerSrc} />
+
+      <div className="mt-[26px] w-[100vw] h-[3px]">
+        {progress > 0 && progress < 100 && <ProgressLoadingBar/>}
+      </div>
     </header>
   );
 };

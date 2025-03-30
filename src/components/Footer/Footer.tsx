@@ -14,8 +14,8 @@ import { Link } from "react-scroll";
 
 const Footer = () => {
   return (
-    <footer id="footer" className="w-[100vw] bg-[#2d2b30]">
-      <div className="max-w-[1440px] mx-auto my-0">
+    <footer id="footer" className="w-full mt-auto bg-[#2d2b30]">
+      <div className="container mx-auto my-0">
         <div className="flex flex-col">
           <div className="flex justify-between mb-12">
             <div className="footer-left">

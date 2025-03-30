@@ -17,7 +17,7 @@ function App() {
   return (
     <div className="app">
       <Router basename="/fs-2-frontend">
-        <div className="container">
+        <div className="flex flex-col min-h-[100vh]">
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/train" element={<TrainViewPage />} />

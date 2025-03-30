@@ -5,19 +5,19 @@ import Planet from "../../img/svg/planet.svg?react";
 
 const HowItWork = () => {
   return (
-    <section id="howItWorks" className="relative mb-16">
+    <section id="howItWorks" className="relative flex justify-center mb-16">
       <div className="relative top-0 left-0 rigth-0 w-[100vw] h-[575px]">
         <div className="absolute w-[100vw]  h-[575px] bg-[url('src/img/railways.png')] bg-cover bg-center bg-no-repeat -z-20"></div>
         <div className="absolute w-[100vw]  h-[575px] bg-[#ffa600] opacity-50 -z-20"></div>
       </div>
-      <div className="absolute top-0 flex justify-between items-center py-16 px-5 my-0 mx-auto w-[1440px]">
+      <div className="container absolute top-0 flex justify-between items-center py-16 px-5 my-0 mx-auto">
         <div className="text-4xl text-white">Как это работает</div>
         <button className="py-4 px-24 border border-white text-2xl text-white cursor-pointer">
           Узнать больше
         </button>
       </div>
 
-      <div className="absolute top-[25%] flex justify-around py-[60px] w-[1440px] mx-auto">
+      <div className="container absolute top-[25%] flex justify-around py-[60px] w-full mx-auto">
         <div className="w-[162px]">
           <Computer />
           <div className="text-center text-white">Удобный заказ на сайте</div>

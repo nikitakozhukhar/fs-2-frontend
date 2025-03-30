@@ -7,8 +7,7 @@ import "./loadingAnimation.css"
 
 const LoadingTrain = () => {
   return (
-    <div className='absolute -mt-12 left-0 flex flex-col items-center justify-center w-[100vw] h-[104%] bg-[#3E3C41] z-50'>
-
+    <div className='flex flex-col items-center justify-center w-full h-full py-16 bg-[#3E3C41] z-50'>
       <div className='mb-16 text-[#928F94] text-2xl font-bold'>Идет поиск</div>
       <div className='animate-train'>
         <AnimatedTrainIcon />
