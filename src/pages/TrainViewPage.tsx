@@ -45,7 +45,7 @@ const TrainViewPage = () => {
     <ProgressPageBar />
     
     <main className="flex-grow relative">
-        <div className="train-container mx-auto max-w-[1200px] w-full py-8 px-4">
+        <div className="container mx-auto max-w-[1200px] w-full py-8 px-4">
           <div className="flex flex-col md:flex-row gap-8">
             <aside className="aside-widgets md:w-1/4 mr-8">
               <FilterWidget />
