@@ -83,7 +83,6 @@ const LastTickets = () => {
   } = useLastRoutesQuery();
 
   if (lastRoutesLoading) {
-    console.log('loading');
     return <div>Loading...</div>;
   }
 
@@ -93,9 +92,9 @@ const LastTickets = () => {
   }
 
   return (
-    <div className="last-tickets-container">
-      <div className="last-tickets-title">Последние билеты</div>
-      <div className="last-tickets-column">
+    <div className="flex flex-col w-[360px] gap-5 mb-12">
+      <div className="text-3xl font-medium uppercase">Последние билеты</div>
+      <div className="flex flex-col gap-5">
         {lastRoutes.map((lastRoute: ILastRoute, index: number) => (
           <LastTicket key={index} lastRoute={lastRoute} />
         ))}

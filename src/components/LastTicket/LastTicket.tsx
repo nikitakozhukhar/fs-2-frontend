@@ -2,7 +2,6 @@ import "./LastTicket.css";
 import WifiIcon from "../../img/svg/wifi.svg?react";
 import ExpressIcon from "../../img/svg/express.svg?react";
 import ConditionIcon from "../../img/svg/condition.svg?react";
-import CupIcon from "../../img/svg/cup.svg?react";
 
 import { ILastRoute } from '../LastTickets/LastTickets'
 
@@ -11,9 +10,9 @@ interface ILastTicketProps {
 }
 
 const features: { key: keyof ILastRoute; icon: JSX.Element }[] = [
-  { key: "have_wifi", icon: <WifiIcon /> },
-  { key: "have_air_conditioning", icon: <ConditionIcon /> },
-  { key: "is_express", icon: <ExpressIcon /> },
+  { key: "have_wifi", icon: <WifiIcon className="text-[#E5E5E5]"/> },
+  { key: "have_air_conditioning", icon: <ConditionIcon className="text-[#E5E5E5] fill-none stroke-none"/> },
+  { key: "is_express", icon: <ExpressIcon className="text-[#E5E5E5]"/> },
 ];
 
 const LastTicket: React.FC<ILastTicketProps> = ({ lastRoute }) => {

@@ -1,19 +1,19 @@
-.last-tickets-container {
+/* .last-tickets-container {
   display: flex;
   flex-direction: column;
   width: 360px;
   gap: 20px;
   margin-bottom: 50px;
-}
+} */
 
-.last-tickets-title {
+/* .last-tickets-title {
   font-size: 2em;
   font-weight: 500;
   text-transform: uppercase;
-}
+} */
 
-.last-tickets-column {
+/* .last-tickets-column {
   display: flex;
   flex-direction: column;
   gap: 20px;
-}
+} */
