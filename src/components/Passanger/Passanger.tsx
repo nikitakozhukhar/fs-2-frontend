@@ -36,7 +36,7 @@ const Passanger = () => {
   };
 
   return (
-    <div className="mb-10 ">
+    <div className="mb-10 h-[100%]">
       <span className="w-[100%] h-[1px] bg-[#928F94]"></span>
 
       <div className="flex flex-col w-[960px]">

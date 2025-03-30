@@ -88,7 +88,7 @@ const PassengerForm: React.FC<PassengerProp> = ({
   // console.log('departure', departure)
 
   return (
-    <div className="flex flex-col w-[960px] ">
+    <div className="flex flex-col w-[960px]">
       <div className={`mb-10 border-2 border-b-4 border-gray-400 ${isLast ? "mb-8" : ""}`}>
         <div className="flex justify-between items-center py-8 px-8 bg-[#F9F9F9]">
           <div className="flex items-center gap-5 ">
