@@ -1,7 +1,7 @@
 import OpenedCircle from "../../img/svg/openedCircle.svg?react";
 import ClosedCircle from "../../img/svg/closedCircle.svg?react";
 import RemovePassenger from "../../img/svg/removePassenger.svg?react";
-import { useFormik } from "formik";
+import { FormikConfig, useFormik, getIn } from "formik";
 import * as Yup from "yup";
 import orderStore from "../../store/orderStore";
 import { useState, useEffect } from "react";
@@ -11,6 +11,11 @@ interface PassengerProp {
   passengerId: number;
   onRemove: (index: number) => void;
   isLast?: boolean;
+}
+interface MyFormikConfig extends FormikConfig<any> {
+  context?: {
+    documentType: string;
+  };
 }
 
 const PassengerForm: React.FC<PassengerProp> = ({
@@ -42,28 +47,44 @@ const PassengerForm: React.FC<PassengerProp> = ({
     mobility: Yup.boolean(),
     documentType: Yup.string().required("Выберите тип документа"),
     documentData: Yup.object().shape({
-      series: Yup.string().when('documentType', {
-        is: 'passport',
-        then: (schema) => schema
-          .required("Введите серию паспорта")
-          .matches(/^\d{4}$/, "Серия должна содержать 4 цифры")
-          .max(4, "Серия должна содержать 4 цифры"),
-        otherwise: (schema) => schema.notRequired()
+      series: Yup.string().when("documentType", {
+        is: "passport",
+        then: (schema) =>
+          schema
+            .required("Введите серию паспорта")
+            .matches(/^\d{4}$/, "Серия должна содержать 4 цифры"),
+        otherwise: (schema) => schema.notRequired(),
       }),
       number: Yup.string()
         .required("Введите номер документа")
-        .when('documentType', {
-          is: 'passport',
-          then: (schema) => schema
-            .matches(/^\d{6}$/, "Номер паспорта должен содержать 6 цифры")
-            .max(6, "Номер паспорта должен содержать 6 цифры"),
-          otherwise: (schema) => schema
-            .matches(
-              /^(?:[IVXLCDM]+)\s(?:[А-ЯЁ]{2})\s\d{6}$/,
-              "Формат свидетельства: VIII КУ 123456"
-            )
-        })
-    })
+        .test("passportOrCertificate", function (value) {
+          const documentType = this.options.context?.documentType;
+          console.log("this.parent", this.parent); // Проверка всех значений родителя
+          console.log("documentType in test", documentType);
+
+          if (!value)
+            return this.createError({ message: "Введите номер документа" });
+
+          if (documentType === "passport") {
+            // Если тип документа "passport", валидируем как паспорт
+            return /^\d{6}$/.test(value)
+              ? true
+              : this.createError({
+                  message: "Номер паспорта должен содержать 6 цифр",
+                });
+          } else if (documentType === "birthCertificate") {
+            // Если тип документа "birthCertificate", валидируем как свидетельство
+            return /^[IVXLCDM]+\s[А-ЯЁ]{2}\s\d{6}$/.test(value)
+              ? true
+              : this.createError({
+                  message: "Формат свидетельства: VIII КУ 123456",
+                });
+          } else {
+            // В случае, если тип документа не установлен
+            return this.createError({ message: "Неверный тип документа" });
+          }
+        }),
+    }),
   });
 
   const formik = useFormik({
@@ -82,6 +103,7 @@ const PassengerForm: React.FC<PassengerProp> = ({
       },
     },
     validationSchema,
+    context: { documentType: "" },
     onSubmit: (values) => {
       updatePassengerInfo(
         passengerNumber,
@@ -100,17 +122,14 @@ const PassengerForm: React.FC<PassengerProp> = ({
         },
         values.category === "adult"
       );
-      console.log('form send with values: ', values)
+      console.log("form send with values: ", values);
     },
-
-   
-  });
+  } as MyFormikConfig);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setWasSubmitted(true);
 
-    // Помечаем все поля как "тронутые"
     await formik.setTouched({
       category: true,
       firstName: true,
@@ -121,21 +140,20 @@ const PassengerForm: React.FC<PassengerProp> = ({
       mobility: true,
       documentType: true,
       documentData: {
-        series: formik.values.documentType === 'passport',
-        number: true
-      }
+        series: formik.values.documentType === "passport",
+        number: true,
+      },
     });
 
     const errors = await formik.validateForm();
-    console.log('Validation errors:', errors);
 
     if (Object.keys(errors).length === 0) {
       setIsFormValid(true);
       try {
         await formik.submitForm();
-        console.log('Form submitted successfully');
+        console.log("Form submitted successfully");
       } catch (error) {
-        console.error('Form submission error:', error);
+        console.error("Form submission error:", error);
       }
     } else {
       setIsFormValid(false);
@@ -146,10 +164,7 @@ const PassengerForm: React.FC<PassengerProp> = ({
     e: React.ChangeEvent<HTMLSelectElement>
   ) => {
     formik.handleChange(e);
-    formik.setFieldValue("documentData", {
-      series: "",
-      number: "",
-    });
+    formik.setFieldValue("documentData", { series: "", number: "" });
     formik.setFieldTouched("documentData.series", false);
     formik.setFieldTouched("documentData.number", false);
   };
@@ -236,7 +251,7 @@ const PassengerForm: React.FC<PassengerProp> = ({
                   />
                   {formik.touched.secondName && formik.errors.secondName && (
                     <div className="mt-1 text-sm text-red-600">
-                      {formik.errors.secondName}
+                      {getIn(formik.errors, "secondName")}
                     </div>
                   )}
                 </div>
@@ -259,7 +274,7 @@ const PassengerForm: React.FC<PassengerProp> = ({
                   />
                   {formik.touched.firstName && formik.errors.firstName && (
                     <div className="mt-1 text-sm text-red-600">
-                      {formik.errors.firstName}
+                      {getIn(formik.errors, "firstName")}
                     </div>
                   )}
                 </div>
@@ -282,7 +297,7 @@ const PassengerForm: React.FC<PassengerProp> = ({
                   />
                   {formik.touched.patronymic && formik.errors.patronymic && (
                     <div className="mt-1 text-sm text-red-600">
-                      {formik.errors.patronymic}
+                      {getIn(formik.errors, "patronymic")}
                     </div>
                   )}
                 </div>
@@ -352,7 +367,7 @@ const PassengerForm: React.FC<PassengerProp> = ({
                   />
                   {formik.touched.birthDate && formik.errors.birthDate && (
                     <div className="mt-1 text-sm text-red-600">
-                      {formik.errors.birthDate}
+                      {getIn(formik.errors, "birthDate")}
                     </div>
                   )}
                 </div>
@@ -418,7 +433,7 @@ const PassengerForm: React.FC<PassengerProp> = ({
                       value={formik.values.documentType}
                       onChange={handleDocumentTypeChange}
                       onBlur={formik.handleBlur}
-                      className="w-full h-[50px] p-2 text-xl border-2 border-gray-400 rounded-lg appearance-none cursor-pointer outline-none bg-white pr-12"
+                      className="w-full h-[50px] px-2 text-xl border-2 border-gray-400 rounded-lg appearance-none cursor-pointer outline-none bg-white pr-12"
                     >
                       <option value="passport">Паспорт РФ</option>
                       <option value="birthCertificate">
@@ -454,12 +469,9 @@ const PassengerForm: React.FC<PassengerProp> = ({
                         placeholder="1234"
                         maxLength={4}
                       />
-                      {formik.touched.documentData?.series &&
-                        formik.errors.documentData?.series && (
-                          <div className="mt-1 text-sm text-red-600">
-                            {formik.errors.documentData.series}
-                          </div>
-                        )}
+                      <div className="mt-1 text-sm text-red-600">
+                        {getIn(formik.errors, "documentData.series")}
+                      </div>
                     </div>
                     <div className="flex flex-col w-[280px]">
                       <label
@@ -478,13 +490,9 @@ const PassengerForm: React.FC<PassengerProp> = ({
                         placeholder="123456"
                         maxLength={6}
                       />
-                     {formik.touched.documentData?.number && formik.errors.documentData?.number && (
-  <div className="mt-1 text-sm text-red-600">
-    {formik.values.documentType === "passport"
-      ? "Номер паспорта должен содержать 6 цифр"
-      : "Формат свидетельства: VIII КУ 123456"}
-  </div>
-)}
+                      <div className="mt-1 text-sm text-red-600">
+                        {getIn(formik.errors, "documentData.number")}
+                      </div>
                     </div>
                   </div>
                 ) : (
@@ -513,12 +521,9 @@ const PassengerForm: React.FC<PassengerProp> = ({
                       Формат: Римские цифры (VIII), пробел, 2 буквы (КУ),
                       пробел, 6 цифр
                     </div>
-                    {formik.touched.documentData?.number &&
-                      formik.errors.documentData?.number && (
-                        <div className="mt-1 text-sm text-red-600">
-                          Формат свидетельства: VIII КУ 123456
-                        </div>
-                      )}
+                    <div className="mt-1 text-sm text-red-600">
+                      {getIn(formik.errors, "documentData.number")}
+                    </div>
                   </div>
                 )}
               </div>
