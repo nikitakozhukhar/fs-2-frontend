@@ -10,7 +10,9 @@ import orderStore from "../../store/orderStore";
 
 const SuccessInfoBanner = () => {
 
-  const { user } = orderStore();
+  const { user, departure } = orderStore();
+
+  const totalPrice = departure.seats.reduce((sum, seat) => sum + (seat.price || 0), 0)
 
   // const handleClick = (item) => {
   //   console.log(item)
@@ -44,7 +46,7 @@ const SuccessInfoBanner = () => {
           <div className="font-bold text-4xl">№ Заказа 285АА</div>
           <div className="flex items-center text-4xl">
             <span className="mr-5 text-4xl text-[#928F94]">Сумма</span>
-            <span className="font-bold mr-2">7 760</span>
+            <span className="font-bold mr-2">{totalPrice}</span>
             <span className="after:content-['\20BD'] after:text-[#928F94]"></span>
           </div>
         </div>
