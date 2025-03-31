@@ -16,7 +16,7 @@ import ProgressLoadingBar from "../ProgressLoadingBar/ProgressLoadingBar";
 const Header: React.FC<HeaderProps> = ({
   location = "default",
   text = "default",
-  findForm,
+  findForm = "true",
 }) => {
 
   const { progress } = progressStore();
@@ -72,7 +72,7 @@ const Header: React.FC<HeaderProps> = ({
           </div>
         )}
 
-        {!findForm && <FindTicket />}
+        {findForm ? <FindTicket /> : null}
       </div>
 
       <Banner src={imgBannerSrc} />
