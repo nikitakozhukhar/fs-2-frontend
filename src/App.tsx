@@ -1,16 +1,15 @@
 import "./App.css";
-import './input.css'
-import './output.css'
+import "./input.css";
+import "./output.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Page404 from "./pages/Page404";
 import HomePage from "./pages/HomePage";
+import PaymentPage from "./pages/PaymentPage";
+import SuccessPage from "./pages/SuccessPage";
 import TrainViewPage from "./pages/TrainViewPage";
 import PlaceViewPage from "./pages/PlaceViewPage";
 import PassangersPage from "./pages/PassangersPage";
 import ConfirmationPage from "./pages/ConfirmationPage";
-import PaymentPage from "./pages/PaymentPage";
-import SuccessPage from "./pages/SuccessPage";
-import Page404 from "./pages/Page404";
-
 import Footer from "./components/Footer/Footer";
 
 function App() {

@@ -1,4 +1,3 @@
-import React from "react";
 import { progressStore } from "../../store/progressStore";
 
 const ProgressLoadingBar = () => {

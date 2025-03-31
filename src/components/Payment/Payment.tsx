@@ -1,8 +1,8 @@
-import { Link } from "react-router-dom";
-import { useFormik } from "formik";
 import * as Yup from "yup";
-import orderStore from "../../store/orderStore";
+import { useFormik } from "formik";
+import { Link } from "react-router-dom";
 import { User } from "../../store/orderStore";
+import orderStore from "../../store/orderStore";
 
 const Payment = () => {
   const { user, setUserData } = orderStore();
@@ -178,7 +178,7 @@ const Payment = () => {
         <span className="w-[100%] h-[1px] bg-[#928F94]"></span>
 
         <div className="flex flex-col gap-4 px-4 py-8 mb-8">
-          {/* Чекбокс "Онлайн" */}
+       
           <div className="flex items-center gap-4">
             <input
               type="checkbox"
@@ -226,7 +226,6 @@ const Payment = () => {
             </label>
           </div>
 
-          {/* Опции для онлайн-оплаты */}
           <div className="flex gap-9 text-2xl font-bold">
             <span className="font-bold">Банковской картой</span>
             <span className="font-bold">PayPal</span>
@@ -236,7 +235,6 @@ const Payment = () => {
 
         <span className="w-[100%] h-[1px] bg-[#928F94]"></span>
 
-        {/* Чекбокс "Наличными" */}
         <div className="flex gap-5 px-4 py-8 mb-8">
           <div className="flex items-center gap-4">
             <input
@@ -292,7 +290,7 @@ const Payment = () => {
           type="submit"
           onClick={(e) => {
             // e.preventDefault();
-            formik.handleSubmit(); 
+            formik.handleSubmit();
           }}
           className="w-[323px] h-[60px] bg-[#FFA800] rounded-md text-2xl font-bold text-white uppercase"
         >

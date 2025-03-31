@@ -1,26 +1,18 @@
 import { useNavigate } from "react-router-dom";
-import "./TrainPreview.css";
+import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import wagonStore from "../../store/wagonStore";
+import { useSeatsQuery } from "../../utils/useSeatsQuery";
+import { useSeatsIdStore } from "../../store/seatsIdStore";
+import { useTrainDetailsStore } from "../../store/trainDetailsStore";
+import WagonType from "../WagonType/WagonType";
+import timeFormate from "../TimeFormate/timeFormate";
+
 import ArrowRightIcon from "../../img/svg/tp-arrowRight.svg?react";
 import OrangeTrainIcon from "../../img/svg/orangeTrain.svg?react";
 import ThinArrowIcon from "../../img/svg/thinArrow.svg?react";
 import ThinOrangeArrowIcon from "../../img/svg/tp-orangeRightArrow.svg?react";
 import OrangeWatchIcon from "../../img/svg/tp-watch.svg?react";
-import ConditionerIcon from "../../img/svg/conditioner.svg?react";
-import WifiIcon from "../../img/svg/wifi2.svg?react";
-import BeddingIcon from "../../img/svg/bedding.svg?react";
-import CupIcon from "../../img/svg/cup2.svg?react";
-
-import { Link } from "react-router-dom";
-import { useTrainDetailsStore } from "../../store/trainDetailsStore";
-import { useSeatsIdStore } from "../../store/seatsIdStore";
-import { useSeatsQuery } from "../../utils/useSeatsQuery";
-import timeFormate from "../TimeFormate/timeFormate";
-
-import wagonStore from "../../store/wagonStore";
-import { useEffect } from "react";
-
-import WagonType from "../WagonType/WagonType";
-
 
 
 
@@ -47,13 +39,7 @@ const TrainPreview = () => {
   } = useSeatsQuery(seatsIdGlobal);
 
   const {
-    groupedWagons,
-    renderClassType,
-    activeClassIcon,
-    activeWagonNumber,
     setWagonData,
-    setActiveClassIcon,
-    setActiveWagonNumber,
   } = wagonStore();
 
   useEffect(() => {
@@ -64,9 +50,7 @@ const TrainPreview = () => {
 
   if (seatsLoading) return <div>Loading...</div>;
   if (seatsError) return <div>Error: {seatsError.message}</div>;
-
-  console.log(seatData)
-
+  
   return (
     <div className="flex flex-col mb-5 ">
       <div className="mb-16 text-3xl font-medium uppercase">Выбор мест</div>

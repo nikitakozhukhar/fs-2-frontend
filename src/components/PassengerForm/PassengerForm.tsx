@@ -1,10 +1,11 @@
+import * as Yup from "yup";
+import { useState, useEffect } from "react";
+import { FormikConfig, useFormik, getIn } from "formik";
+import orderStore from "../../store/orderStore";
+
 import OpenedCircle from "../../img/svg/openedCircle.svg?react";
 import ClosedCircle from "../../img/svg/closedCircle.svg?react";
 import RemovePassenger from "../../img/svg/removePassenger.svg?react";
-import { FormikConfig, useFormik, getIn } from "formik";
-import * as Yup from "yup";
-import orderStore from "../../store/orderStore";
-import { useState, useEffect } from "react";
 
 interface PassengerProp {
   passengerNumber: number;
@@ -30,7 +31,6 @@ const PassengerForm: React.FC<PassengerProp> = ({
   const [wasSubmitted, setWasSubmitted] = useState(false);
   const [isFormValid, setIsFormValid] = useState(false);
 
-  // Исправленная схема валидации
   const validationSchema = Yup.object().shape({
     category: Yup.string().required("Выберите категорию"),
     firstName: Yup.string()
@@ -59,28 +59,23 @@ const PassengerForm: React.FC<PassengerProp> = ({
         .required("Введите номер документа")
         .test("passportOrCertificate", function (value) {
           const documentType = this.options.context?.documentType;
-          console.log("this.parent", this.parent); // Проверка всех значений родителя
-          console.log("documentType in test", documentType);
 
           if (!value)
             return this.createError({ message: "Введите номер документа" });
 
           if (documentType === "passport") {
-            // Если тип документа "passport", валидируем как паспорт
             return /^\d{6}$/.test(value)
               ? true
               : this.createError({
                   message: "Номер паспорта должен содержать 6 цифр",
                 });
           } else if (documentType === "birthCertificate") {
-            // Если тип документа "birthCertificate", валидируем как свидетельство
             return /^[IVXLCDM]+\s[А-ЯЁ]{2}\s\d{6}$/.test(value)
               ? true
               : this.createError({
                   message: "Формат свидетельства: VIII КУ 123456",
                 });
           } else {
-            // В случае, если тип документа не установлен
             return this.createError({ message: "Неверный тип документа" });
           }
         }),
@@ -122,7 +117,6 @@ const PassengerForm: React.FC<PassengerProp> = ({
         },
         values.category === "adult"
       );
-      console.log("form send with values: ", values);
     },
   } as MyFormikConfig);
 
@@ -151,7 +145,6 @@ const PassengerForm: React.FC<PassengerProp> = ({
       setIsFormValid(true);
       try {
         await formik.submitForm();
-        console.log("Form submitted successfully");
       } catch (error) {
         console.error("Form submission error:", error);
       }

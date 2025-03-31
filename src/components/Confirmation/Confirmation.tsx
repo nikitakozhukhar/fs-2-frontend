@@ -1,24 +1,20 @@
 import { Link } from "react-router-dom";
-import orderStore from "../../store/orderStore";
-import PassangerIcon from "../../img/svg/passanger.svg?react";
-
-import ConfirmationDetailCard from "../ConfirmationDetailCard/ConfirmationDetailCard";
-
 import { choosenRoute } from "../../../src/store/choosenRoute";
-import fetchOrder from "../../utils/api/fetchOrder"
+import orderStore from "../../store/orderStore";
+import fetchOrder from "../../utils/api/fetchOrder";
+import ConfirmationDetailCard from "../ConfirmationDetailCard/ConfirmationDetailCard";
+import PassangerIcon from "../../img/svg/passanger.svg?react";
 
 const Confirmation = () => {
   const { user, departure } = orderStore();
-  
+
   const { routeInfo } = choosenRoute();
-  
+
   const { seats } = departure;
-  
-  const totalPrice = seats.reduce((sum, seat) => sum + (seat.price || 0), 0)
 
-  const confirmData = {user, departure};
+  const totalPrice = seats.reduce((sum, seat) => sum + (seat.price || 0), 0);
 
-  console.log(fetchOrder(confirmData).then(resp => console.log(resp)))
+  const confirmData = { user, departure };
 
   return (
     <div className="flex flex-col gap-8 w-[960px] mb-14">
@@ -39,7 +35,7 @@ const Confirmation = () => {
             {seats.map((seat) => (
               <div className="flex gap-5">
                 <div className="flex flex-col justify-center items-center gap-2">
-                    <PassangerIcon />
+                  <PassangerIcon />
                   <div className="">
                     {seat.personInfo?.isAdult ? "Взрослый" : "Детский"}
                   </div>
@@ -66,15 +62,15 @@ const Confirmation = () => {
               </div>
             ))}
             <div className="flex self-end">
-                <span className="text-xl mr-5">Всего</span>
-                <span className="text-xl font-bold">{totalPrice}</span>
-                <span className="text-xl after:content-['\20BD'] after:text-[#928F94]"></span>
-              </div>
-           <Link className="self-end" to={'/passangers'}>
-            <button className=" py-2 px-8 border-2 border-[#292929] rounded-md font-bold text-lg">
+              <span className="text-xl mr-5">Всего</span>
+              <span className="text-xl font-bold">{totalPrice}</span>
+              <span className="text-xl after:content-['\20BD'] after:text-[#928F94]"></span>
+            </div>
+            <Link className="self-end" to={"/passangers"}>
+              <button className=" py-2 px-8 border-2 border-[#292929] rounded-md font-bold text-lg">
                 Изменить
               </button>
-           </Link>
+            </Link>
           </div>
         </div>
       </div>
@@ -84,8 +80,10 @@ const Confirmation = () => {
           <div className="text-2xl font-medium">Способ оплаты</div>
         </div>
         <div className="flex flex-col gap-5 p-5">
-          <div className="px-5 text-xl">{user.paymentMethod === 'online' ? 'Онлайн' : 'Наличными'}</div>
-          <Link className='self-end' to={"/payment"}>
+          <div className="px-5 text-xl">
+            {user.paymentMethod === "online" ? "Онлайн" : "Наличными"}
+          </div>
+          <Link className="self-end" to={"/payment"}>
             <button className="py-2 px-8 border-2 border-[#292929] rounded-md font-bold text-lg">
               Изменить
             </button>

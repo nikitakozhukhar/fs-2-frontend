@@ -1,4 +1,3 @@
-
 import axiosInstance from "../axiosInstance/axiosInstance";
 
 export interface ICity {
@@ -10,6 +9,6 @@ export const fetchCities = async (query: string): Promise<ICity[]> => {
   if (!query) return [];
 
   const { data } = await axiosInstance.get<ICity[]>(`routes/cities?name=${query}`);
-  
+
   return data;
 };

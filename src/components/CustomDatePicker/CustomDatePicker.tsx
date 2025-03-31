@@ -7,7 +7,10 @@ interface CustomDatePickerProps {
   onChange: (date: Date | null) => void;
 }
 
-const CustomDatePicker : React.FC<CustomDatePickerProps> = ({ selected, onChange }) => {
+const CustomDatePicker: React.FC<CustomDatePickerProps> = ({
+  selected,
+  onChange,
+}) => {
   return (
     <div className="relative">
       <DatePicker

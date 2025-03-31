@@ -1,32 +1,26 @@
+import { useState } from "react";
+import { UseQueryResult } from "@tanstack/react-query";
+import { IRoute } from "../../src/utils/api/fetchRoutes";
+import { useRoutesQuery } from "../utils/useRoutesQuery";
+import { useCitiesQuery } from "../utils/useCitiesQuery";
+import { useSearchDirectionStore } from "../store/searchDirectionStore";
 import Header from "../components/Header/Header";
-import ProgressPageBar from "../components/ProgressPageBar/ProgressPageBar";
-import FilterWidget from "../components/FilterWidget/FilterWidget";
 import LastTickets from "../components/LastTickets/LastTickets";
 import TrainDetails from "../components/TrainDetails/TrainDetails";
-
-import { useSearchDirectionStore } from "../store/searchDirectionStore";
-import { useCitiesQuery } from "../utils/useCitiesQuery";
-import { useRoutesQuery } from "../utils/useRoutesQuery";
-import { UseQueryResult } from "@tanstack/react-query";
+import FilterWidget from "../components/FilterWidget/FilterWidget";
 import LoadingTrain from "../components/LoadingTrain/LoadingTrain";
-import { IRoute } from "../../src/utils/api/fetchRoutes";
-import { useState } from "react";
+import ProgressPageBar from "../components/ProgressPageBar/ProgressPageBar";
 
 const TrainViewPage = () => {
-
   const { fromCityGlobal, toCityGlobal } = useSearchDirectionStore();
 
-  const {
-    data: fromCities,
-  } = useCitiesQuery(fromCityGlobal.name);
+  const { data: fromCities } = useCitiesQuery(fromCityGlobal.name);
 
-  const {
-    data: toCities,
-  } = useCitiesQuery(toCityGlobal.name);
+  const { data: toCities } = useCitiesQuery(toCityGlobal.name);
 
   const [limit, setNewLimit] = useState<number>(5);
   const [page, setPage] = useState<number>(1);
-  const [sortBy, setSortBy] = useState<string>('');
+  const [sortBy, setSortBy] = useState<string>("");
 
   const fromCityId = fromCities?.[0]?._id ?? "";
   const toCityId = toCities?.[0]?._id ?? "";
@@ -41,10 +35,10 @@ const TrainViewPage = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
-    <Header location={"train"} text={false} />
-    <ProgressPageBar />
-    
-    <main className="flex-grow relative">
+      <Header location={"train"} text={false} />
+      <ProgressPageBar />
+
+      <main className="flex-grow relative">
         <div className="container mx-auto max-w-[1200px] w-full py-8 px-4">
           <div className="flex flex-col md:flex-row gap-8">
             <aside className="aside-widgets md:w-1/4 mr-8">
@@ -63,7 +57,7 @@ const TrainViewPage = () => {
           </div>
         )}
       </main>
-  </div>
+    </div>
   );
 };
 

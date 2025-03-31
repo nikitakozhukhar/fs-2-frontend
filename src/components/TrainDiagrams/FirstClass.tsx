@@ -1,12 +1,12 @@
+import wagonStore from "../../store/wagonStore";
+import Seat from "./Seat";
+import { firstClassSeats, ProcessedWagon, Wagon } from "./seatsData";
+
 import WCRoomIcon from "../../img/svg/wc-svgrepo-com.svg?react";
 import CoffeMakerIcon from "../../img/svg/coffee-maker-svgrepo-com.svg?react";
 import ConductorIcon from "../../img/svg/conductor_umi9qkxgsyzx.svg?react";
 import TrashIcon from "../../img/svg/trash-can-svgrepo-com.svg?react";
 import NoSmokingIcon from "../../img/svg/no-smoking-sign-svgrepo-com.svg?react";
-
-import Seat from "./Seat";
-import { firstClassSeats, ProcessedWagon, Wagon } from "./seatsData";
-import wagonStore from "../../store/wagonStore";
 
 const FirstClass: React.FC = () => {
   const { renderClassType, activeWagonNumber } = wagonStore();
@@ -28,11 +28,10 @@ const FirstClass: React.FC = () => {
   if (!activeWagonData) {
     return null;
   }
-  const coutedCoupeWidth = Math.floor(700 / activeWagonData.seats.length);
+  const countedCoupeWidth = Math.floor(700 / activeWagonData.seats.length);
 
   return (
     <div className="flex w-[921px] h-[145px] m-auto mb-5 border-2 rounded-3xl">
-      {/* Левый блок */}
       <div className="flex relative z-0 h-[100%]">
         <div className="w-[45px] h-[100%] border-2 flex justify-between items-center rounded-l-xl">
           <div className="w-[5px] h-[50px] border-gray-500 border-2 bg-gray-500 -ml-0.5"></div>
@@ -64,13 +63,12 @@ const FirstClass: React.FC = () => {
         </div>
       </div>
 
-      {/* Основные места */}
       <div className="relative z-0 flex w-[700px] h-full">
         {activeWagonData.seats.map((coupe) => (
           <div
             key={coupe.id}
             className={`flex flex-col justify-between `}
-            style={{ width: `${coutedCoupeWidth}px` }}
+            style={{ width: `${countedCoupeWidth}px` }}
           >
             <div className="flex justify-evenly items-stretch h-[100%] border-l-4 border-r-4 border-t-4 border-[#999999]">
               <Seat
@@ -93,7 +91,6 @@ const FirstClass: React.FC = () => {
         ))}
       </div>
 
-      {/* Правый блок */}
       <div className="flex flex-col items-center justify-between py-1 border-2 w-[40px]">
         <div className="relative">
           <WCRoomIcon />

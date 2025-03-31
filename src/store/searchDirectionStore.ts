@@ -1,20 +1,19 @@
 import { create } from 'zustand'
-import { ICity } from '../utils/api/fetchCities';
 
 interface ISearchDirection {
-  fromCityGlobal:  { name: string; _id: string }; //string; 
-  toCityGlobal: { name: string; _id: string }; //string; ;
+  fromCityGlobal:  { name: string; _id: string };
+  toCityGlobal: { name: string; _id: string };
   startDateGlobal: string;
   endDateGlobal: string;
-  setFromCityGlobal: (query: { name: string; _id: string } ) => void; //(query: [] )
+  setFromCityGlobal: (query: { name: string; _id: string } ) => void;
   setToCityGlobal: (query: { name: string; _id: string } ) => void;
   setStartDateGlobal: (query: string) => void;
   setEndDateGlobal: (query: string) => void;
 }
 
 export const useSearchDirectionStore = create<ISearchDirection>((set) => ({
-  fromCityGlobal: {name: '', _id: '' }, //'', //[]
-  toCityGlobal: {name: '', _id: '' }, //'', //[]
+  fromCityGlobal: {name: '', _id: '' },
+  toCityGlobal: {name: '', _id: '' },
   startDateGlobal: '',
   endDateGlobal: '',
   setFromCityGlobal: (fromCityGlobal) => set(state => ({ fromCityGlobal: {...state.fromCityGlobal, ...fromCityGlobal }})),

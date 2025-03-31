@@ -38,8 +38,6 @@ const FilterWidget: React.FC = () => {
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [endDate, setEndDate] = useState<Date | null>(null);
 
-  //-------------
-
   const [priceRange, setPriceRange] = useState([0, 7000]); // в тыс. ₽
   const [timeRangeDepartureStraight, setTimeRangeDepartureStraight] = useState([0, 1440]);
   const [timeRangeArrivalStraight, setTimeRangeArrivalStraight] = useState([0, 1440]);
@@ -54,8 +52,6 @@ const FilterWidget: React.FC = () => {
     const mins = minutes % 60;
     return `${String(hours).padStart(2, "0")}:${String(mins).padStart(2, "0")}`;
   };
-
-  //---------------------
 
   const handleClick = (option: {
     svg?: JSX.Element;
@@ -86,7 +82,6 @@ const FilterWidget: React.FC = () => {
             onChange={(date: Date | null) => setEndDate(date)}
           />
         </div>
-        {/* Линия после формы */}
       </form>
 
       <div className="w-[370px] h-[1px] relative -left-5 bg-white"></div>

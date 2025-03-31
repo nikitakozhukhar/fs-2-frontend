@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import ReactSlider from "react-slider";
 
 interface RangeSliderProps {
@@ -19,7 +19,7 @@ const RangeSlider: React.FC<RangeSliderProps> = ({ min, max, value, onChange, fo
         value={value}
         onChange={onChange}
         pearling
-        minDistance={Math.round((max - min) * 0.05)} // Минимальный диапазон 5%
+        minDistance={Math.round((max - min) * 0.05)}
         renderTrack={(props, state) => (
           <div
             {...props}

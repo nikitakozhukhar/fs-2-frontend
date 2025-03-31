@@ -3,8 +3,7 @@ import { fetchLastRoutes } from "./api/fetchLastRoutes";
 
 export const useLastRoutesQuery = () => {
   return useQuery({
-    queryKey:['lastRoutes'],
+    queryKey: ['lastRoutes'],
     queryFn: () => fetchLastRoutes(),
-    // enabled: !!from_city_id && !!to_city_id
   })
 }

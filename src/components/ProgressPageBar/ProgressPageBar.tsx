@@ -1,6 +1,5 @@
 import './ProgressPageBar.css'
 
-
 const ProgressPageBar = () => {
   return (
     <div className="flex flex-row justify-center items-center gap-8 h-24 mb-12 bg-[#3E3C41] text-white">

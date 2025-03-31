@@ -1,4 +1,8 @@
-import "./Footer.css";
+import { useState } from "react";
+import { Link } from "react-scroll";
+import { useSubscribeQuery } from "../../utils/useSubscribeQuery";
+import Logo from "../Logo/Logo";
+
 import PhoneIcon from "../../img/svg/phone.svg?react";
 import EmailIcon from "../../img/svg/mail.svg?react";
 import SkypeIcon from "../../img/svg/skype.svg?react";
@@ -9,10 +13,6 @@ import GooglePlusIcon from "../../img/svg/googlePlus.svg?react";
 import FacabookIcon from "../../img/svg/facebook.svg?react";
 import TweeterIcon from "../../img/svg/tweetter.svg?react";
 import ArrowUpIcon from "../../img/svg/arrowUp.svg?react";
-import Logo from "../Logo/Logo";
-import { Link } from "react-scroll";
-import { useState } from "react";
-import { useSubscribeQuery } from "../../utils/useSubscribeQuery";
 
 const Footer = () => {
   const [email, setEmail] = useState('');

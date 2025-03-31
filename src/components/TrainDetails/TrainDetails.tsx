@@ -1,22 +1,21 @@
-import { useSearchDirectionStore } from "../../store/searchDirectionStore";
+import { useState } from "react";
+import { UseQueryResult } from "@tanstack/react-query";
+import { IRoute } from "../../../src/utils/api/fetchRoutes";
 import { useCitiesQuery } from "../../utils/useCitiesQuery";
 import { useRoutesQuery } from "../../utils/useRoutesQuery";
+import LoadingTrain from "../LoadingTrain/LoadingTrain";
 import TrainDetailCard from "../TrainDetailCard/TrainDetailCard";
-import { IRoute } from "../../../src/utils/api/fetchRoutes";
-import { UseQueryResult } from "@tanstack/react-query";
+import { useSearchDirectionStore } from "../../store/searchDirectionStore";
+
 import PrevPageIcon from "../../img/svg/prevPage.svg?react";
 import NextPageIcon from "../../img/svg/nextPage.svg?react";
-
-import LoadingTrain from "../LoadingTrain/LoadingTrain";
-import { useState } from "react";
-
 
 const TrainDetails = () => {
   const { fromCityGlobal, toCityGlobal } = useSearchDirectionStore();
   const [limit, setNewLimit] = useState<number>(5);
   const [page, setPage] = useState<number>(1);
-  const [sortBy, setSortBy] = useState<string>('');
-  
+  const [sortBy, setSortBy] = useState<string>("");
+
   const {
     data: fromCities,
     isLoading: fromCitiesLoading,
@@ -40,7 +39,6 @@ const TrainDetails = () => {
   const fromCityId = fromCities?.[0]?._id ?? "";
   const toCityId = toCities?.[0]?._id ?? "";
 
-  // Получаем маршруты с сервера
   const fromRoutes: UseQueryResult<IRoute, Error> = useRoutesQuery(
     fromCityId,
     toCityId,
@@ -54,7 +52,6 @@ const TrainDetails = () => {
   }
 
   const routesData = fromRoutes.data;
-  console.log(routesData);
 
   const handleSetNewLimit = (newLimit: number) => {
     setNewLimit(newLimit);
@@ -78,7 +75,6 @@ const TrainDetails = () => {
 
   return (
     <div className="flex flex-col justify-between w-[960px]">
-      {/* Первая строка: Найдено и сортировка */}
       <div className="flex flex-row justify-between mb-[30px]">
         <div className="founded-trains">Найдено: {routesData?.total_count}</div>
         <div className="founded-trains-right-col">
@@ -119,14 +115,11 @@ const TrainDetails = () => {
         </div>
       </div>
 
-      {/* Вторая строка: Детали поездов */}
       <div className="flex flex-col gap-[25px] mb-[30px]">
         {routesData && <TrainDetailCard routesData={routesData} />}
       </div>
 
-      {/* Третья строка: Пагинация */}
       <div className="flex self-end gap-[15px]">
-        {/* Кнопка "Назад" */}
         <div
           onClick={() => handlePageChange(page - 1)}
           className="flex items-center justify-center w-[50px] p-[10px_15px] border border-[#E4E0E9] text-[#928F94] cursor-pointer hover:border-[#FFA800] hover:bg-white hover:text-[#FFA800]"
@@ -134,7 +127,6 @@ const TrainDetails = () => {
           <PrevPageIcon />
         </div>
 
-        {/* Страницы пагинации */}
         {page > 1 && (
           <div
             onClick={() => handlePageChange(page - 1)}
@@ -169,7 +161,6 @@ const TrainDetails = () => {
           </div>
         )}
 
-        {/* Кнопка "Вперед" */}
         <div
           onClick={() => handlePageChange(page + 1)}
           className="flex items-center justify-center w-[50px] p-[10px_15px] border border-[#E4E0E9] text-[#928F94] cursor-pointer hover:border-[#FFA800] hover:bg-white hover:text-[#FFA800]"

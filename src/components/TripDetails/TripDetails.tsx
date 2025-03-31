@@ -1,4 +1,9 @@
 import { useState } from "react";
+import orderStore from "../../store/orderStore";
+import { useTrainDetailsStore } from "../../store/trainDetailsStore";
+import { useSearchDirectionStore } from "../../store/searchDirectionStore";
+import timeFormate from "../TimeFormate/timeFormate";
+
 import RightArrowIcon from "../../img/svg/smallRightArrow.svg?react";
 import CloseDetailsIcon from "../../img/svg/closeDetails.svg?react";
 import OpenDetailsIcon from "../../img/svg/moreDetails.svg?react";
@@ -6,11 +11,6 @@ import RightOrangeArrowIcon from "../../img/svg/tp-orangeRightArrow.svg?react";
 import LeftOrangeArrowIcon from "../../img/svg/leftArrowTime.svg?react";
 import LeftArrowIcon from "../../img/svg/smallLeftArrow.svg?react";
 import PassangerIcon from "../../img/svg/orangePassanger.svg?react";
-
-import { useSearchDirectionStore } from "../../store/searchDirectionStore";
-import { useTrainDetailsStore } from "../../store/trainDetailsStore";
-import orderStore from "../../store/orderStore";
-import timeFormate from "../TimeFormate/timeFormate";
 
 const TripDetails = () => {
   const { startDateGlobal, endDateGlobal } = useSearchDirectionStore();

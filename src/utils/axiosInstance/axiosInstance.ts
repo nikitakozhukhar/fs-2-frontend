@@ -1,11 +1,9 @@
-// axiosInstance.ts
 import axios, { AxiosProgressEvent } from "axios";
 import { progressStore } from "../../store/progressStore";
 
 const axiosInstance = axios.create({
   baseURL: 'https://students.netoservices.ru/fe-diplom/',
 });
-
 
 axiosInstance.interceptors.request.use((config) => {
   const { setProgress } = progressStore.getState();

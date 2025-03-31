@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { fetchSubscribe } from "./api/fetchSubscribe";
 
-export const useSubscribeQuery = (email:string) => {
+export const useSubscribeQuery = (email: string) => {
   return useQuery({
     queryKey: ['subscribe', email],
     queryFn: () => fetchSubscribe(email),

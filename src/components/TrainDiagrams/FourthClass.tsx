@@ -1,36 +1,32 @@
+import wagonStore from "../../store/wagonStore";
+import Seat from "./Seat";
+import { fourthClassSeats, ProcessedWagon, Wagon } from "./seatsData";
+
 import WCRoomIcon from "../../img/svg/wc-svgrepo-com.svg?react";
 import CoffeMakerIcon from "../../img/svg/coffee-maker-svgrepo-com.svg?react";
 import ConductorIcon from "../../img/svg/conductor_umi9qkxgsyzx.svg?react";
 import TrashIcon from "../../img/svg/trash-can-svgrepo-com.svg?react";
 import NoSmokingIcon from "../../img/svg/no-smoking-sign-svgrepo-com.svg?react";
 
-import Seat from "./Seat";
-import { fourthClassSeats, ProcessedWagon, Wagon } from "./seatsData";
-import wagonStore from "../../store/wagonStore";
-// import orderStore from "../../store/orderStore";
-
 const FourthClass = () => {
-
   const { renderClassType, activeWagonNumber } = wagonStore();
 
-  // const { updateNewSeat } = orderStore();
-
-  const fourthClassWagons: Wagon[] = (renderClassType.find((item) => item.name === "fourth")?.wagons ?? []) as Wagon[];
+  const fourthClassWagons: Wagon[] = (renderClassType.find(
+    (item) => item.name === "fourth"
+  )?.wagons ?? []) as Wagon[];
 
   if (!fourthClassWagons) {
     return null;
   }
 
-  const processedData: ProcessedWagon[]  = fourthClassSeats(fourthClassWagons);
+  const processedData: ProcessedWagon[] = fourthClassSeats(fourthClassWagons);
 
   const activeWagonData = processedData.find(
     (wagon) => wagon.coachName === activeWagonNumber
   );
 
-  console.log(activeWagonData)
-
   if (!activeWagonData) {
-    return <div>Выберите вагон</div>
+    return <div>Выберите вагон</div>;
   }
 
   const countedCoupeWidth = Math.floor(700 / activeWagonData.seats.length);
@@ -70,30 +66,33 @@ const FourthClass = () => {
 
       <div className="relative z-0 flex w-[700px] gap-5 border-4 border-gray-500">
         {activeWagonData.seats.map((coupe) => (
-          <div key={coupe.id} className="relative flex flex-col" style={{ width: `${countedCoupeWidth}px`}}>
-           
+          <div
+            key={coupe.id}
+            className="relative flex flex-col"
+            style={{ width: `${countedCoupeWidth}px` }}
+          >
             <div className="flex justify-between mb-4">
               <div className="flex flex-col-reverse gap-1 w-8 ">
-                <Seat 
-                  seatNumber={coupe.seat1?.number ?? null} 
+                <Seat
+                  seatNumber={coupe.seat1?.number ?? null}
                   available={coupe.seat1?.available}
                   coachId={activeWagonData.coachId}
                 />
-                <Seat 
-                  seatNumber={coupe.seat2?.number ?? null} 
+                <Seat
+                  seatNumber={coupe.seat2?.number ?? null}
                   available={coupe.seat2?.available}
                   coachId={activeWagonData.coachId}
                 />
               </div>
               <div className="flex flex-col-reverse gap-1 w-8 ">
-                <Seat 
-                  seatNumber={coupe.seat3?.number ?? null} 
+                <Seat
+                  seatNumber={coupe.seat3?.number ?? null}
                   available={coupe.seat3?.available}
                   coachId={activeWagonData.coachId}
                 />
-                  
-                <Seat 
-                  seatNumber={coupe.seat4?.number ?? null} 
+
+                <Seat
+                  seatNumber={coupe.seat4?.number ?? null}
                   available={coupe.seat4?.available}
                   coachId={activeWagonData.coachId}
                 />
@@ -101,25 +100,25 @@ const FourthClass = () => {
             </div>
             <div className="flex justify-between">
               <div className="flex flex-col-reverse gap-1 w-8">
-                <Seat 
-                  seatNumber={coupe.seat5?.number ?? null} 
+                <Seat
+                  seatNumber={coupe.seat5?.number ?? null}
                   available={coupe.seat5?.available}
                   coachId={activeWagonData.coachId}
                 />
-                <Seat 
-                  seatNumber={coupe.seat6?.number ?? null} 
+                <Seat
+                  seatNumber={coupe.seat6?.number ?? null}
                   available={coupe.seat6?.available}
                   coachId={activeWagonData.coachId}
                 />
               </div>
               <div className="flex flex-col gap-1 w-8 ">
-                <Seat 
-                  seatNumber={coupe.seat7?.number ?? null} 
+                <Seat
+                  seatNumber={coupe.seat7?.number ?? null}
                   available={coupe.seat7?.available}
                   coachId={activeWagonData.coachId}
                 />
-                <Seat 
-                  seatNumber={coupe.seat8?.number ?? null} 
+                <Seat
+                  seatNumber={coupe.seat8?.number ?? null}
                   available={coupe.seat8?.available}
                   coachId={activeWagonData.coachId}
                 />

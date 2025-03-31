@@ -9,8 +9,6 @@ const FindTicket: React.FC = () => {
   const {
     fromCityGlobal,
     toCityGlobal,
-    startDateGlobal,
-    endDateGlobal,
     setFromCityGlobal,
     setToCityGlobal,
     setStartDateGlobal,
@@ -54,7 +52,6 @@ const FindTicket: React.FC = () => {
     setToCityLocal(e.target.value)
     setShowToDropdown(true);
   };
-
 
   return (
     <div className="w-[730px]">

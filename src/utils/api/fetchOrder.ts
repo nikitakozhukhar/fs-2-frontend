@@ -1,5 +1,5 @@
 import axiosInstance from "../axiosInstance/axiosInstance";
-import { User, Departure} from "../../store/orderStore"
+import { User, Departure } from "../../store/orderStore"
 
 export interface IOrder {
   user: User;
@@ -12,8 +12,8 @@ export const fetchOrder = async (data: IOrder) => {
   const orderNumber = await axiosInstance.post(`/order`, {
     data
   })
-  .then(response => console.log(response))
-  
+    .then(response => console.log(response))
+
   return orderNumber;
 };
 

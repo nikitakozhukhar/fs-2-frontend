@@ -1,23 +1,20 @@
 import { useState } from "react";
+import wagonStore from "../../store/wagonStore";
+import HintOnHover from "../HintOnHover/HintOnHover";
+
 import ConditionerIcon from "../../img/svg/condition.svg?react";
 import WifiIcon from "../../img/svg/wifi2.svg?react";
 import BeddingIcon from "../../img/svg/bedding.svg?react";
 import CupIcon from "../../img/svg/cup2.svg?react";
 
-import wagonStore from "../../store/wagonStore";
-import HintOnHover from "../HintOnHover/HintOnHover";
-
 const WagonType = () => {
   const {
-    groupedWagons,
     renderClassType,
     activeClassIcon,
     activeWagonNumber,
-    setWagonData,
     setActiveClassIcon,
     setActiveWagonNumber,
   } = wagonStore();
-
 
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
@@ -28,8 +25,6 @@ const WagonType = () => {
   const handleMouseLeave = () => {
     setHoveredIndex(null);
   };
-
-  // console.log(renderClassType)
 
   const services = [
     { icon: <ConditionerIcon fill="inherit" />, name: "кондиционер" },
@@ -169,12 +164,15 @@ const WagonType = () => {
           <div className="flex gap-3 cursor-pointer ">
             {services.map((service, index) => (
               <div
+                key={index}
                 className="fill-white stroke-black-500 hover:fill-[#FFA800] active:text-white active:fill-[#FFA800] relative"
                 onMouseEnter={() => handleMouseEnter(index)}
                 onMouseLeave={handleMouseLeave}
               >
                 {service.icon}
-                {hoveredIndex === index && <HintOnHover hint={service.name} />}
+                {hoveredIndex === index && (
+                  <HintOnHover key={`hint-${index}`} hint={service.name} />
+                )}
               </div>
             ))}
           </div>
@@ -188,7 +186,9 @@ const WagonType = () => {
       </div>
 
       {renderClassType.map((item) =>
-        activeClassIcon === item.name ? item.diagram : null
+        activeClassIcon === item.name ? (
+          <div key={`diagram-${item.name}`}>{item.diagram}</div>
+        ) : null
       )}
     </div>
   );

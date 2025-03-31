@@ -1,12 +1,12 @@
+import wagonStore from "../../store/wagonStore";
+import Seat from "./Seat";
+import { secondClassSeats, Wagon } from "./seatsData";
+
 import WCRoomIcon from "../../img/svg/wc-svgrepo-com.svg?react";
 import CoffeMakerIcon from "../../img/svg/coffee-maker-svgrepo-com.svg?react";
 import ConductorIcon from "../../img/svg/conductor_umi9qkxgsyzx.svg?react";
 import TrashIcon from "../../img/svg/trash-can-svgrepo-com.svg?react";
 import NoSmokingIcon from "../../img/svg/no-smoking-sign-svgrepo-com.svg?react";
-
-import Seat from "./Seat";
-import { secondClassSeats, ProcessedWagon, Wagon } from "./seatsData";
-import wagonStore from "../../store/wagonStore";
 
 const SecondClass = () => {
   const { renderClassType, activeWagonNumber } = wagonStore();
@@ -27,11 +27,10 @@ const SecondClass = () => {
     return <div>Выберите вагон</div>
   }
 
-  const coutedCoupeWidth = Math.floor(700 / activeWagonData.seats.length);
+  const countedCoupeWidth = Math.floor(700 / activeWagonData.seats.length);
 
   return (
     <div className="flex w-[921px] h-[145px] m-auto mb-5 border-2 rounded-3xl">
-      {/* Левый блок */}
       <div className="flex relative z-0 h-[100%]">
         <div className="w-[45px] h-[100%] border-2 flex justify-between items-center rounded-l-xl">
           <div className="w-[5px] h-[50px] border-gray-500 border-2 bg-gray-500 -ml-0.5"></div>
@@ -63,13 +62,12 @@ const SecondClass = () => {
         </div>
       </div>
 
-      {/* Основные места */}
       <div className="relative z-0 flex w-[700px] h-full">
         {activeWagonData.seats.map((coupe) => (
           <div
             key={coupe.id}
             className={`relative flex flex-col justify-between h-full border-4 border-gray-500`}
-            style={{ width: `${coutedCoupeWidth}px` }}
+            style={{ width: `${countedCoupeWidth}px` }}
           >
             <div className="flex justify-between">
               <div className="flex flex-col-reverse gap-3 w-8 h-[86px] border-b-4 border-[#999999]">
@@ -105,7 +103,6 @@ const SecondClass = () => {
         <div className="absolute z-20 top-[88px] w-[700px] h-[25px] bg-white"></div>
       </div>
 
-      {/* Правый блок */}
       <div className="flex flex-col items-center justify-between py-1 border-2 w-[40px]">
         <div className="relative">
           <WCRoomIcon />

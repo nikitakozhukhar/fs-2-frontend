@@ -24,13 +24,11 @@ const ThirdClass = () => {
     (wagon) => wagon.coachName === activeWagonNumber
   );
 
-  // Если данные для активного вагона отсутствуют, возвращаем null или заглушку
   if (!activeWagonData) {
     return <div>Выберите вагон</div>
   }
 
-  const coutedCoupeWidth = Math.floor(700 / activeWagonData.seats.length);
-  console.log(coutedCoupeWidth)
+  const countedCoupeWidth = Math.floor(700 / activeWagonData.seats.length);
 
   return (
     <div className="flex w-[921px] h-[145px] m-auto mb-5 border-2 rounded-3xl ">
@@ -70,7 +68,7 @@ const ThirdClass = () => {
           <div
             key={coupe.id}
             className={`relative flex flex-col justify-between h-full border-4 border-gray-500`}
-            style={{ width: `${coutedCoupeWidth}px` }}
+            style={{ width: `${countedCoupeWidth}px` }}
           >
             <div className="flex justify-between">
               <div className="flex flex-col-reverse gap-3 w-8 h-[86px]">

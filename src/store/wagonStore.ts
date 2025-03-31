@@ -1,26 +1,24 @@
 import { create } from "zustand";
-import { ReactNode } from "react";
+import React, { ReactNode } from "react";
+import ThirdClass from "../components/TrainDiagrams/ThirdClass";
+import FirstClass from "../components/TrainDiagrams/FirstClass";
+import SecondClass from "../components/TrainDiagrams/SecondClass";
+import FourthClass from "../components/TrainDiagrams/FourthClass";
 
 import FirstClassIcon from "../img/svg/firstClass.svg?react";
 import SecondClassIcon from "../img/svg/secondClass.svg?react";
 import ThirdClassIcon from "../img/svg/thirdClass.svg?react";
 import FourthClassIcon from "../img/svg/fourClass.svg?react";
 
-import FirstClass from "../components/TrainDiagrams/FirstClass";
-import SecondClass from "../components/TrainDiagrams/SecondClass";
-import ThirdClass from "../components/TrainDiagrams/ThirdClass";
-import FourthClass from "../components/TrainDiagrams/FourthClass";
-import React from "react";
-
 // Типы для иконок и схем вагонов
-type Icons = {
+interface Icons {
   first: typeof FirstClassIcon;
   second: typeof SecondClassIcon;
   third: typeof ThirdClassIcon;
   fourth: typeof FourthClassIcon;
 };
 
-type Diagrams = {
+interface Diagrams {
   first: typeof FirstClass;
   second: typeof SecondClass;
   third: typeof ThirdClass;
@@ -57,7 +55,7 @@ interface Wagon {
 type GroupedWagons = Record<string, Wagon[]>;
 
 // Тип для renderClassType
-type RenderClassType = {
+interface RenderClassType {
   name: string;
   icon: ReactNode;
   diagram: ReactNode;
@@ -80,7 +78,7 @@ const diagrams: Diagrams = {
 };
 
 // Состояние хранилища
-type WagonStore = {
+interface WagonStore {
   groupedWagons: GroupedWagons | null;
   renderClassType: RenderClassType[];
   activeClassIcon: string | null;

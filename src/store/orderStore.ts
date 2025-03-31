@@ -55,7 +55,7 @@ const orderStore = create<BookingData>((set, get) => ({
   },
   departure: {
     routeDirectionId: '',
-    seats: [], // Изначально seats пуст
+    seats: [],
   },
   addrouteDirectionId: (directionId) => set((state) => ({
     departure: {
@@ -108,7 +108,7 @@ const orderStore = create<BookingData>((set, get) => ({
       set((state) => ({
         user: {
           ...state.user,
-          [key]: value, // Обновляем конкретное поле в user
+          [key]: value,
         },
       })),
       isPassengerDataComplete: (seatIndex) => {

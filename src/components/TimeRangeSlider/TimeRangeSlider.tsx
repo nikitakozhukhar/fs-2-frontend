@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 interface TimeRangeSliderProps {
   min: number;
@@ -6,14 +6,18 @@ interface TimeRangeSliderProps {
   step?: number;
 }
 
-const TimeRangeSlider: React.FC<TimeRangeSliderProps> = ({ min, max, step = 1 }) => {
+const TimeRangeSlider: React.FC<TimeRangeSliderProps> = ({
+  min,
+  max,
+  step = 1,
+}) => {
   const [minValue, setMinValue] = useState<number>(min);
   const [maxValue, setMaxValue] = useState<number>(max);
 
   const formatTime = (hours: number): string => {
-    const formattedHours = Math.floor(hours); // Округляем до целого числа
-    const formattedMinutes = Math.round((hours % 1) * 60); // Преобразуем дробную часть в минуты
-    return `${formattedHours}:${formattedMinutes.toString().padStart(2, '0')}`; // Добавляем ведущий ноль для минут
+    const formattedHours = Math.floor(hours);
+    const formattedMinutes = Math.round((hours % 1) * 60);
+    return `${formattedHours}:${formattedMinutes.toString().padStart(2, "0")}`;
   };
 
   const handleMinChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -28,7 +32,6 @@ const TimeRangeSlider: React.FC<TimeRangeSliderProps> = ({ min, max, step = 1 })
 
   return (
     <div className="flex flex-col">
-
       <div className="relative mx-auto top-[1px] h-[19px] w-[294px] border-[1px] border-[#C4C4C4] rounded-lg">
         <div className="absolute top-0 left-0 right-0 h-[19px] #3E3C41 rounded-lg"></div>
         <div
@@ -48,14 +51,14 @@ const TimeRangeSlider: React.FC<TimeRangeSliderProps> = ({ min, max, step = 1 })
           onChange={handleMinChange}
           className="absolute w-full appearance-none pointer-events-auto z-10"
           style={{
-            WebkitAppearance: 'none',
-            appearance: 'none',
-            position: 'absolute',
-            top: '0px',
-            height: '19px',
-            width: '100%',
-            background: 'transparent',
-            pointerEvents: 'auto',
+            WebkitAppearance: "none",
+            appearance: "none",
+            position: "absolute",
+            top: "0px",
+            height: "19px",
+            width: "100%",
+            background: "transparent",
+            pointerEvents: "auto",
             zIndex: 10,
           }}
         />
@@ -68,14 +71,14 @@ const TimeRangeSlider: React.FC<TimeRangeSliderProps> = ({ min, max, step = 1 })
           onChange={handleMaxChange}
           className="absolute w-full appearance-none pointer-events-auto z-10"
           style={{
-            WebkitAppearance: 'none',
-            appearance: 'none',
-            position: 'absolute',
-            top: '0px',
-            height: '19px',
-            width: '100%',
-            background: 'transparent',
-            pointerEvents: 'auto',
+            WebkitAppearance: "none",
+            appearance: "none",
+            position: "absolute",
+            top: "0px",
+            height: "19px",
+            width: "100%",
+            background: "transparent",
+            pointerEvents: "auto",
             zIndex: 10,
           }}
         />

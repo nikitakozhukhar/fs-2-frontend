@@ -1,7 +1,7 @@
-import './LastTickets.css'
-import LastTicket from "../LastTicket/LastTicket";
-
+import "./LastTickets.css";
 import { useLastRoutesQuery } from "../../utils/useLastRoutesQuery";
+
+import LastTicket from "../LastTicket/LastTicket";
 
 // Типы для вложенных объектов
 interface IPriceClass {
@@ -87,7 +87,7 @@ const LastTickets = () => {
   }
 
   if (lastRoutesError) {
-    console.error('Error:', lastRoutesError);
+    console.error("Error:", lastRoutesError);
     return <div>Error loading data</div>;
   }
 

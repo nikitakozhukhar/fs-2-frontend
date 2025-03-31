@@ -81,7 +81,7 @@ export const firstClassSeats = (wagons: Wagon[]): ProcessedWagon[] =>
   wagons.map((wagon) => ({
     coachId: wagon.coach._id,
     coachName: wagon.coach.name,
-    seats: groupSeats(wagon.seats ?? [], 2), // Теперь всегда передается массив
+    seats: groupSeats(wagon.seats ?? [], 2),
   }));
 
 export const secondClassSeats = (wagons: Wagon[]): ProcessedWagon[] =>

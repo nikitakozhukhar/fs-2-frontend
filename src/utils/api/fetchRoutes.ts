@@ -15,15 +15,15 @@ export interface ITrain {
   };
   from: {
     datetime: number;
-    railway_station_name:string;
+    railway_station_name: string;
     city: {
       name: string;
       _id: string;
     };
   }
-  to:{
+  to: {
     datetime: number;
-    railway_station_name:string;
+    railway_station_name: string;
     city: {
       name: string;
       _id: string;
@@ -83,13 +83,13 @@ export interface IRoute {
     }
   ],
   total_count: number;
-  
+
 }
 
 export const fetchRoutes = async (
-  fromCityId: string, 
-  toCityId: string, 
-  limits: number = 5, 
+  fromCityId: string,
+  toCityId: string,
+  limits: number = 5,
   offset: number = 5,
   sort: string = '',
 ): Promise<IRoute> => {
@@ -102,6 +102,6 @@ export const fetchRoutes = async (
       sort: sort
     }
   });
-  
+
   return data
 }

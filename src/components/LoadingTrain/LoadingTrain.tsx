@@ -1,9 +1,7 @@
-import React from 'react';
-import AnimatedTrainIcon from "../../img/svg/animatedTrain.svg?react";
-import AnimatedUnderlineIcon from "../../img/svg/animatedUnderLine.svg?react";
-
 import "./loadingAnimation.css"
 
+import AnimatedTrainIcon from "../../img/svg/animatedTrain.svg?react";
+import AnimatedUnderlineIcon from "../../img/svg/animatedUnderLine.svg?react";
 
 const LoadingTrain = () => {
   return (

@@ -1,24 +1,26 @@
+import { Link } from "react-scroll";
+import { progressStore } from "../../store/progressStore";
 
 import Logo from "../Logo/Logo";
 import Banner from "../Banner/Banner";
 import FindTicket from "../FindTicket/FindTicket";
-import HeaderProps from "../../interfaces/HeaderProps";
-
-import { Link } from "react-scroll";
+import ProgressLoadingBar from "../ProgressLoadingBar/ProgressLoadingBar";
 
 import trainImage from "../../img/bluredTrain.png";
 import defaultImage from "../../img/banner.png";
 import successImage from "../../img/successPageBanner.png";
 
-import { progressStore } from "../../store/progressStore";
-import ProgressLoadingBar from "../ProgressLoadingBar/ProgressLoadingBar";
+interface HeaderProps {
+  location?: "train" | "default" | "success"; // Возможные значения для `location`
+  text?: false | 'default';
+  findForm?: false | true;
+}
 
 const Header: React.FC<HeaderProps> = ({
   location = "default",
   text = "default",
   findForm = "true",
 }) => {
-
   const { progress } = progressStore();
 
   let imgBannerSrc: string = location;
@@ -78,7 +80,7 @@ const Header: React.FC<HeaderProps> = ({
       <Banner src={imgBannerSrc} />
 
       <div className="mt-[26px] w-[100vw] h-[3px]">
-        {progress > 0 && progress < 100 && <ProgressLoadingBar/>}
+        {progress > 0 && progress < 100 && <ProgressLoadingBar />}
       </div>
     </header>
   );
