@@ -4,7 +4,6 @@ interface IlastTRoute {
  
 }
 
-
 export const fetchLastRoutes = async () => {
   const { data } = await axiosInstance.get(`routes/last`);
   

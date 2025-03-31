@@ -11,8 +11,43 @@ import TweeterIcon from "../../img/svg/tweetter.svg?react";
 import ArrowUpIcon from "../../img/svg/arrowUp.svg?react";
 import Logo from "../Logo/Logo";
 import { Link } from "react-scroll";
+import { useState } from "react";
+import { useSubscribeQuery } from "../../utils/useSubscribeQuery";
 
 const Footer = () => {
+  const [email, setEmail] = useState('');
+  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState('');
+
+  const { refetch } = useSubscribeQuery(email);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!email) {
+      setError('Пожалуйста, введите email');
+      return;
+    }
+
+    if (!/^\S+@\S+\.\S+$/.test(email)) {
+      setError('Пожалуйста, введите корректный email');
+      return;
+    }
+
+    try {
+      const { data } = await refetch();
+      
+      if (data) {
+        setSubmitted(true);
+        setEmail('');
+        setError('');
+        setTimeout(() => setSubmitted(false), 3000);
+      }
+    } catch (err) {
+      setError('Произошла ошибка при подписке. Пожалуйста, попробуйте позже.');
+    }
+  };
+
   return (
     <footer id="footer" className="w-full mt-auto bg-[#2d2b30]">
       <div className="container mx-auto my-7">
@@ -44,40 +79,56 @@ const Footer = () => {
             <div className="text-xl text-white">
               <div className="footer-subscribe-form">
                 <h4 className="mb-4 text-3xl">Подписка</h4>
-                <form className="form">
-                  <div className="mb-4 text-2xl">Будте в курсе событий</div>
-                  <div className="flex gap-8 mb-4">
-                    <input type="text" className="w-[450px] h-14 text-xl outline-none" />
-                    <button className="w-[170px] h-14 border border-white uppercase">Отправить</button>
+                <form className="form" onSubmit={handleSubmit}>
+                  <div className="mb-4 text-2xl">Будьте в курсе событий</div>
+                  <div className="flex gap-8 mb-2">
+                    <input 
+                      type="email"
+                      id="subscribe"
+                      name="subscribe"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="Введите ваш email"
+                      className="w-[450px] h-14 text-xl outline-none px-4 text-black" 
+                    />
+                    <button 
+                      type="submit"
+                      className="w-[170px] h-14 border border-white uppercase hover:bg-white hover:text-[#2d2b30] transition-colors duration-300"
+                      disabled={submitted}
+                    >
+                      {submitted ? 'Отправлено!' : 'Отправить'}
+                    </button>
                   </div>
+                  {error && <div className="text-red-500 text-lg">{error}</div>}
+                  {submitted && <div className="text-green-500 text-lg">Спасибо за подписку!</div>}
                 </form>
               </div>
               <div className="footer-socials">
                 <h4 className="contacts-title text-3xl mb-3">Подписывайтесь на нас</h4>
                 <ul className="flex gap-10">
-                  <li className="">
-                    <a href="https://www.youtube.com" target="blank" className="">
-                      <YotubeIcon className="active:text-[#FFA800]"/>
+                  <li className="hover:scale-110 transition-transform duration-300">
+                    <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer">
+                      <YotubeIcon className="hover:text-[#FFA800]"/>
                     </a>
                   </li>
-                  <li className="socials-list-item">
-                    <a href="#" target="blank" className="socials-list-link">
-                      <InIcon className="active:text-[#FFA800]"/>
+                  <li className="hover:scale-110 transition-transform duration-300">
+                    <a href="#" target="_blank" rel="noopener noreferrer">
+                      <InIcon className="hover:text-[#FFA800]"/>
                     </a>
                   </li>
-                  <li className="socials-list-item">
-                    <a href="https://www.googleplus.com" target="blank" className="socials-list-link">
-                      <GooglePlusIcon className="active:text-[#FFA800]"/>
+                  <li className="hover:scale-110 transition-transform duration-300">
+                    <a href="https://www.googleplus.com" target="_blank" rel="noopener noreferrer">
+                      <GooglePlusIcon className="hover:text-[#FFA800]"/>
                     </a>
                   </li>
-                  <li className="socials-list-item">
-                    <a href="https://www.facebook.com" target="blank" className="socials-list-link">
-                      <FacabookIcon className="active:text-[#FFA800]"/>
+                  <li className="hover:scale-110 transition-transform duration-300">
+                    <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
+                      <FacabookIcon className="hover:text-[#FFA800]"/>
                     </a>
                   </li>
-                  <li className="socials-list-item">
-                    <a href="https://www.x.com">
-                      <TweeterIcon className="active:text-[#FFA800]"/>
+                  <li className="hover:scale-110 transition-transform duration-300">
+                    <a href="https://www.x.com" target="_blank" rel="noopener noreferrer">
+                      <TweeterIcon className="hover:text-[#FFA800]"/>
                     </a>
                   </li>
                 </ul>
@@ -89,7 +140,7 @@ const Footer = () => {
               <Logo />
             </div>
 
-            <div className="cursor-pointer text-[#E5E5E5]">
+            <div className="cursor-pointer text-[#E5E5E5] hover:text-[#FFA800] transition-colors duration-300">
               <Link to="header" smooth={true} duration={500}>
                 <ArrowUpIcon />
               </Link>
