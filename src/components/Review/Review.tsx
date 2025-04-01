@@ -1,6 +1,9 @@
 import "./Review.css";
+import manImage from "../../img/man.png";
+import girlImage from "../../img/girl.png";
 
 const Review = () => {
+
   return (
     <section id="review" className="review">
       <div className="review-container">
@@ -8,7 +11,7 @@ const Review = () => {
         <div className="review-posts">
           <div className="review-post">
             <div className="review-post-image">
-              <img src="src/img/girl.png" alt="girl" />
+              <img src={girlImage} alt="girl" />
             </div>
             <div className="review-post-text review-post-text-col">
               <div className="review-post-text-author">Екатерина Вальнова</div>
@@ -24,7 +27,7 @@ const Review = () => {
 
           <div className="review-post">
             <div className="review-post-image">
-              <img src="src/img/man.png" alt="man" />
+              <img src={manImage} alt="man" />
             </div>
             <div className="review-post-text review-post-text-col">
               <div className="review-post-text-author">Евгений Стрыкало</div>
