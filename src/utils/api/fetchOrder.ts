@@ -1,20 +1,32 @@
 import axiosInstance from "../axiosInstance/axiosInstance";
-import { User, Departure } from "../../store/orderStore"
+import { IOrderData } from "../../utils/useOrderQuery"
 
-export interface IOrder {
-  user: User;
-  departure: Departure;
-}
+// export interface IOrder {
+//   user: User;
+//   departure: Departure;
+// }
+export const fetchOrder = async (data: IOrderData) => {
 
-export const fetchOrder = async (data: IOrder) => {
-  if (!data) return [];
+  if (!data) {
+    console.error("Data is empty");
+    return [];
+  }
 
-  const orderNumber = await axiosInstance.post(`/order`, {
-    data
-  })
-    .then(response => console.log(response))
+  try {
+    const orderNumber = await axiosInstance.post<IOrderData>(`order`, {
+      data
+    });
+    return orderNumber;
+  } catch (error) {
+    console.error("Error fetching seats:", error);
+    throw error;
+  }
 
-  return orderNumber;
+  // const orderNumber = await axiosInstance.post(`/order`, {
+  //   data
+  // })
+  //   .then(response => console.log(response))
+
 };
 
 export default fetchOrder

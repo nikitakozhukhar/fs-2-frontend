@@ -1,20 +1,39 @@
-import { Link } from "react-router-dom";
-import { choosenRoute } from "../../../src/store/choosenRoute";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import orderStore from "../../store/orderStore";
-import fetchOrder from "../../utils/api/fetchOrder";
+import { useOrderData } from "../../utils/useOrderQuery";
+import { choosenRoute } from "../../../src/store/choosenRoute";
 import ConfirmationDetailCard from "../ConfirmationDetailCard/ConfirmationDetailCard";
 import PassangerIcon from "../../img/svg/passanger.svg?react";
 
 const Confirmation = () => {
   const { user, departure } = orderStore();
-
   const { routeInfo } = choosenRoute();
-
   const { seats } = departure;
+  const navigate = useNavigate();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const { mutateAsync: createOrder } = useOrderData();
 
   const totalPrice = seats.reduce((sum, seat) => sum + (seat.price || 0), 0);
-
   const confirmData = { user, departure };
+
+  const handleConfirm = async () => {
+    setIsSubmitting(true);
+    setError(null);
+
+    try {
+      const result = await createOrder(confirmData);
+      console.log("Order creation result:", result);
+      navigate("/success");
+    } catch (err) {
+      setError("Не удалось подтвердить заказ. Пожалуйста, попробуйте еще раз.");
+      console.error("Order confirmation error:", err);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <div className="flex flex-col gap-8 w-[960px] mb-14">
@@ -91,11 +110,19 @@ const Confirmation = () => {
         </div>
       </div>
 
-      <Link className="self-end" to={"/success"}>
-        <button className="w-[323px] h-[60px] bg-[#FFA800] rounded-md text-2xl font-bold text-white uppercase">
-          Подтвердить{" "}
+      {/* <Link className="self-end" to={"/success"}> */}
+        <button
+          onClick={handleConfirm}
+          disabled={isSubmitting}
+          className={`w-[323px] h-[60px] bg-[#FFA800] rounded-md text-2xl font-bold text-white uppercase ${
+            isSubmitting ? "opacity-50 cursor-not-allowed" : ""
+          }`}
+        >
+          {isSubmitting ? "Отправка..." : "Подтвердить"}
         </button>
-      </Link>
+
+        {error && <div className="text-red-500 text-center mt-2">{error}</div>}
+      {/* </Link> */}
     </div>
   );
 };

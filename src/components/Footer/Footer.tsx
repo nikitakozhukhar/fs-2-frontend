@@ -108,27 +108,27 @@ const Footer = () => {
                 <ul className="flex gap-10">
                   <li className="hover:scale-110 transition-transform duration-300">
                     <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer">
-                      <YotubeIcon className="hover:text-[#FFA800]"/>
+                      <YotubeIcon className="active:text-[#FFA800]"/>
                     </a>
                   </li>
                   <li className="hover:scale-110 transition-transform duration-300">
                     <a href="#" target="_blank" rel="noopener noreferrer">
-                      <InIcon className="hover:text-[#FFA800]"/>
+                      <InIcon className="active:text-[#FFA800]"/>
                     </a>
                   </li>
                   <li className="hover:scale-110 transition-transform duration-300">
                     <a href="https://www.googleplus.com" target="_blank" rel="noopener noreferrer">
-                      <GooglePlusIcon className="hover:text-[#FFA800]"/>
+                      <GooglePlusIcon className="active:text-[#FFA800]"/>
                     </a>
                   </li>
                   <li className="hover:scale-110 transition-transform duration-300">
                     <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
-                      <FacabookIcon className="hover:text-[#FFA800]"/>
+                      <FacabookIcon className="active:text-[#FFA800]"/>
                     </a>
                   </li>
                   <li className="hover:scale-110 transition-transform duration-300">
                     <a href="https://www.x.com" target="_blank" rel="noopener noreferrer">
-                      <TweeterIcon className="hover:text-[#FFA800]"/>
+                      <TweeterIcon className="active:text-[#FFA800]"/>
                     </a>
                   </li>
                 </ul>
