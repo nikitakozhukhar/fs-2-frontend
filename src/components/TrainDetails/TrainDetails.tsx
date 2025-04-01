@@ -3,10 +3,10 @@ import { UseQueryResult } from "@tanstack/react-query";
 import { IRoute } from "../../../src/utils/api/fetchRoutes";
 import { useCitiesQuery } from "../../utils/useCitiesQuery";
 import { useRoutesQuery } from "../../utils/useRoutesQuery";
+import { useSearchDirectionStore } from "../../store/searchDirectionStore";
 import LoadingTrain from "../LoadingTrain/LoadingTrain";
 import TrainDetailCard from "../TrainDetailCard/TrainDetailCard";
-import { useSearchDirectionStore } from "../../store/searchDirectionStore";
-
+import CustomSelect from "../CustomSelect/CustomSelect";
 import PrevPageIcon from "../../img/svg/prevPage.svg?react";
 import NextPageIcon from "../../img/svg/nextPage.svg?react";
 
@@ -69,8 +69,9 @@ const TrainDetails = () => {
     setPage(newPage);
   };
 
-  const handleSortChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSortBy(event.target.value);
+  const handleSortChange = (value: string) => {
+    setSortBy(value);
+    setPage(1);
   };
 
   return (
@@ -80,36 +81,23 @@ const TrainDetails = () => {
         <div className="founded-trains-right-col">
           <div className="flex flex-row gap-[20px]">
             <label htmlFor="options-select">Сортировать по:</label>
-            <select
-              name="options"
-              id="options-select"
-              className="border border-gray-300 rounded"
-            >
-              <option value=""></option>
-              <option value="date">Времени</option>
-              <option value="time">Стоимости</option>
-              <option value="duration">Длительности</option>
-            </select>
-            <div className="flex flex-row gap-[10px]">
-              показывать по:
-              <span
-                onClick={() => handleSetNewLimit(5)}
-                className="cursor-pointer"
-              >
-                5
-              </span>
-              <span
-                onClick={() => handleSetNewLimit(10)}
-                className="cursor-pointer"
-              >
-                10
-              </span>
-              <span
-                onClick={() => handleSetNewLimit(20)}
-                className="cursor-pointer"
-              >
-                20
-              </span>
+            <CustomSelect value={sortBy} onChange={handleSortChange} />
+            <div className="flex flex-row items-center gap-2 text-gray-700">
+              <span>показывать по:</span>
+              {[5, 10, 20].map((count) => (
+                <span
+                  key={count}
+                  onClick={() => handleSetNewLimit(count)}
+                  className={`
+                    ${limit === count ? "text-[#FAA800]" : ""}
+          cursor-pointer px-3 py-1 rounded-md
+          hover:bg-[#FFCA62] hover:text-white active:bg-[#FAA800]
+          transition-colors duration-200
+        `}
+                >
+                  {count}
+                </span>
+              ))}
             </div>
           </div>
         </div>
