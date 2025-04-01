@@ -148,7 +148,7 @@ const TrainPreview = () => {
       <div className="self-end ">
         <Link to={"/passangers"}>
         
-          <button className="py-4 px-12 border-2 border-[#FFA800] rounded-lg bg-[#FFA800] text-white text-2xl uppercase">
+          <button className="py-4 px-12 border-2 border-[#FFA800] rounded-lg bg-[#FFA800] text-white text-2xl uppercase hover:shadow-md hover:shadow-[#bebcbe] active:bg-white active:text-[#FFA800] active:border active:border-[#FFA800]">
             далее
           </button>
         </Link>

@@ -292,7 +292,7 @@ const Payment = () => {
             // e.preventDefault();
             formik.handleSubmit();
           }}
-          className="w-[323px] h-[60px] bg-[#FFA800] rounded-md text-2xl font-bold text-white uppercase"
+          className="w-[323px] h-[60px] bg-[#FFA800] rounded-md text-2xl font-bold text-white uppercase hover:shadow-md hover:shadow-[#bebcbe] active:bg-white active:text-[#FFA800] active:border active:border-[#FFA800]"
         >
           Купить билеты
         </button>

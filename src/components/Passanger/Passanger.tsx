@@ -71,7 +71,8 @@ const Passanger = () => {
           <Link to={hasValidPassenger ? "/payment" : "#"}>
             <button
               disabled={!hasValidPassenger}
-              className={`py-4 px-12 border-2 rounded-lg text-white text-2xl uppercase ${
+              className={`py-4 px-12 border-2 rounded-lg text-white text-2xl uppercase hover:shadow-md hover:shadow-[#bebcbe] active:bg-white active:text-[#FFA800] active:border active:border-[#FFA800]
+                ${
                 !hasValidPassenger
                   ? "bg-gray-400 border-gray-400 cursor-not-allowed"
                   : "bg-[#FFA800] border-[#FFA800] hover:bg-[#FFA800]/90"

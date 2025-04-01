@@ -114,7 +114,7 @@ const Confirmation = () => {
         <button
           onClick={handleConfirm}
           disabled={isSubmitting}
-          className={`w-[323px] h-[60px] bg-[#FFA800] rounded-md text-2xl font-bold text-white uppercase ${
+          className={`w-[323px] h-[60px] bg-[#FFA800] rounded-md text-2xl font-bold text-white uppercase hover:shadow-md hover:shadow-[#bebcbe] active:bg-white active:text-[#FFA800] active:border active:border-[#FFA800]${
             isSubmitting ? "opacity-50 cursor-not-allowed" : ""
           }`}
         >

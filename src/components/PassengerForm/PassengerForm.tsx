@@ -484,7 +484,17 @@ const PassengerForm: React.FC<PassengerProp> = ({
                         maxLength={6}
                       />
                       <div className="mt-1 text-sm text-red-600">
-                        {getIn(formik.errors, "documentData.number")}
+                        {getIn(formik.touched, "documentData.number") &&
+                          getIn(formik.errors, "documentData.number") && (
+                            <div className="mt-1 text-sm text-red-600">
+                              {typeof getIn(
+                                formik.errors,
+                                "documentData.number"
+                              ) === "string"
+                                ? getIn(formik.errors, "documentData.number")
+                                : "Ошибка"}
+                            </div>
+                          )}
                       </div>
                     </div>
                   </div>
@@ -525,7 +535,7 @@ const PassengerForm: React.FC<PassengerProp> = ({
 
               <div
                 className={`flex justify-end px-4 py-8 ${
-                  wasSubmitted && isFormValid ? "bg-green-100" : ""
+                  wasSubmitted && isFormValid ? "bg-green-100" : "bg-red-100"
                 }`}
               >
                 <button
