@@ -39,6 +39,7 @@ interface BookingData {
   departure: Departure;
   addrouteDirectionId: (directionId: string) => void;
   addSeat: (coachId: string, seatNumber: number | null, price: number) => void;
+  removeSeat: (coachId: string, seatNumber: number | null) => void;
   updatePassengerInfo: (seatIndex: number, personInfo: PersonInfo, isChild: boolean) => void;
   setUserData: <K extends keyof User>(key: K, value: User[K]) => void;
   isPassengerDataComplete: (seatIndex: number) => boolean;
@@ -68,9 +69,9 @@ const orderStore = create<BookingData>((set, get) => ({
     const isAlreadyAdded = state.departure.seats.some(
       seat => seat.coachId === coachId && seat.seatNumber === seatNumber
     );
-    
+
     if (isAlreadyAdded) return state;
-    
+
     return {
       departure: {
         ...state.departure,
@@ -88,7 +89,21 @@ const orderStore = create<BookingData>((set, get) => ({
       }
     };
   }),
-  updatePassengerInfo: (seatIndex, personInfo, isChild) => 
+
+  removeSeat: (coachId, seatNumber) => set((state) => {
+    const updatedSeats = state.departure.seats.filter(
+      seat => !(seat.coachId === coachId && seat.seatNumber === seatNumber)
+    );
+
+    return {
+      departure: {
+        ...state.departure,
+        seats: updatedSeats
+      }
+    };
+  }),
+
+  updatePassengerInfo: (seatIndex, personInfo, isChild) =>
     set((state) => {
       const updatedSeats = [...state.departure.seats];
       updatedSeats[seatIndex] = {
@@ -96,7 +111,7 @@ const orderStore = create<BookingData>((set, get) => ({
         personInfo,
         isChild
       };
-      
+
       return {
         departure: {
           ...state.departure,
@@ -104,27 +119,29 @@ const orderStore = create<BookingData>((set, get) => ({
         }
       };
     }),
-    setUserData: (key, value) => 
-      set((state) => ({
-        user: {
-          ...state.user,
-          [key]: value,
-        },
-      })),
-      isPassengerDataComplete: (seatIndex) => {
-        const seat = get().departure.seats[seatIndex];
-        if (!seat) return false;
-        
-        return (
-          seat.personInfo !== null &&
-          seat.personInfo.firstName !== '' &&
-          seat.personInfo.lastName !== '' &&
-          seat.personInfo.patronymic !== '' &&
-          seat.personInfo.birthday !== '' &&
-          seat.personInfo.documentData !== ''
-        );
+
+  setUserData: (key, value) =>
+    set((state) => ({
+      user: {
+        ...state.user,
+        [key]: value,
       },
-       
+    })),
+    
+  isPassengerDataComplete: (seatIndex) => {
+    const seat = get().departure.seats[seatIndex];
+    if (!seat) return false;
+
+    return (
+      seat.personInfo !== null &&
+      seat.personInfo.firstName !== '' &&
+      seat.personInfo.lastName !== '' &&
+      seat.personInfo.patronymic !== '' &&
+      seat.personInfo.birthday !== '' &&
+      seat.personInfo.documentData !== ''
+    );
+  },
+
 }));
 
 export default orderStore;

@@ -9,10 +9,8 @@ interface SeatProps {
 }
 
 const Seat: React.FC<SeatProps> = ({ seatNumber, available, coachId }) => {
-  const { departure, addSeat } = orderStore();
-
+  const { departure, addSeat, removeSeat } = orderStore();
   const [choosen, setIsChoosen] = useState(false);
-
   const { renderClassType, activeClassIcon } = wagonStore();
 
   const handleSeatClick = () => {
@@ -38,8 +36,12 @@ const Seat: React.FC<SeatProps> = ({ seatNumber, available, coachId }) => {
       price = isUpperSeat ? coach.top_price : coach.bottom_price;
     }
 
-    addSeat(coachId, seatNumber, price);
-    setIsChoosen(!choosen);
+    if (isSelected) {
+      removeSeat(coachId, seatNumber);
+    } else {
+      addSeat(coachId, seatNumber, price);
+      setIsChoosen(!choosen);
+    }
   };
 
   const isSelected = departure.seats.some(
